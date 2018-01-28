@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1031145639314",
+    "firebase_url": "https://bhajan-aarti-e86d5.firebaseio.com",
+    "project_id": "bhajan-aarti-e86d5",
+    "storage_bucket": "bhajan-aarti-e86d5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1031145639314:android:6725157c3704ffb5",
+        "android_client_info": {
+          "package_name": "com.rajendra.bhajanaarti"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1031145639314-761lh2duhvv1v5iumh65qc0kfejnhjqj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rajendra.bhajanaarti",
+            "certificate_hash": "453d7df69697552065df0e7991761a823e443096"
+          }
+        },
+        {
+          "client_id": "1031145639314-tlerrqlokhqjedq9b3e38d02ahnjfspt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgfi1eyF5pfN1StJ8SiQuhZxQTcw33k5Y"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1031145639314-tlerrqlokhqjedq9b3e38d02ahnjfspt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

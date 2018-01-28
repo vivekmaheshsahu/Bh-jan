@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/deviSongDrawer"
+
+            app:itemTextAppearance="?android:attr/textAppearanceMedium"
+            android:icon="@drawable/devi_song_icon"
+
+            android:title="देवी गाने" />
+        <item
+            android:id="@+id/aartiDrawer"
+            app:itemTextAppearance="?android:attr/textAppearanceMedium"
+            android:icon="@drawable/aarti_icon"
+
+            android:title="आरती"
+            />
+        <!--<item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Slideshow" />
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Tools" />-->
+    </group>
+
+    <item android:title="संवाद">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                app:itemTextAppearance="?android:attr/textAppearanceMedium"
+                android:icon="@drawable/icon3"
+
+                android:title="एप्लिकेशन शेयर"
+                android:actionProviderClass="android.widget.ShareActionProvider"/>
+            <item
+                android:id="@+id/feedbackDrawer"
+                app:itemTextAppearance="?android:attr/textAppearanceMedium"
+                android:icon="@drawable/icon4"
+                android:title="प्रतिक्रिया" />
+            <item
+                android:id="@+id/updateDrawer"
+
+                app:itemTextAppearance="?android:attr/textAppearanceMedium"
+                android:icon="@drawable/icon5"
+                android:title="अपडेट एप" />
+        </menu>
+    </item>
+</menu>
