@@ -54,13 +54,6 @@ public class MusicPlayerActivity extends Activity implements SeekBar.OnSeekBarCh
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
-        mAdView = (AdView) findViewById(R.id.adView1);
-        AdRequest adRequest1 = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest1);
-
-
-
-
         tvSongTitle = (TextView) findViewById(R.id.tvSongTitle);
         songTotalDurationLabel = (TextView) findViewById(R.id.songTotalDurationLabel);
         songCurrentDurationLabel = (TextView) findViewById(R.id.songCurrentDurationLabel);
