@@ -67,7 +67,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         tracker.enableAdvertisingIdCollection(true);
         tracker.enableAutoActivityTracking(true);
         mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-3940116301233519/1711844950");
+        mInterstitialAd.setAdUnitId("ca-app-pub-2609666985136692/1220074683");
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
 
@@ -155,6 +155,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -173,6 +174,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         }
         return super.onOptionsItemSelected(item);
     }
+*/
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override

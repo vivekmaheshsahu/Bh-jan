@@ -15,7 +15,7 @@ import com.rajendra.bhajanaarti.R;
 
 public class Written_Aarti extends AppCompatActivity {
     String[] mobileArray = {"गणेश आरती-(Ganesh Aarti)","कृष्ण आरती- (Krishna Aarti)","संतोषी माता की आरती- (Santoshi Mata Aarti)","श्री साईं बाबा की आरती- (Sai Baba Aarti)",
-           "शनि देवजी की आरती- (Shani Dev Aarti)","दुर्गा जी की आरती- (Durga Aarti)","कालीमाता आरती- (Kali Mata Aarti)","लक्ष्मीजी की आरती- (Laxmi Mata Aarti)","शिव आरती- (Shiv Aarti)","बृहस्पति देवता की आरती- (Brihaspati Aarti"};
+           "शनि देवजी की आरती- (Shani Dev Aarti)","दुर्गा जी की आरती- (Durga Aarti)","कालीमाता आरती- (Kali Mata Aarti)","लक्ष्मीजी की आरती- (Laxmi Mata Aarti)","शिव आरती- (Shiv Aarti)","बृहस्पति देवता की आरती- (Brihaspati Aarti)","जय अम्बे गौरी मैया जय श्यामा गौरी- (Jai ambe gauri maiya jai shyama gauri)","दुर्गे दुर्घट भारी- (Durge Durghat Bhari)","प्रार्थना- (Prayer)","पपुष्पांजली- (Mantra pushpanjali)"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

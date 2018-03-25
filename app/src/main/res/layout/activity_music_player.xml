@@ -7,10 +7,10 @@
 
 
     <!-- Player Header -->
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/player_header_bg"
         android:layout_width="fill_parent"
-        android:layout_height="60dip"
+        android:layout_height="50dip"
         android:background="@layout/bg_player_header"
         android:layout_alignParentTop="true"
         android:paddingLeft="5dp"
@@ -26,23 +26,25 @@
         </com.google.android.gms.ads.AdView>
 
         <TextView
+            android:layout_below="@+id/adView"
             android:id="@+id/tvSongTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="#04b3d2"
+            android:textColor="#333"
             android:textSize="1dp"
             android:paddingLeft="10dp"
             android:textStyle="bold"
             android:layout_marginTop="10dp"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 
     <LinearLayout
         android:id="@+id/player_footer_bg"
         android:layout_width="fill_parent"
         android:layout_height="100dp"
+        android:layout_margin="1dp"
         android:layout_alignParentBottom="true"
         android:background="@layout/bg_player_footer"
         android:gravity="center">
@@ -135,15 +137,6 @@
         android:paddingLeft="6dp"
         android:paddingRight="6dp"/>
 
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        ads:adSize="BANNER"
-        ads:adUnitId="@string/banner_ad_unit_id">
-    </com.google.android.gms.ads.AdView>
 
     <!-- Timer Display -->
 
@@ -217,7 +210,7 @@
         android:layout_alignParentStart="true">
         <ImageView android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/deviface"/>
+            android:src="@drawable/deviface_oldpic"/>
     </LinearLayout>
 
 </RelativeLayout>
