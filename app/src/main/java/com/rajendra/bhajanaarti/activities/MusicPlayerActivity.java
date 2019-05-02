@@ -427,8 +427,7 @@ public class MusicPlayerActivity extends Activity implements SeekBar.OnSeekBarCh
         {
             mp.stop();
         }
-        Intent intent = new Intent(MusicPlayerActivity.this, HomeActivity.class);
-        startActivity(intent);
+        finish();
     }
 
     @Override

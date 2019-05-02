@@ -9,33 +9,22 @@
     <!-- Player Header -->
     <RelativeLayout
         android:id="@+id/player_header_bg"
-        android:layout_width="fill_parent"
-        android:layout_height="50dip"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:background="@layout/bg_player_header"
-        android:layout_alignParentTop="true"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp">
-        <com.google.android.gms.ads.AdView
-            android:id="@+id/adView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            ads:adSize="BANNER"
-            ads:adUnitId="@string/banner_ad_unit_id">
-        </com.google.android.gms.ads.AdView>
-
+        android:layout_alignParentTop="true">
         <TextView
-            android:layout_below="@+id/adView"
             android:id="@+id/tvSongTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="#333"
-            android:textSize="1dp"
-            android:paddingLeft="10dp"
             android:textStyle="bold"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginEnd="@dimen/normal_margin"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/x_large_text"
+            android:layout_centerInParent="true"
+            android:maxLines="1"
+            android:ellipsize="end"/>
 
     </RelativeLayout>
 
@@ -212,5 +201,15 @@
             android:layout_height="wrap_content"
             android:src="@drawable/deviface_oldpic"/>
     </LinearLayout>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/songThumbnail">
+    </com.google.android.gms.ads.AdView>
 
 </RelativeLayout>

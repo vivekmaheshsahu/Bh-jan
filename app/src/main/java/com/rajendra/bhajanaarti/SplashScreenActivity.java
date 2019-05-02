@@ -16,7 +16,6 @@ public class SplashScreenActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-
         handler = new Handler();
         handler.postDelayed(r, 2000);
 
