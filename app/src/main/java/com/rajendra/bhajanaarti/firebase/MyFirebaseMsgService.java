@@ -19,12 +19,13 @@ public class MyFirebaseMsgService extends FirebaseMessagingService {
 
         if (remoteMessage.getNotification() != null) {
             Log.d("onMessageReceived", "Message Notification Body: " + remoteMessage.getNotification().getBody());
-            String updateMsg = remoteMessage.getNotification().getBody();
-            if (updateMsg!= null && updateMsg.length() > 0){
+            if (remoteMessage.getNotification() != null){
+                String notiTitle = remoteMessage.getNotification().getTitle();
+                String notiText = remoteMessage.getNotification().getBody();
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O){
                     NotificationHelper.createNotificationChannel(this);
                 }
-                NotificationHelper.showNotification(this, updateMsg);
+                NotificationHelper.showNotification(this, notiTitle, notiText);
             }
         }
     }

@@ -1,7 +1,6 @@
 package com.rajendra.bhajanaarti.activities;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -32,16 +31,11 @@ public class MusicPlayerActivity extends Activity implements SeekBar.OnSeekBarCh
     private Utilities utils;
     private int seekForwardTime = 5000; // 5000 milliseconds
     private int seekBackwardTime = 5000;
-
     private boolean isRepeat = false;
-
-    MediaPlayer mp;
+    public static MediaPlayer mp;
     String songIndex;
     private static final String TAG = "MainActivity";
-
-
     int indexOfSong;
-
     private Handler mHandler = new Handler();;
 
     @Override
@@ -101,34 +95,47 @@ public class MusicPlayerActivity extends Activity implements SeekBar.OnSeekBarCh
         mUpdateTimeTask.run();
     }
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
     private Runnable mUpdateTimeTask = new Runnable()
     {
         public void run()
         {
-            long totalDuration = mp.getDuration();
-            long currentDuration = mp.getCurrentPosition();
+            if (mp != null){
+                long totalDuration = mp.getDuration();
+                long currentDuration = mp.getCurrentPosition();
 
-            // Displaying Total Duration time
-            Log.d(TAG,"totalDuration_val " + utils.milliSecondsToTimer(totalDuration));
-            songTotalDurationLabel.setText(""+utils.milliSecondsToTimer(totalDuration));
+                // Displaying Total Duration time
+            /*Log.d(TAG,"totalDuration_val " + utils.milliSecondsToTimer(totalDuration));
+            songTotalDurationLabel.setText(""+utils.milliSecondsToTimer(totalDuration));*/
 
-            // Displaying time completed playing
-            Log.d(TAG, "currentDuration_val " + utils.milliSecondsToTimer(currentDuration));
-            songCurrentDurationLabel.setText(""+utils.milliSecondsToTimer(currentDuration));
+                // Displaying time completed playing
+                Log.d(TAG, "currentDuration_val " + utils.milliSecondsToTimer(currentDuration));
+                songCurrentDurationLabel.setText(utils.milliSecondsToTimer(currentDuration));
 
-            int progress = (int)(utils.getProgressPercentage(currentDuration, totalDuration));
-            //Log.d("Progress", ""+progress);
-            songProgressBar.setProgress(progress);
+                int progress = (int)(utils.getProgressPercentage(currentDuration, totalDuration));
+                //Log.d("Progress", ""+progress);
+                songProgressBar.setProgress(progress);
 
-            // Running this thread after 100 milliseconds
-            mHandler.postDelayed(this, 100);
+                // Running this thread after 1000 milliseconds
+                mHandler.postDelayed(this, 1000);
+            }
+            else
+            {
+                finish();
+            }
         }
     };
 
     public void updateProgressBar()
     {
-        mHandler.postDelayed(mUpdateTimeTask, 100);
+        mHandler.postDelayed(mUpdateTimeTask, 1000);
     }
+
 
 
     @Override
@@ -136,6 +143,8 @@ public class MusicPlayerActivity extends Activity implements SeekBar.OnSeekBarCh
     {
         if (v == btnPlay)
         {
+            mAdView.loadAd(new AdRequest.Builder().build());
+
             if(mp.isPlaying())
             {
                 if(mp != null)
@@ -186,9 +195,12 @@ public class MusicPlayerActivity extends Activity implements SeekBar.OnSeekBarCh
         }
         if (v == btnNext)
         {
-            mp.stop();
+            if (mp != null)
+                mp.stop();
 
             Log.d("btnNext","indexOfSong_val " + indexOfSong);
+
+            mAdView.loadAd(new AdRequest.Builder().build());
 
             if (indexOfSong < 15)
             {
@@ -213,15 +225,18 @@ public class MusicPlayerActivity extends Activity implements SeekBar.OnSeekBarCh
         }
         if (v == btnPrevious)
         {
-            mp.stop();
+            if (mp != null)
+                mp.stop();
 
             Log.d("btnPrevious","indexOfSong_val " + indexOfSong);
+
+            mAdView.loadAd(new AdRequest.Builder().build());
 
             if (indexOfSong > 0)
             {
                 int subtractSongIndex = 1;
                 int preValue = indexOfSong - subtractSongIndex;
-                Log.d("btnPrevious", "nextValue_val " + preValue );
+                Log.d("btnPrevious", "nextValue_val " + preValue);
 
                 indexOfSong--;
                 Log.d("btnPrevious","indexOfSong_new_val " + indexOfSong);
@@ -331,103 +346,76 @@ public class MusicPlayerActivity extends Activity implements SeekBar.OnSeekBarCh
 
     public void playSongIndex(int index)
     {
-        if (index == 0)
-        {
-            mp = MediaPlayer.create(this, R.raw.aarti_ambe_tu_hai_jagdambe_kali);
-            mp.setOnCompletionListener(this);
-        }
-        if (index == 1)
-        {
-            mp = MediaPlayer.create(this, R.raw.bhajan_ambey_tu_hai_jagdambey_kali);
-            mp.setOnCompletionListener(this);
-        }
-        if (index == 2)
-        {
-            mp = MediaPlayer.create(this, R.raw.bheja_hai_bulava_tune_sherawaliye);
-            mp.setOnCompletionListener(this);
-        }
-        if (index == 3)
-        {
-            mp = MediaPlayer.create(this, R.raw.bhor_bhai_din_char_gaya_meri_ambe);
-            mp.setOnCompletionListener(this);
-        }
-        if (index == 4)
-        {
-            mp = MediaPlayer.create(this, R.raw.bigdi_meri_bana_de);
-            mp.setOnCompletionListener(this);
-        }
-        if (index == 5)
-        {
-            mp = MediaPlayer.create(this, R.raw.durga_hai_meri_maa);
-            mp.setOnCompletionListener(this);
-        }
-        if (index == 6)
-        {
-            mp = MediaPlayer.create(this, R.raw.hey_naam_re_sabse_bada_tera_naam);
-            mp.setOnCompletionListener(this);
-        }
-        if (index == 7)
-        {
-            mp = MediaPlayer.create(this, R.raw.kabse_khadi_hoon);
-            mp.setOnCompletionListener(this);
-        }
-        if (index == 8)
-        {
-            mp = MediaPlayer.create(this, R.raw.maa_sun_le_pukar);
-            mp.setOnCompletionListener(this);
-        }
-        if (index == 9)
-        {
-            mp = MediaPlayer.create(this, R.raw.maiya_ka_chola_rangla);
-            mp.setOnCompletionListener(this);
-        }
-        if (index == 10)
-        {
-            mp = MediaPlayer.create(this, R.raw.maiya_main_nihaal_ho_gaya);
-            mp.setOnCompletionListener(this);
-        }
-        if (index == 11)
-        {
-            mp = MediaPlayer.create(this, R.raw.meri_akhiyon_ke_samne_hi_rehna);
-            mp.setOnCompletionListener(this);
-        }
-        if (index == 12)
-        {
-            mp = MediaPlayer.create(this, R.raw.meri_jholi_chhoti_pa_gayee_re);
-            mp.setOnCompletionListener(this);
-        }
-        if (index == 13)
-        {
-            mp = MediaPlayer.create(this, R.raw.na_main_mangu_sona_devi);
-            mp.setOnCompletionListener(this);
-        }
-        if (index == 14)
-        {
-            mp = MediaPlayer.create(this, R.raw.pyara_saja_hai_tera_dwar);
-            mp.setOnCompletionListener(this);
-        }
-        if (index == 15)
-        {
-            mp = MediaPlayer.create(this, R.raw.suno_suno_ek_kahani);
-            mp.setOnCompletionListener(this);
+        if (mp != null){
+            mp.stop();
+            mp.release();
         }
 
-        long totalDuration = mp.getDuration();
+        switch (index){
+            case 0:
+                mp = MediaPlayer.create(this, R.raw.aarti_ambe_tu_hai_jagdambe_kali);
+                break;
+            case 1:
+                mp = MediaPlayer.create(this, R.raw.bhajan_ambey_tu_hai_jagdambey_kali);
+                break;
+            case 2:
+                mp = MediaPlayer.create(this, R.raw.bheja_hai_bulava_tune_sherawaliye);
+                break;
+            case 3:
+                mp = MediaPlayer.create(this, R.raw.bhor_bhai_din_char_gaya_meri_ambe);
+                break;
+            case 4:
+                mp = MediaPlayer.create(this, R.raw.bigdi_meri_bana_de);
+                break;
+            case 5:
+                mp = MediaPlayer.create(this, R.raw.durga_hai_meri_maa);
+                break;
+            case 6:
+                mp = MediaPlayer.create(this, R.raw.hey_naam_re_sabse_bada_tera_naam);
+                break;
+            case 7:
+                mp = MediaPlayer.create(this, R.raw.kabse_khadi_hoon);
+                break;
+            case 8:
+                mp = MediaPlayer.create(this, R.raw.maa_sun_le_pukar);
+                break;
+            case 9:
+                mp = MediaPlayer.create(this, R.raw.maiya_ka_chola_rangla);
+                break;
+            case 10:
+                mp = MediaPlayer.create(this, R.raw.maiya_main_nihaal_ho_gaya);
+                break;
+            case 11:
+                mp = MediaPlayer.create(this, R.raw.meri_akhiyon_ke_samne_hi_rehna);
+                break;
+            case 12:
+                mp = MediaPlayer.create(this, R.raw.meri_jholi_chhoti_pa_gayee_re);
+                break;
+            case 13:
+                mp = MediaPlayer.create(this, R.raw.na_main_mangu_sona_devi);
+                break;
+            case 14:
+                mp = MediaPlayer.create(this, R.raw.pyara_saja_hai_tera_dwar);
+                break;
+            case 15:
+                mp = MediaPlayer.create(this, R.raw.suno_suno_ek_kahani);
+                break;
+        }
 
-        songTotalDurationLabel.setText(""+utils.milliSecondsToTimer(totalDuration));
-        Log.d(TAG, "total_val " + utils.milliSecondsToTimer(totalDuration));
-        mp.start();
+        if (mp != null){
+            mp.start();
+            mp.setOnCompletionListener(this);
+            long totalDuration = mp.getDuration();
 
+            songTotalDurationLabel.setText(utils.milliSecondsToTimer(totalDuration));
+            Log.d(TAG, "total_val " + utils.milliSecondsToTimer(totalDuration));
+        }
     }
 
+
     @Override
-    public void onBackPressed()
-    {
-        if (mp.isPlaying())
-        {
-            mp.stop();
-        }
-        finish();
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
     @Override

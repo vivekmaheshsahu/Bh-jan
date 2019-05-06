@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
@@ -23,6 +24,7 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import com.rajendra.bhajanaarti.Adapters.SongInfoAdapter;
 import com.rajendra.bhajanaarti.Pojo.SongInfo;
 import com.rajendra.bhajanaarti.R;
+import com.rajendra.bhajanaarti.constants.Constant;
 import com.rajendra.bhajanaarti.utils.NotificationHelper;
 
 import java.util.ArrayList;
@@ -97,6 +99,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -165,7 +171,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         {
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=com.rajendra.bhajanaarti");
+            sendIntent.putExtra(Intent.EXTRA_TEXT, Constant.PLAY_STORE_LINK);
 
             sendIntent.setType("text/plain");
             startActivity(sendIntent);
@@ -177,7 +183,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         }
         else if (id == R.id.updateDrawer)
         {
-            Uri uri = Uri.parse("https://play.google.com/store/apps/details?id=com.rajendra.bhajanaarti");
+            Uri uri = Uri.parse(Constant.PLAY_STORE_LINK);
             Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
 
             // After pressing back button from google play will continue to app
@@ -185,6 +191,18 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
 
             startActivity(goToMarket);
+        }
+        else if (id == R.id.exitDrawer){
+            if (MusicPlayerActivity.mp != null){
+                MusicPlayerActivity.mp.stop();
+                MusicPlayerActivity.mp.release();
+                MusicPlayerActivity.mp = null;
+            }
+            Intent exitIntent = new Intent(Intent.ACTION_MAIN);
+            exitIntent.addCategory(Intent.CATEGORY_HOME);
+            exitIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(exitIntent);
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -209,6 +227,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         String songIndex = String.valueOf(adapter.getItemId(position));
 
         Log.d(TAG, "position_index " + songIndex);
+
+        if (MusicPlayerActivity.mp != null)
+            MusicPlayerActivity.mp.stop();
 
         Intent intent = new Intent(HomeActivity.this, MusicPlayerActivity.class);
         intent.putExtra("songindex", songIndex);

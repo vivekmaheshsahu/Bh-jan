@@ -17,14 +17,6 @@
 
             android:title="आरती"
             />
-        <!--<item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />-->
     </group>
 
     <item android:title="संवाद">
@@ -35,7 +27,7 @@
                 android:icon="@drawable/icon3"
 
                 android:title="एप्लिकेशन शेयर"
-                android:actionProviderClass="android.widget.ShareActionProvider"/>
+                app:actionProviderClass="android.support.v7.widget.ShareActionProvider"/>
             <item
                 android:id="@+id/feedbackDrawer"
                 app:itemTextAppearance="?android:attr/textAppearanceMedium"
@@ -47,6 +39,11 @@
                 app:itemTextAppearance="?android:attr/textAppearanceMedium"
                 android:icon="@drawable/icon5"
                 android:title="अपडेट एप" />
+            <item
+                android:id="@+id/exitDrawer"
+                app:itemTextAppearance="?android:attr/textAppearanceMedium"
+                android:icon="@drawable/exit"
+                android:title="बाहर जाएं" />
         </menu>
     </item>
 </menu>
