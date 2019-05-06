@@ -65,9 +65,6 @@ public class MusicPlayerActivity extends Activity implements SeekBar.OnSeekBarCh
         setSongTitle(indexOfSong);
         playSongIndex(indexOfSong);
 
-        mp.setOnCompletionListener(this);
-
-
         btnPlay = (ImageButton) findViewById(R.id.btnPlay);
         btnPlay.setOnClickListener(this);
 
