@@ -1,8 +1,11 @@
-package com.rajendra.bhajanaarti.Utility;
+package com.rajendra.bhajanaarti.utils;
 
 
 public class Utilities
 {
+	public static Boolean playing = false;
+	public static boolean pause = false;
+
 	public String milliSecondsToTimer(long milliseconds){
 		String finalTimerString = "";
 		String secondsString = "";

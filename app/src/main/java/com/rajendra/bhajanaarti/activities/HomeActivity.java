@@ -14,6 +14,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -25,32 +28,35 @@ import com.rajendra.bhajanaarti.Adapters.SongInfoAdapter;
 import com.rajendra.bhajanaarti.Pojo.SongInfo;
 import com.rajendra.bhajanaarti.R;
 import com.rajendra.bhajanaarti.constants.Constant;
-import com.rajendra.bhajanaarti.utils.NotificationHelper;
+import com.rajendra.bhajanaarti.firebase.NotificationHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
-public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemClickListener {
+public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemClickListener, View.OnClickListener {
 
     String TAG = "HomeActivity";
     SongInfoAdapter adapter;
     public static GoogleAnalytics analytics;
     private InterstitialAd mInterstitialAd;
     public static Tracker tracker;
-    public static final String[] songName = new String[] {  "Aarti Ambe Tu Hai Jagdambe Kali", "Bhajan Ambey Tu Hai Jagdambey Kali",
-                                                            "Bheja Hai Bulava Tune Sherawaliye", "Bhor Bhai Din Char Gaya Meri Ambe",
-                                                            "Bigdi Meri Bana De", "Durga Hai Meri Maa",
-                                                            "Hey Naam Re Sabse Bada Tera Naam", "Kabse Khadi Hoon",
-                                                            "Maa Sun Le Pukar By Gulshan Kumar" ,"Maiya Ka Chola Hai Rangla",
-                                                            "Maiya Main Nihaal Ho Gaya", "Meri Akhiyon Ke Samne Hi Rehna",
-                                                            "Meri Jholi Chhoti Pad Gayee Re", "Na Main Mangu Sona Devi Bhajan",
-                                                            "Pyara Saja Hai Tera Dwar", "Suno Suno Ek Kahani"
-                                                          };
+    public static final String[] songName = new String[] {"Ambe Tu Hai Jagdambe Kali",
+            "Bheja Hai Bulava Tune Sherawaliye", "Bhor Bhai Din Char Gaya Meri Ambe",
+            "Bigdi Meri Bana De", "Durga Hai Meri Maa",
+            "Hey Naam Re Sabse Bada Tera Naam", "Kabse Khadi Hoon",
+            "Maa Sun Le Pukar" ,"Maiya Ka Chola Hai Rangla",
+            "Maiya Main Nihaal Ho Gaya", "Meri Akhiyon Ke Samne Hi Rehna",
+            "Meri Jholi Chhoti Pad Gayee Re", "Na Main Mangu Sona Devi Bhajan",
+            "Pyara Saja Hai Tera Dwar", "Suno Suno Ek Kahani"};
 
-    public static final Integer imageid = R.drawable.bhajan ;
+    public static final Integer imageid = R.drawable.bhajan;
     ListView listSongs;
     List<SongInfo> songInfo;
     private FirebaseAnalytics mFirebaseAnalytics;
+    private RelativeLayout playingLayout;
+    private TextView playingSongName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -134,6 +140,24 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         super.onResume();
 
         NotificationHelper.clearNotifications(this);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            playingLayout = findViewById(R.id.playingLayout);
+            playingSongName = findViewById(R.id.playingSongName);
+            playingLayout.setVisibility(View.VISIBLE);
+            playingLayout.setOnClickListener(this);
+
+            String songTitle = bundle.getString("songTitle");
+            playingSongName.setText(String.format(Locale.US, "%s %s",
+                    "Now playing: ", songTitle.substring(3)));
+            playingSongName.setSelected(true);
+        }
     }
 
     @Override
@@ -227,13 +251,22 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         String songIndex = String.valueOf(adapter.getItemId(position));
 
         Log.d(TAG, "position_index " + songIndex);
-
-        if (MusicPlayerActivity.mp != null)
+        if (MusicPlayerActivity.mp != null){
             MusicPlayerActivity.mp.stop();
-
+        }
         Intent intent = new Intent(HomeActivity.this, MusicPlayerActivity.class);
         intent.putExtra("songindex", songIndex);
         startActivity(intent);
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.playingLayout:
+                Intent intent = new Intent(HomeActivity.this, MusicPlayerActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
+                break;
+        }
+    }
 }

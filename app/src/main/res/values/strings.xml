@@ -24,5 +24,12 @@
     <!--<string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>-->
     <!--<string name="interstitial_ad">ca-app-pub-3940256099942544/1033173712</string>-->
 
+
+    <!--// Ganapati aarti test ids
+    <string name="admob_app_id">ca-app-pub-2609666985136692~4976099823</string>
+    <string name="banner_ad_unit_id">ca-app-pub-2609666985136692/1775221418</string>
+    <string name="interstitial_ad">ca-app-pub-2609666985136692/5929609913</string>-->
+
+
     <string name="please_grant_all_permissions">Insufficient privileges. Please grant all permissions.</string>
 </resources>
