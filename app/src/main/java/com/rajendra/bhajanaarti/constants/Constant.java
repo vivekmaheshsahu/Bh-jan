@@ -6,4 +6,5 @@ public class Constant {
     public static final String APP_NAME = "Bhajan Aarti";
     public static final String UPDATE = "update";
     public static final String PLAY_STORE_LINK = "https://play.google.com/store/apps/details?id=com.rajendra.bhajanaarti";
+    public static String NOW_PLAYING_SONG_NAME = "";
 }

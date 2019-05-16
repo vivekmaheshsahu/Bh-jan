@@ -2,6 +2,7 @@ package com.rajendra.bhajanaarti.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -12,8 +13,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -54,8 +57,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     ListView listSongs;
     List<SongInfo> songInfo;
     private FirebaseAnalytics mFirebaseAnalytics;
-    private RelativeLayout playingLayout;
-    private TextView playingSongName;
+    private ProgressBar progressBar;
+    Handler handler = new Handler();
+    String songIndex = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,7 +110,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         });
 
         AdView mAdView = (AdView) findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
+        AdRequest adRequest = new AdRequest.Builder()
+                .build();
+        //.addTestDevice("FD9F133038F995D8A876271BC9EBFCC0")
         mAdView.loadAd(adRequest);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -132,6 +138,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         adapter = new SongInfoAdapter(this,R.layout.content_home, songInfo);
         listSongs.setAdapter(adapter);
         listSongs.setOnItemClickListener(this);
+        progressBar = findViewById(R.id.progressBar);
     }
 
 
@@ -140,22 +147,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         super.onResume();
 
         NotificationHelper.clearNotifications(this);
-    }
-
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        setIntent(intent);
-        Bundle bundle = getIntent().getExtras();
-        if (bundle != null) {
-            playingLayout = findViewById(R.id.playingLayout);
-            playingSongName = findViewById(R.id.playingSongName);
+        if (Constant.NOW_PLAYING_SONG_NAME != null && Constant.NOW_PLAYING_SONG_NAME.length() > 1){
+            RelativeLayout playingLayout = findViewById(R.id.playingLayout);
             playingLayout.setVisibility(View.VISIBLE);
             playingLayout.setOnClickListener(this);
 
-            String songTitle = bundle.getString("songTitle");
+            TextView playingSongName = findViewById(R.id.playingSongName);
             playingSongName.setText(String.format(Locale.US, "%s %s",
-                    "Now playing: ", songTitle.substring(3)));
+                    "Now playing: ", Constant.NOW_PLAYING_SONG_NAME));
             playingSongName.setSelected(true);
         }
     }
@@ -237,6 +236,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id)
     {
+        progressBar.setVisibility(View.VISIBLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
         Log.d(TAG,"SongInfo " + songInfo.get(position).getImageid());
         Log.d(TAG,"SongInfo_name " + songInfo.get(position).getSongname());
 
@@ -248,16 +251,26 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         mFirebaseAnalytics.setUserProperty("favorite_food", "Paneer");
 
-        String songIndex = String.valueOf(adapter.getItemId(position));
+        songIndex = String.valueOf(adapter.getItemId(position));
 
         Log.d(TAG, "position_index " + songIndex);
         if (MusicPlayerActivity.mp != null){
             MusicPlayerActivity.mp.stop();
+            MusicPlayerActivity.mp = null;
         }
-        Intent intent = new Intent(HomeActivity.this, MusicPlayerActivity.class);
-        intent.putExtra("songindex", songIndex);
-        startActivity(intent);
+
+        handler.postDelayed(r, 900);
     }
+
+    Runnable r = new Runnable() {
+        public void run() {
+            progressBar.setVisibility(View.GONE);
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+            Intent intent = new Intent(HomeActivity.this, MusicPlayerActivity.class);
+            intent.putExtra("songindex", songIndex);
+            startActivity(intent);
+        }
+    };
 
     @Override
     public void onClick(View v) {
@@ -268,5 +281,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 break;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        Log.d(TAG, "onDestroy_called");
     }
 }

@@ -14,17 +14,10 @@ public class PhoneCallStateReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         String state = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
-        String number = "";
-        Bundle bundle = intent.getExtras();
-
 
         if (state.equals(TelephonyManager.EXTRA_STATE_RINGING)) {
             // Phone is ringing
-            number = bundle.getString("incoming_number");
-            Log.d("testing", number);
             stopServices(context);
-
-
 
         } else if (state.equals(TelephonyManager.EXTRA_STATE_OFFHOOK)) {
             // Call received

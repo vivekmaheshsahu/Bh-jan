@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.rajendra.bhajanaarti.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.rajendra.bhajanaarti.constants.Constant;
 import com.rajendra.bhajanaarti.utils.Utilities;
 
 public class MusicPlayerActivity extends Activity implements SeekBar.OnSeekBarChangeListener, View.OnClickListener, MediaPlayer.OnCompletionListener {
@@ -111,7 +112,6 @@ public class MusicPlayerActivity extends Activity implements SeekBar.OnSeekBarCh
 
     private Runnable mUpdateTimeTask = new Runnable() {
         public void run() {
-            Log.d(TAG, "Start Runnable");
             if (mp != null){
                 long totalDuration = mp.getDuration();
                 long currentDuration = mp.getCurrentPosition();
@@ -125,8 +125,10 @@ public class MusicPlayerActivity extends Activity implements SeekBar.OnSeekBarCh
                 songCurrentDurationLabel.setText(utils.milliSecondsToTimer(currentDuration));
 
                 if (isActivityVisible){
-                    if (!mp.isPlaying()){
-                        btnPlay.setImageResource(R.drawable.btn_play);
+                    if (mp != null){
+                        if (!mp.isPlaying()){
+                            btnPlay.setImageResource(R.drawable.btn_play);
+                        }
                     }
                 }
 
@@ -341,11 +343,9 @@ public class MusicPlayerActivity extends Activity implements SeekBar.OnSeekBarCh
 
     @Override
     public void onBackPressed() {
-        //super.onBackPressed();
-
         Intent intent = new Intent(this, HomeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        intent.putExtra("songTitle", tvSongTitle.getText().toString());
+        Constant.NOW_PLAYING_SONG_NAME = tvSongTitle.getText().toString();
         startActivity(intent);
     }
 
