@@ -331,7 +331,6 @@ public class MusicPlayerActivity extends Activity implements SeekBar.OnSeekBarCh
 
         if (mp != null){
             mp.start();
-            Utilities.playing = true;
             mp.setOnCompletionListener(this);
             long totalDuration = mp.getDuration();
 
@@ -344,7 +343,7 @@ public class MusicPlayerActivity extends Activity implements SeekBar.OnSeekBarCh
     public void onBackPressed() {
         Intent intent = new Intent(this, HomeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        Constant.NOW_PLAYING_SONG_NAME = tvSongTitle.getText().toString();
+        Constant.NOW_PLAYING_SONG_NAME = tvSongTitle.getText().toString().substring(3);
         startActivity(intent);
     }
 

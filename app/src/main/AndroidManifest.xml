@@ -79,9 +79,6 @@
             </intent-filter>
         </receiver>
 
-        <service android:name=".services.PlayMusicService"
-            android:enabled="true"/>
-
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"

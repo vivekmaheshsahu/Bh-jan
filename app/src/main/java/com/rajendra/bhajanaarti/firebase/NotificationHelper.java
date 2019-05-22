@@ -79,7 +79,9 @@ public class NotificationHelper {
     }
 
     public static void clearNotifications(Context context) {
-        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.cancelAll();
+        if (context != null){
+            NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.cancelAll();
+        }
     }
 }
