@@ -35,7 +35,6 @@ public class MusicPlayerActivity extends Activity implements SeekBar.OnSeekBarCh
     private int seekBackwardTime = 5000;
     private boolean isRepeat = false;
     public static MediaPlayer mp;
-    String songIndex;
     private static final String TAG = "MusicPlayerActivity";
     int indexOfSong;
     private Handler mHandler = new Handler();
@@ -74,12 +73,11 @@ public class MusicPlayerActivity extends Activity implements SeekBar.OnSeekBarCh
         songProgressBar.setProgress(0);
         songProgressBar.setOnSeekBarChangeListener(this);
 
-        Bundle bundle = getIntent().getExtras();
-        if (bundle != null) {
-            songIndex = bundle.getString("songindex");
+        Intent mIntent = getIntent();
+        if (mIntent != null) {
+            indexOfSong = mIntent.getIntExtra("songindex", 0);
         }
-        Log.d(TAG, "song_index " + songIndex);
-        indexOfSong = Integer.parseInt(songIndex);
+        Log.d(TAG, "song_index " + indexOfSong);
         utils = new Utilities();
         playSongIndex(indexOfSong);
         mUpdateTimeTask.run();
@@ -126,9 +124,10 @@ public class MusicPlayerActivity extends Activity implements SeekBar.OnSeekBarCh
 
                 if (isActivityVisible){
                     if (mp != null){
-                        if (!mp.isPlaying()){
-                            btnPlay.setImageResource(R.drawable.btn_play);
+                        if (mp.isPlaying()){
+                            btnPlay.setImageResource(R.drawable.btn_pause);
                         }
+                        else btnPlay.setImageResource(R.drawable.btn_play);
                     }
                 }
 

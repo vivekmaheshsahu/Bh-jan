@@ -24,7 +24,8 @@ public class SplashScreenActivity extends Activity {
             Manifest.permission.WAKE_LOCK,
             Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.ACCESS_FINE_LOCATION,
-            Manifest.permission.READ_PHONE_STATE};
+            Manifest.permission.READ_PHONE_STATE,
+            Manifest.permission.VIBRATE};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

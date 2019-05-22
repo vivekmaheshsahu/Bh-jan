@@ -59,7 +59,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private FirebaseAnalytics mFirebaseAnalytics;
     private ProgressBar progressBar;
     Handler handler = new Handler();
-    String songIndex = "";
+    int songIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -221,6 +221,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 MusicPlayerActivity.mp.release();
                 MusicPlayerActivity.mp = null;
             }
+            Constant.NOW_PLAYING_SONG_NAME = "";
             Intent exitIntent = new Intent(Intent.ACTION_MAIN);
             exitIntent.addCategory(Intent.CATEGORY_HOME);
             exitIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -251,7 +252,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         mFirebaseAnalytics.setUserProperty("favorite_food", "Paneer");
 
-        songIndex = String.valueOf(adapter.getItemId(position));
+        songIndex = (int) adapter.getItemId(position);
 
         Log.d(TAG, "position_index " + songIndex);
         if (MusicPlayerActivity.mp != null){
