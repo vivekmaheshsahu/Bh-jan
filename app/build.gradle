@@ -8,8 +8,8 @@ android {
         applicationId "com.rajendra.bhajanaarti"
         minSdkVersion 17
         targetSdkVersion 28
-        versionCode 19
-        versionName "2.0.9"
+        versionCode 20
+        versionName "2.1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -34,6 +34,5 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.9'
     implementation 'com.crashlytics.sdk.android:crashlytics:2.10.0'
     implementation 'com.google.firebase:firebase-messaging:18.0.0'
-    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.2'
     testImplementation 'junit:junit:4.12'
 }
