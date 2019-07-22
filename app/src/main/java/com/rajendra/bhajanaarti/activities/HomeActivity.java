@@ -3,6 +3,7 @@ package com.rajendra.bhajanaarti.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -60,6 +62,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private ProgressBar progressBar;
     Handler handler = new Handler();
     int songIndex;
+    private ImageView ivPlayHome, ivPauseHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,7 +128,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-       navigationView.setItemIconTintList(null);
+        navigationView.setItemIconTintList(null);
+
+        ivPlayHome = findViewById(R.id.ivPlayHome);
+        ivPauseHome = findViewById(R.id.ivPauseHome);
 
         songInfo = new ArrayList<SongInfo>();
         for (int i = 0; i < songName.length; i++)
@@ -150,6 +156,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         if (Constant.NOW_PLAYING_SONG_NAME != null && Constant.NOW_PLAYING_SONG_NAME.length() > 1){
             RelativeLayout playingLayout = findViewById(R.id.playingLayout);
             playingLayout.setVisibility(View.VISIBLE);
+            if (MusicPlayerActivity.mp.isPlaying()) {
+                showPlayButton(false);
+            }
+            else {
+                showPlayButton(true);
+            }
             playingLayout.setOnClickListener(this);
 
             TextView playingSongName = findViewById(R.id.playingSongName);
@@ -157,6 +169,18 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     "Now playing: ", Constant.NOW_PLAYING_SONG_NAME));
             playingSongName.setSelected(true);
         }
+    }
+
+    public void showPlayButton(boolean show){
+        if (show){
+            ivPlayHome.setVisibility(View.VISIBLE);
+            ivPauseHome.setVisibility(View.INVISIBLE);
+        }
+        else {
+            ivPlayHome.setVisibility(View.INVISIBLE);
+            ivPauseHome.setVisibility(View.VISIBLE);
+        }
+
     }
 
     @Override
@@ -175,58 +199,53 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item)
+    public boolean onNavigationItemSelected(@NonNull MenuItem item)
     {
-        int id = item.getItemId();
+        switch (item.getItemId()){
+            case R.id.deviSongDrawer:
+                Intent intent = new Intent(HomeActivity.this, HomeActivity.class);
+                startActivity(intent);
+                break;
 
-        if (id == R.id.deviSongDrawer)
-        {
-            Intent intent = new Intent(HomeActivity.this, HomeActivity.class);
-            startActivity(intent);
-        }
-        else if (id == R.id.aartiDrawer)
-        {
-            Intent intent1 = new Intent(HomeActivity.this,Written_Aarti.class);
-            startActivity(intent1);
-        }
+            case R.id.aartiDrawer:
+                Intent intent1 = new Intent(HomeActivity.this,Written_Aarti.class);
+                startActivity(intent1);
+                break;
 
-        else if (id == R.id.nav_share)
-        {
-            Intent sendIntent = new Intent();
-            sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, Constant.PLAY_STORE_LINK);
+            case R.id.nav_share:
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, Constant.PLAY_STORE_LINK);
+                sendIntent.setType("text/plain");
+                startActivity(sendIntent);
+                break;
 
-            sendIntent.setType("text/plain");
-            startActivity(sendIntent);
-        }
-        else if (id == R.id.feedbackDrawer)
-        {
-            Intent intent = new Intent(HomeActivity.this, FeedbackActivity.class);
-            startActivity(intent);
-        }
-        else if (id == R.id.updateDrawer)
-        {
-            Uri uri = Uri.parse(Constant.PLAY_STORE_LINK);
-            Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+            case R.id.feedbackDrawer:
+                startActivity(new Intent(HomeActivity.this, FeedbackActivity.class));
+                break;
 
-            // After pressing back button from google play will continue to app
-            goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET |
-                    Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+            case R.id.updateDrawer:
+                Uri uri = Uri.parse(Constant.PLAY_STORE_LINK);
+                Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+                // After pressing back button from google play will continue to app
+                goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET |
+                        Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                startActivity(goToMarket);
+                break;
 
-            startActivity(goToMarket);
-        }
-        else if (id == R.id.exitDrawer){
-            if (MusicPlayerActivity.mp != null){
-                MusicPlayerActivity.mp.stop();
-                MusicPlayerActivity.mp.release();
-                MusicPlayerActivity.mp = null;
-            }
-            Constant.NOW_PLAYING_SONG_NAME = "";
-            Intent exitIntent = new Intent(Intent.ACTION_MAIN);
-            exitIntent.addCategory(Intent.CATEGORY_HOME);
-            exitIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(exitIntent);
-            finish();
+            case R.id.exitDrawer:
+                if (MusicPlayerActivity.mp != null){
+                    MusicPlayerActivity.mp.stop();
+                    MusicPlayerActivity.mp.release();
+                    MusicPlayerActivity.mp = null;
+                }
+                Constant.NOW_PLAYING_SONG_NAME = "";
+                Intent exitIntent = new Intent(Intent.ACTION_MAIN);
+                exitIntent.addCategory(Intent.CATEGORY_HOME);
+                exitIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(exitIntent);
+                finish();
+                break;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

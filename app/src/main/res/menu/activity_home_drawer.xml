@@ -5,16 +5,13 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/deviSongDrawer"
-
             app:itemTextAppearance="?android:attr/textAppearanceMedium"
             android:icon="@drawable/devi_song_icon"
-
             android:title="देवी गाने" />
         <item
             android:id="@+id/aartiDrawer"
             app:itemTextAppearance="?android:attr/textAppearanceMedium"
             android:icon="@drawable/aarti_icon"
-
             android:title="आरती"
             />
     </group>
@@ -22,20 +19,17 @@
     <item android:title="संवाद">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                app:itemTextAppearance="?android:attr/textAppearanceMedium"
-                android:icon="@drawable/icon3"
-
-                android:title="एप्लिकेशन शेयर"
-                app:actionProviderClass="android.support.v7.widget.ShareActionProvider"/>
-            <item
                 android:id="@+id/feedbackDrawer"
                 app:itemTextAppearance="?android:attr/textAppearanceMedium"
                 android:icon="@drawable/icon4"
                 android:title="प्रतिक्रिया" />
             <item
+                android:id="@+id/nav_share"
+                app:itemTextAppearance="?android:attr/textAppearanceMedium"
+                android:icon="@drawable/icon3"
+                android:title="एप्लिकेशन शेयर"/>
+            <item
                 android:id="@+id/updateDrawer"
-
                 app:itemTextAppearance="?android:attr/textAppearanceMedium"
                 android:icon="@drawable/icon5"
                 android:title="अपडेट एप" />

@@ -53,7 +53,7 @@
             android:textStyle="bold"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_toStartOf="@id/playingImg"
+            android:layout_toStartOf="@id/layoutPlayPause"
             android:ellipsize="marquee"
             android:layoutDirection="ltr"
             android:textDirection="ltr"
@@ -63,15 +63,23 @@
             android:singleLine="true"
             android:paddingStart="@dimen/medium_margin"
             android:paddingEnd="@dimen/medium_margin"/>
-        <pl.droidsonroids.gif.GifImageView
-            android:id="@+id/playingImg"
-            android:layout_width="80dp"
+        <RelativeLayout
+            android:id="@+id/layoutPlayPause"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:paddingStart="@dimen/medium_margin"
-            android:paddingEnd="@dimen/medium_margin"
-            android:src="@drawable/tenor"/>
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true">
+            <ImageView
+                android:id="@+id/ivPlayHome"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/play_home"/>
+            <ImageView
+                android:id="@+id/ivPauseHome"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/pause_home"/>
+        </RelativeLayout>
     </RelativeLayout>
 
     <ProgressBar
