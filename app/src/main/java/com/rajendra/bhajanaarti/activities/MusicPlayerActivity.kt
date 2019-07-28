@@ -15,6 +15,7 @@ import com.rajendra.bhajanaarti.R
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.rajendra.bhajanaarti.constants.Constant
+import com.rajendra.bhajanaarti.utils.UserInterfaceUtils
 import com.rajendra.bhajanaarti.utils.Utilities
 
 class MusicPlayerActivity : Activity(), SeekBar.OnSeekBarChangeListener, View.OnClickListener, MediaPlayer.OnCompletionListener {
@@ -84,7 +85,7 @@ class MusicPlayerActivity : Activity(), SeekBar.OnSeekBarChangeListener, View.On
 
     private fun initializer() {
         mAdView = findViewById(R.id.adView)
-        loadAd()
+        UserInterfaceUtils.loadAd(mAdView)
 
         tvSongTitle = findViewById(R.id.tvSongTitle)
         songTotalDurationLabel = findViewById(R.id.songTotalDurationLabel)
@@ -146,7 +147,7 @@ class MusicPlayerActivity : Activity(), SeekBar.OnSeekBarChangeListener, View.On
     override fun onClick(v: View) {
         when (v.id) {
             R.id.btnPlay -> {
-                loadAd()
+                UserInterfaceUtils.loadAd(mAdView)
                 if (mp!!.isPlaying) {
                     if (mp != null) {
                         mp!!.pause()
@@ -187,14 +188,14 @@ class MusicPlayerActivity : Activity(), SeekBar.OnSeekBarChangeListener, View.On
             R.id.btnNext -> {
                 if (mp != null)
                     mp!!.stop()
-                loadAd()
+                UserInterfaceUtils.loadAd(mAdView)
                 playNextSong()
             }
 
             R.id.btnPrevious -> {
                 if (mp != null)
                     mp!!.stop()
-                loadAd()
+                UserInterfaceUtils.loadAd(mAdView)
                 playPrevSong()
             }
 
@@ -209,11 +210,6 @@ class MusicPlayerActivity : Activity(), SeekBar.OnSeekBarChangeListener, View.On
                 btnRepeat!!.setImageResource(R.drawable.img_btn_repeat_pressed)
             }
         }
-    }
-
-    fun loadAd() {
-        if (mAdView != null)
-            mAdView!!.loadAd(AdRequest.Builder().build())
     }
 
     fun playNextSong() {

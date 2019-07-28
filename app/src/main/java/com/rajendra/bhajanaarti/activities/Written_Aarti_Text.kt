@@ -9,6 +9,7 @@ import android.widget.TextView
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.rajendra.bhajanaarti.R
+import com.rajendra.bhajanaarti.utils.UserInterfaceUtils
 
 
 class Written_Aarti_Text : AppCompatActivity() {
@@ -32,8 +33,7 @@ class Written_Aarti_Text : AppCompatActivity() {
         this.setContentView(R.layout.activity_written__aarti__text)
 
         val mAdView = findViewById<View>(R.id.adView) as AdView
-        val adRequest = AdRequest.Builder().build()
-        mAdView.loadAd(adRequest)
+        UserInterfaceUtils.loadAd(mAdView)
 
         val txtProduct = findViewById<View>(R.id.label) as TextView
 

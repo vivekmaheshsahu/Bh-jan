@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">	#FF0000</color>
-    <color name="colorPrimaryDark">#333</color>
+    <color name="colorPrimary">#FF0000</color>
+    <color name="colorPrimaryDark">#FF6666</color>
     <color name="colorAccent">#FF4081</color>
 
     <color name="light_pink">#F25E63</color>
     <color name="dark_pink">#e12a20</color>
     <color name="orange">#FFA07A</color>
+    <color name="album_title">#4c4c4c</color>
 </resources>

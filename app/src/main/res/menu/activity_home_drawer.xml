@@ -14,15 +14,15 @@
             android:icon="@drawable/aarti_icon"
             android:title="आरती"
             />
+        <item
+            android:id="@+id/feedbackDrawer"
+            app:itemTextAppearance="?android:attr/textAppearanceMedium"
+            android:icon="@drawable/icon4"
+            android:title="प्रतिक्रिया" />
     </group>
 
     <item android:title="संवाद">
         <menu>
-            <item
-                android:id="@+id/feedbackDrawer"
-                app:itemTextAppearance="?android:attr/textAppearanceMedium"
-                android:icon="@drawable/icon4"
-                android:title="प्रतिक्रिया" />
             <item
                 android:id="@+id/nav_share"
                 app:itemTextAppearance="?android:attr/textAppearanceMedium"
