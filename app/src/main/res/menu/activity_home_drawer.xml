@@ -4,40 +4,54 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/deviSongDrawer"
+            android:id="@+id/navDeviBhajan"
             app:itemTextAppearance="?android:attr/textAppearanceMedium"
             android:icon="@drawable/devi_song_icon"
-            android:title="देवी गाने" />
+            android:title="@string/devi_bhajan"/>
         <item
-            android:id="@+id/aartiDrawer"
+            android:id="@+id/navHindiAarti"
             app:itemTextAppearance="?android:attr/textAppearanceMedium"
             android:icon="@drawable/aarti_icon"
-            android:title="आरती"
-            />
+            android:title="@string/hindi_aarti"/>
         <item
-            android:id="@+id/feedbackDrawer"
+            android:id="@+id/navMarathiAarti"
+            app:itemTextAppearance="?android:attr/textAppearanceMedium"
+            android:icon="@drawable/aarti_icon"
+            android:title="@string/marathi_aarti"/>
+        <item
+            android:id="@+id/navHinAartiEng"
+            app:itemTextAppearance="?android:attr/textAppearanceMedium"
+            android:icon="@drawable/aarti_icon"
+            android:title="@string/hindi_aarti_in_eng"/>
+        <item
+            android:id="@+id/navMarAartiEng"
+            app:itemTextAppearance="?android:attr/textAppearanceMedium"
+            android:icon="@drawable/aarti_icon"
+            android:title="@string/marathi_aarti_in_eng"/>
+        <item
+            android:id="@+id/navOurApps"
+            app:itemTextAppearance="?android:attr/textAppearanceMedium"
+            android:icon="@drawable/more_apps"
+            android:title="@string/our_apps"/>
+        <item
+            android:id="@+id/navShare"
+            app:itemTextAppearance="?android:attr/textAppearanceMedium"
+            android:icon="@drawable/icon3"
+            android:title="@string/share_app"/>
+        <item
+            android:id="@+id/navFeedback"
             app:itemTextAppearance="?android:attr/textAppearanceMedium"
             android:icon="@drawable/icon4"
-            android:title="प्रतिक्रिया" />
+            android:title="@string/feedback" />
+        <item
+            android:id="@+id/navUpdate"
+            app:itemTextAppearance="?android:attr/textAppearanceMedium"
+            android:icon="@drawable/icon5"
+            android:title="@string/update_app" />
+        <item
+            android:id="@+id/navExit"
+            app:itemTextAppearance="?android:attr/textAppearanceMedium"
+            android:icon="@drawable/exit"
+            android:title="@string/exit"/>
     </group>
-
-    <item android:title="संवाद">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                app:itemTextAppearance="?android:attr/textAppearanceMedium"
-                android:icon="@drawable/icon3"
-                android:title="एप्लिकेशन शेयर"/>
-            <item
-                android:id="@+id/updateDrawer"
-                app:itemTextAppearance="?android:attr/textAppearanceMedium"
-                android:icon="@drawable/icon5"
-                android:title="अपडेट एप" />
-            <item
-                android:id="@+id/exitDrawer"
-                app:itemTextAppearance="?android:attr/textAppearanceMedium"
-                android:icon="@drawable/exit"
-                android:title="बाहर जाएं" />
-        </menu>
-    </item>
 </menu>

@@ -26,6 +26,7 @@ import com.rajendra.bhajanaarti.firebase.NotificationHelper
 import com.rajendra.bhajanaarti.fragments.AartiFragment
 import com.rajendra.bhajanaarti.fragments.FeedbackFragment
 import com.rajendra.bhajanaarti.fragments.HomeFragment
+import com.rajendra.bhajanaarti.fragments.MarathiAartiFragment
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -97,8 +98,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val navigationView = findViewById<View>(R.id.nav_view) as NavigationView
         navigationView.setNavigationItemSelectedListener(this)
         navigationView.itemIconTintList = null
-        navigationView.setCheckedItem(R.id.deviSongDrawer)
-        displaySelectedScreen(R.id.deviSongDrawer)
+        navigationView.setCheckedItem(0)
+        displaySelectedScreen(R.id.navDeviBhajan)
     }
 
     fun loadAd(){
@@ -133,11 +134,26 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         var fragment: Fragment? = null
 
         when (itemId) {
-            R.id.deviSongDrawer -> fragment = HomeFragment()
+            R.id.navDeviBhajan -> fragment = HomeFragment()
 
-            R.id.aartiDrawer -> fragment = AartiFragment()
+            R.id.navHindiAarti -> fragment = AartiFragment()
 
-            R.id.nav_share -> {
+            R.id.navMarathiAarti -> fragment = MarathiAartiFragment()
+
+            R.id.navHinAartiEng -> {}
+
+            R.id.navMarAartiEng -> {}
+
+            R.id.navOurApps -> {
+                val uri = Uri.parse(Constant.OUR_APPS_LINK)
+                val ourAppsIntent = Intent(Intent.ACTION_VIEW, uri)
+                // After pressing back button from google play will continue to app
+                ourAppsIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY or Intent.FLAG_ACTIVITY_CLEAR_TASK or
+                        Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
+                startActivity(ourAppsIntent)
+            }
+
+            R.id.navShare -> {
                 val sendIntent = Intent()
                 sendIntent.action = Intent.ACTION_SEND
                 sendIntent.putExtra(Intent.EXTRA_TEXT, Constant.PLAY_STORE_LINK)
@@ -145,18 +161,18 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(sendIntent)
             }
 
-            R.id.feedbackDrawer -> fragment = FeedbackFragment()
+            R.id.navFeedback -> fragment = FeedbackFragment()
 
-            R.id.updateDrawer -> {
+            R.id.navUpdate -> {
                 val uri = Uri.parse(Constant.PLAY_STORE_LINK)
                 val goToMarket = Intent(Intent.ACTION_VIEW, uri)
                 // After pressing back button from google play will continue to app
-                goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY or Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET or
+                goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY or Intent.FLAG_ACTIVITY_CLEAR_TASK or
                         Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
                 startActivity(goToMarket)
             }
 
-            R.id.exitDrawer -> {
+            R.id.navExit -> {
                 if (MusicPlayerActivity.mp != null) {
                     MusicPlayerActivity.mp!!.stop()
                     MusicPlayerActivity.mp!!.release()

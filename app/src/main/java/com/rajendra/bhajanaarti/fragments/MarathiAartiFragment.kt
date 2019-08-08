@@ -1,5 +1,6 @@
 package com.rajendra.bhajanaarti.fragments
 
+
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,8 +15,7 @@ import com.rajendra.bhajanaarti.R
 import com.rajendra.bhajanaarti.utils.UserInterfaceUtils
 import java.util.ArrayList
 
-class AartiFragment : Fragment() {
-
+class MarathiAartiFragment : Fragment() {
     private var recyclerView: RecyclerView? = null
     private var adapter: AartiAdapter? = null
     private var albumList: MutableList<Album>? = null
@@ -27,7 +27,6 @@ class AartiFragment : Fragment() {
         initializer(view)
         return view
     }
-
     fun initializer(v: View){
         mAdView = v.findViewById(R.id.adView)
         UserInterfaceUtils.loadAd(mAdView)
@@ -39,36 +38,29 @@ class AartiFragment : Fragment() {
     }
 
     private fun prepareAlbums() {
-        val covers = intArrayOf(R.drawable.ganesh2,R.drawable.ganesh3, R.drawable.durga_devi,
-                R.drawable.shankar1, R.drawable.vishnu_dev, R.drawable.krishna,
-                R.drawable.shani_dev, R.drawable.lakshmi, R.drawable.santoshi_mata,
-                R.drawable.kalimata, R.drawable.brihaspati_dev, R.drawable.pushpanjali)
+        val covers = intArrayOf(R.drawable.ganesh1, R.drawable.durga_devi, R.drawable.shankar1,
+                R.drawable.datta, R.drawable.vitthal2, R.drawable.vitthal1,
+                R.drawable.dnyan_raja, R.drawable.ganesh3, R.drawable.pushpanjali)
 
-        var a = Album("शेंदूर लाल चढायो", covers[0])
+        var a = Album("सुखकर्ता दुखहर्ता", covers[0])
         albumList?.add(a)
-        a = Album("जय गणेश जय गणेश देवा", covers[1])
+        a = Album("दुर्गे दुर्घट भारी", covers[1])
         albumList?.add(a)
-        a = Album("जय अम्बे गौरी मैया जय श्यामा गौरी", covers[2])
+        a = Album("लवथवती विक्राळा", covers[2])
         albumList?.add(a)
-        a = Album("शिव आरती",covers[3])
+        a = Album("त्रिगुणात्मक त्रैमूर्ती दत्त", covers[3])
         albumList?.add(a)
-        a = Album("ओम जय जगदीश हरे", covers[4])
+        a = Album("युगें अठ्ठावीस", covers[4])
         albumList?.add(a)
-        a = Album("कृष्ण आरती",covers[5])
+        a = Album("येई हो विठ्ठले माझे माऊली ये", covers[5])
         albumList?.add(a)
-        a = Album("शनि देवजी की आरती",covers[6])
+        a = Album("आरती ज्ञानराजा", covers[6])
         albumList?.add(a)
-        a = Album("लक्ष्मीजी की आरती",covers[7])
+        a = Album("घालीन लोटांगण", covers[7])
         albumList?.add(a)
-        a = Album("संतोषी माता की आरती",covers[8])
+        a = Album("प्रार्थना", covers[7])
         albumList?.add(a)
-        a = Album("कालीमाता आरती",covers[9])
-        albumList?.add(a)
-        a = Album("बृहस्पति देवता की आरती",covers[10])
-        albumList?.add(a)
-        a = Album("घालीन लोटांगण", covers[1])
-        albumList?.add(a)
-        a = Album("पुष्पांजली", covers[11])
+        a = Album("पुष्पांजली", covers[8])
         albumList?.add(a)
 
         adapter?.notifyDataSetChanged()
