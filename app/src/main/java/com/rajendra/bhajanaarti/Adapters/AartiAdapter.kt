@@ -1,6 +1,7 @@
 package com.rajendra.bhajanaarti.Adapters
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,9 +28,11 @@ class AartiAdapter(private val albumList: List<Album>) : RecyclerView.Adapter<Aa
 
         override fun onClick(itemview: View) {
             val a: Int
-            a = position
+            a = adapterPosition
             val intent = Intent(itemview.context, ShowAartiActivity::class.java)
             intent.putExtra("songindex", a)
+            Log.d("test", "index " + a)
+            Log.d("test", "name " + albumList[a].name)
             itemview.context.startActivity(intent)
 
         }

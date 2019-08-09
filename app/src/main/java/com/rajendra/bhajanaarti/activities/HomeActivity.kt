@@ -23,10 +23,7 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.rajendra.bhajanaarti.R
 import com.rajendra.bhajanaarti.constants.Constant
 import com.rajendra.bhajanaarti.firebase.NotificationHelper
-import com.rajendra.bhajanaarti.fragments.AartiFragment
-import com.rajendra.bhajanaarti.fragments.FeedbackFragment
-import com.rajendra.bhajanaarti.fragments.HomeFragment
-import com.rajendra.bhajanaarti.fragments.MarathiAartiFragment
+import com.rajendra.bhajanaarti.fragments.*
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -136,13 +133,25 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when (itemId) {
             R.id.navDeviBhajan -> fragment = HomeFragment()
 
-            R.id.navHindiAarti -> fragment = AartiFragment()
+            R.id.navHindiAarti -> {
+                Constant.LANGUAGE = "हिंदी"
+                fragment = AartiFragment()
+            }
 
-            R.id.navMarathiAarti -> fragment = MarathiAartiFragment()
+            R.id.navMarathiAarti -> {
+                Constant.LANGUAGE = "मराठी"
+                fragment = AartiFragment()
+            }
 
-            R.id.navHinAartiEng -> {}
+            R.id.navHinAartiEng -> {
+                Constant.LANGUAGE = "hindi"
+                fragment = AartiFragment()
+            }
 
-            R.id.navMarAartiEng -> {}
+            R.id.navMarAartiEng -> {
+                Constant.LANGUAGE = "marathi"
+                fragment = AartiFragment()
+            }
 
             R.id.navOurApps -> {
                 val uri = Uri.parse(Constant.OUR_APPS_LINK)
@@ -184,6 +193,10 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 exitIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(exitIntent)
                 finish()
+            }
+
+            R.id.navDisclaimer -> {
+                fragment = DisclaimerFragment()
             }
         }
         if (fragment != null) {

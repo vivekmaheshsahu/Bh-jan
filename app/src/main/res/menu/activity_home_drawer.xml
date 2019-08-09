@@ -12,27 +12,37 @@
             android:id="@+id/navHindiAarti"
             app:itemTextAppearance="?android:attr/textAppearanceMedium"
             android:icon="@drawable/aarti_icon"
-            android:title="@string/hindi_aarti"/>
+            android:title="हिंदी आरती"/>
         <item
             android:id="@+id/navMarathiAarti"
             app:itemTextAppearance="?android:attr/textAppearanceMedium"
             android:icon="@drawable/aarti_icon"
-            android:title="@string/marathi_aarti"/>
+            android:title="मराठी आरती"/>
         <item
             android:id="@+id/navHinAartiEng"
             app:itemTextAppearance="?android:attr/textAppearanceMedium"
             android:icon="@drawable/aarti_icon"
-            android:title="@string/hindi_aarti_in_eng"/>
+            android:title="@string/hindi_aarti"/>
         <item
             android:id="@+id/navMarAartiEng"
             app:itemTextAppearance="?android:attr/textAppearanceMedium"
             android:icon="@drawable/aarti_icon"
-            android:title="@string/marathi_aarti_in_eng"/>
+            android:title="@string/marathi_aarti"/>
         <item
             android:id="@+id/navOurApps"
             app:itemTextAppearance="?android:attr/textAppearanceMedium"
             android:icon="@drawable/more_apps"
             android:title="@string/our_apps"/>
+        <item
+            android:id="@+id/navExit"
+            app:itemTextAppearance="?android:attr/textAppearanceMedium"
+            android:icon="@drawable/exit"
+            android:title="@string/exit"/>
+        <item
+            android:id="@+id/navDisclaimer"
+            app:itemTextAppearance="?android:attr/textAppearanceMedium"
+            android:icon="@drawable/exit"
+            android:title="@string/disclaimer"/>
         <item
             android:id="@+id/navShare"
             app:itemTextAppearance="?android:attr/textAppearanceMedium"
@@ -48,10 +58,5 @@
             app:itemTextAppearance="?android:attr/textAppearanceMedium"
             android:icon="@drawable/icon5"
             android:title="@string/update_app" />
-        <item
-            android:id="@+id/navExit"
-            app:itemTextAppearance="?android:attr/textAppearanceMedium"
-            android:icon="@drawable/exit"
-            android:title="@string/exit"/>
     </group>
 </menu>

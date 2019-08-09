@@ -8,4 +8,5 @@ object Constant {
     val PLAY_STORE_LINK = "https://play.google.com/store/apps/details?id=com.rajendra.bhajanaarti"
     val OUR_APPS_LINK = "https://play.google.com/store/apps/developer?id=Digispark"
     var NOW_PLAYING_SONG_NAME = ""
+    var LANGUAGE = ""
 }

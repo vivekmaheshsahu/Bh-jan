@@ -40,9 +40,8 @@
     <string name="share_app">Share App</string>
     <string name="update_app">Update App</string>
     <string name="exit">Exit</string>
-    <string name="hindi_aarti_in_eng">HIN Aarti In ENG</string>
-    <string name="marathi_aarti_in_eng">MAR Aarti In ENG</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="disclaimer">Disclaimer</string>
 </resources>
