@@ -6,6 +6,7 @@ import android.graphics.Typeface
 import android.widget.Toast
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
+import com.rajendra.bhajanaarti.R
 import java.util.*
 
 object UserInterfaceUtils {
@@ -26,4 +27,5 @@ object UserInterfaceUtils {
                 String.format(Locale.US, "fonts/%s", "icomoon.ttf"))
         return typeface
     }
+
 }

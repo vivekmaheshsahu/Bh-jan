@@ -40,6 +40,18 @@ class AartiFragment : Fragment() {
     }
 
     private fun prepareAartis(){
+        val rawArrayHindi = intArrayOf(R.raw.shendur_lal_chhadayo_hin,
+                R.raw.jai_ganesh_deva_hin, R.raw.jai_ambe_gauri_hin,
+                R.raw.shiv_ji_aarti_hin, R.raw.om_jai_jagadish_hin, R.raw.krishna_aarti_hin,
+                R.raw.shani_aarti_hin, R.raw.lakshmi_aarti_hin, R.raw.santoshi_mata_aarti_hin,
+                R.raw.kali_mata_aarti_hin, R.raw.brihaspati_aarti_hin, R.raw.ghalin_lotangan_mar,
+                R.raw.mantrapushpanjali_mar)
+
+        val rawArrayMarathi = intArrayOf(R.raw.sukhkarta_mar, R.raw.durge_durgat_bhari_mar,
+                R.raw.lavlavthi_vikrala_mar, R.raw.datta_aarti_mar, R.raw.yuge_atthavis_mar,
+                R.raw.yei_o_vithhale_maze_mar, R.raw.aarti_dnyanraja_mar, R.raw.ghalin_lotangan_mar,
+                R.raw.sada_sarvda_yog_mar, R.raw.mantrapushpanjali_mar)
+
         val coversHindi = intArrayOf(R.drawable.ganesh2,R.drawable.ganesh3, R.drawable.durga_devi,
                 R.drawable.shankar1, R.drawable.vishnu_dev, R.drawable.krishna,
                 R.drawable.shani_dev, R.drawable.lakshmi, R.drawable.santoshi_mata,
@@ -53,53 +65,53 @@ class AartiFragment : Fragment() {
         adapter?.notifyDataSetChanged()
 
         if (Constant.LANGUAGE == "हिंदी"){
-            var a = Album("शेंदूर लाल चढायो", coversHindi[0])
+            var a = Album("शेंदूर लाल चढायो",rawArrayHindi[0],  coversHindi[0])
             albumList?.add(a)
-            a = Album("जय गणेश जय गणेश देवा", coversHindi[1])
+            a = Album("जय गणेश जय गणेश देवा",rawArrayHindi[1], coversHindi[1])
             albumList?.add(a)
-            a = Album("जय अम्बे गौरी मैया जय श्यामा गौरी", coversHindi[2])
+            a = Album("जय अम्बे गौरी मैया जय श्यामा गौरी", rawArrayHindi[2],coversHindi[2])
             albumList?.add(a)
-            a = Album("शिव आरती",coversHindi[3])
+            a = Album("शिव आरती",rawArrayHindi[3], coversHindi[3])
             albumList?.add(a)
-            a = Album("ओम जय जगदीश हरे", coversHindi[4])
+            a = Album("ओम जय जगदीश हरे", rawArrayHindi[4],coversHindi[4])
             albumList?.add(a)
-            a = Album("कृष्ण आरती",coversHindi[5])
+            a = Album("कृष्ण आरती",rawArrayHindi[5], coversHindi[5])
             albumList?.add(a)
-            a = Album("शनि देवजी की आरती",coversHindi[6])
+            a = Album("शनि देवजी की आरती",rawArrayHindi[6], coversHindi[6])
             albumList?.add(a)
-            a = Album("लक्ष्मीजी की आरती",coversHindi[7])
+            a = Album("लक्ष्मीजी की आरती",rawArrayHindi[7], coversHindi[7])
             albumList?.add(a)
-            a = Album("संतोषी माता की आरती",coversHindi[8])
+            a = Album("संतोषी माता की आरती",rawArrayHindi[8], coversHindi[8])
             albumList?.add(a)
-            a = Album("कालीमाता आरती",coversHindi[9])
+            a = Album("कालीमाता आरती",rawArrayHindi[9], coversHindi[9])
             albumList?.add(a)
-            a = Album("बृहस्पति देवता की आरती",coversHindi[10])
+            a = Album("बृहस्पति देवता की आरती",rawArrayHindi[10], coversHindi[10])
             albumList?.add(a)
-            a = Album("घालीन लोटांगण", coversHindi[1])
+            a = Album("घालीन लोटांगण", rawArrayHindi[11], coversHindi[1])
             albumList?.add(a)
-            a = Album("पुष्पांजली", coversHindi[11])
+            a = Album("पुष्पांजली", rawArrayHindi[12], coversHindi[11])
             albumList?.add(a)
         }
         else if (Constant.LANGUAGE == "मराठी"){
-            var a = Album("सुखकर्ता दुखहर्ता", coversMarathi[0])
+            var a = Album("सुखकर्ता दुखहर्ता", rawArrayMarathi[0],coversMarathi[0])
             albumList?.add(a)
-            a = Album("दुर्गे दुर्घट भारी", coversMarathi[1])
+            a = Album("दुर्गे दुर्घट भारी", rawArrayMarathi[1], coversMarathi[1])
             albumList?.add(a)
-            a = Album("लवथवती विक्राळा", coversMarathi[2])
+            a = Album("लवथवती विक्राळा", rawArrayMarathi[2], coversMarathi[2])
             albumList?.add(a)
-            a = Album("त्रिगुणात्मक त्रैमूर्ती दत्त", coversMarathi[3])
+            a = Album("त्रिगुणात्मक त्रैमूर्ती दत्त", rawArrayMarathi[3],coversMarathi[3])
             albumList?.add(a)
-            a = Album("युगें अठ्ठावीस", coversMarathi[4])
+            a = Album("युगें अठ्ठावीस", rawArrayMarathi[4],coversMarathi[4])
             albumList?.add(a)
-            a = Album("येई हो विठ्ठले माझे माऊली ये", coversMarathi[5])
+            a = Album("येई हो विठ्ठले माझे माऊली ये", rawArrayMarathi[5], coversMarathi[5])
             albumList?.add(a)
-            a = Album("आरती ज्ञानराजा", coversMarathi[6])
+            a = Album("आरती ज्ञानराजा", rawArrayMarathi[6], coversMarathi[6])
             albumList?.add(a)
-            a = Album("घालीन लोटांगण", coversMarathi[7])
+            a = Album("घालीन लोटांगण", rawArrayMarathi[7], coversMarathi[7])
             albumList?.add(a)
-            a = Album("प्रार्थना", coversMarathi[7])
+            a = Album("प्रार्थना", rawArrayMarathi[8], coversMarathi[7])
             albumList?.add(a)
-            a = Album("पुष्पांजली", coversMarathi[8])
+            a = Album("पुष्पांजली", rawArrayMarathi[9], coversMarathi[8])
             albumList?.add(a)
         }
         else if (Constant.LANGUAGE == "hindi"){

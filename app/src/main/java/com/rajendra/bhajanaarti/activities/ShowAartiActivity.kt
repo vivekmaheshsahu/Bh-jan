@@ -4,49 +4,81 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.ScrollView
+import android.widget.TextView
 import com.google.android.gms.ads.AdView
 import com.rajendra.bhajanaarti.R
 import com.rajendra.bhajanaarti.utils.UserInterfaceUtils
 import kotlinx.android.synthetic.main.activity_show_aarti.*
 
 
-class ShowAartiActivity : AppCompatActivity() {
+class ShowAartiActivity : AppCompatActivity(), View.OnClickListener {
     private var mAdView: AdView? = null
+    private var aartiName: String? = null
+    private var aarti_text: Int? = null
+    private var scrollShowAarti: ScrollView? = null
+    private var tvPreArrow: TextView? = null;
+    private var tvNxtArrow: TextView? = null;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_show_aarti)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "सुखकर्ता दुखहर्ता"
 
+        val intent = intent.extras
+        aartiName = intent?.getString("aarti_name")
+        aarti_text = intent?.getInt("aarti_text")
+
+        initializer()
+    }
+
+
+    private fun initializer() {
         mAdView = findViewById(R.id.adView)
         UserInterfaceUtils.loadAd(mAdView)
 
-        tvPreArrow.typeface = UserInterfaceUtils.assets(this)
-        tvNxtArrow.typeface = UserInterfaceUtils.assets(this)
+        supportActionBar?.title = aartiName
 
+        tvPreArrow = findViewById(R.id.tvPreArrow)
+        tvNxtArrow = findViewById(R.id.tvNxtArrow)
+
+        tvPreArrow?.setOnClickListener(this)
+        tvNxtArrow?.setOnClickListener(this)
+
+        tvPreArrow?.typeface = UserInterfaceUtils.assets(this)
+        tvNxtArrow?.typeface = UserInterfaceUtils.assets(this)
+
+        txt.text = getAartiFromRaw(aarti_text)
+
+        scrollShowAarti = findViewById(R.id.scrollShowAarti);
+    }
+
+
+    fun getAartiFromRaw(raw: Int?): String{
         try {
             val res = resources
-            val in_s = res.openRawResource(R.raw.sukhkarta_mar)
+            val in_s = res.openRawResource(raw!!)
 
             val b = ByteArray(in_s.available())
             in_s.read(b)
-            txt.text = String(b)
+            return String(b)
         } catch (e: Exception) {
-            // e.printStackTrace();
-            txt.setText("Error: can't show help.")
+             e.printStackTrace();
+        }
+        return ""
+    }
+
+    override fun onClick(v: View?) {
+        when(v?.id){
+            R.id.tvPreArrow -> {
+
+            }
+            R.id.tvNxtArrow -> {
+
+            }
         }
     }
 
-
-
-    fun back(view: View) {
-
-    }
-
-    fun next(view: View) {
-
-    }
 
     override fun onBackPressed() {
         super.onBackPressed()

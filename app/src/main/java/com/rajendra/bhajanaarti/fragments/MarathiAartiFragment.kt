@@ -34,35 +34,6 @@ class MarathiAartiFragment : Fragment() {
         albumList = ArrayList()
         adapter = AartiAdapter(albumList as ArrayList<Album>)
         recyclerView?.setAdapter(adapter)
-        prepareAlbums()
     }
 
-    private fun prepareAlbums() {
-        val covers = intArrayOf(R.drawable.ganesh1, R.drawable.durga_devi, R.drawable.shankar1,
-                R.drawable.datta, R.drawable.vitthal2, R.drawable.vitthal1,
-                R.drawable.dnyan_raja, R.drawable.ganesh3, R.drawable.pushpanjali)
-
-        var a = Album("सुखकर्ता दुखहर्ता", covers[0])
-        albumList?.add(a)
-        a = Album("दुर्गे दुर्घट भारी", covers[1])
-        albumList?.add(a)
-        a = Album("लवथवती विक्राळा", covers[2])
-        albumList?.add(a)
-        a = Album("त्रिगुणात्मक त्रैमूर्ती दत्त", covers[3])
-        albumList?.add(a)
-        a = Album("युगें अठ्ठावीस", covers[4])
-        albumList?.add(a)
-        a = Album("येई हो विठ्ठले माझे माऊली ये", covers[5])
-        albumList?.add(a)
-        a = Album("आरती ज्ञानराजा", covers[6])
-        albumList?.add(a)
-        a = Album("घालीन लोटांगण", covers[7])
-        albumList?.add(a)
-        a = Album("प्रार्थना", covers[7])
-        albumList?.add(a)
-        a = Album("पुष्पांजली", covers[8])
-        albumList?.add(a)
-
-        adapter?.notifyDataSetChanged()
-    }
 }

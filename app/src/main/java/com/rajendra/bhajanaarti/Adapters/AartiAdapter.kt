@@ -30,9 +30,8 @@ class AartiAdapter(private val albumList: List<Album>) : RecyclerView.Adapter<Aa
             val a: Int
             a = adapterPosition
             val intent = Intent(itemview.context, ShowAartiActivity::class.java)
-            intent.putExtra("songindex", a)
-            Log.d("test", "index " + a)
-            Log.d("test", "name " + albumList[a].name)
+            intent.putExtra("aarti_name", albumList[a].name)
+            intent.putExtra("aarti_text", albumList[a].raw)
             itemview.context.startActivity(intent)
 
         }

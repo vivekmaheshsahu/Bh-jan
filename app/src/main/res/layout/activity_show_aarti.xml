@@ -31,6 +31,7 @@
         android:onClick="next"/>
 
     <ScrollView
+        android:id="@+id/scrollShowAarti"
         android:layout_width="0dp"
         android:layout_height="0dp"
         ads:layout_constraintTop_toTopOf="parent"
@@ -42,7 +43,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:layout_marginTop="@dimen/medium_margin"
             android:textSize="@dimen/large_text"
             android:textColor="@android:color/black"
             android:textStyle="bold"/>
