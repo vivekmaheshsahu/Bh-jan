@@ -1,24 +1,26 @@
 package com.rajendra.bhajanaarti.activities
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.ScrollView
-import android.widget.TextView
 import com.google.android.gms.ads.AdView
+import com.rajendra.bhajanaarti.Pojo.Album
 import com.rajendra.bhajanaarti.R
 import com.rajendra.bhajanaarti.utils.UserInterfaceUtils
 import kotlinx.android.synthetic.main.activity_show_aarti.*
 
 
-class ShowAartiActivity : AppCompatActivity(), View.OnClickListener {
+class ShowAartiActivity : AppCompatActivity(){
     private var mAdView: AdView? = null
     private var aartiName: String? = null
     private var aarti_text: Int? = null
     private var scrollShowAarti: ScrollView? = null
-    private var tvPreArrow: TextView? = null;
-    private var tvNxtArrow: TextView? = null;
+    private var listOfAarti: MutableList<Album>? = null
+    private var aartiIndex: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +30,14 @@ class ShowAartiActivity : AppCompatActivity(), View.OnClickListener {
         val intent = intent.extras
         aartiName = intent?.getString("aarti_name")
         aarti_text = intent?.getInt("aarti_text")
+        listOfAarti = intent?.getParcelableArrayList<Album>("listOfAartis")
+        aartiIndex = intent?.getInt("aartiIndex")
 
+        if (aartiIndex == 0)
+            tvPreArrow?.setTextColor(Color.GRAY)
+        else if (aartiIndex == (listOfAarti?.size?.dec())){
+            tvNxtArrow?.setTextColor(Color.GRAY)
+        }
         initializer()
     }
 
@@ -36,21 +45,11 @@ class ShowAartiActivity : AppCompatActivity(), View.OnClickListener {
     private fun initializer() {
         mAdView = findViewById(R.id.adView)
         UserInterfaceUtils.loadAd(mAdView)
-
         supportActionBar?.title = aartiName
-
-        tvPreArrow = findViewById(R.id.tvPreArrow)
-        tvNxtArrow = findViewById(R.id.tvNxtArrow)
-
-        tvPreArrow?.setOnClickListener(this)
-        tvNxtArrow?.setOnClickListener(this)
-
         tvPreArrow?.typeface = UserInterfaceUtils.assets(this)
         tvNxtArrow?.typeface = UserInterfaceUtils.assets(this)
-
         txt.text = getAartiFromRaw(aarti_text)
-
-        scrollShowAarti = findViewById(R.id.scrollShowAarti);
+        scrollShowAarti = findViewById(R.id.scrollShowAarti)
     }
 
 
@@ -68,17 +67,34 @@ class ShowAartiActivity : AppCompatActivity(), View.OnClickListener {
         return ""
     }
 
-    override fun onClick(v: View?) {
-        when(v?.id){
-            R.id.tvPreArrow -> {
-
-            }
-            R.id.tvNxtArrow -> {
-
-            }
+    fun back(view: View){
+        if (aartiIndex!! >= 1){
+            aartiIndex = aartiIndex?.dec()
+            tvPreArrow?.setTextColor(resources.getColor(android.R.color.holo_green_dark))
+            tvNxtArrow?.setTextColor(resources.getColor(android.R.color.holo_green_dark))
+            supportActionBar?.title = listOfAarti?.get(aartiIndex!!)?.name
+            txt.text = getAartiFromRaw(listOfAarti?.get(aartiIndex!!)?.raw)
         }
+
+        if (aartiIndex == 0){
+            tvPreArrow?.setTextColor(Color.GRAY)
+        }
+        Log.d("test","prevClick_index " + aartiIndex)
     }
 
+    fun next(view: View){
+        if (aartiIndex!! < listOfAarti!!.size.dec()){
+            aartiIndex = aartiIndex?.inc()
+            tvNxtArrow?.setTextColor(resources.getColor(android.R.color.holo_green_dark))
+            tvPreArrow?.setTextColor(resources.getColor(android.R.color.holo_green_dark))
+            supportActionBar?.title = listOfAarti?.get(aartiIndex!!)?.name
+            txt.text = getAartiFromRaw(listOfAarti?.get(aartiIndex!!)?.raw)
+        }
+        if (aartiIndex == (listOfAarti?.size?.dec())){
+            tvNxtArrow?.setTextColor(Color.GRAY)
+        }
+        Log.d("test","nxtClick_index " + aartiIndex)
+    }
 
     override fun onBackPressed() {
         super.onBackPressed()

@@ -52,6 +52,18 @@ class AartiFragment : Fragment() {
                 R.raw.yei_o_vithhale_maze_mar, R.raw.aarti_dnyanraja_mar, R.raw.ghalin_lotangan_mar,
                 R.raw.sada_sarvda_yog_mar, R.raw.mantrapushpanjali_mar)
 
+        val rawArrayHinEnglish = intArrayOf(R.raw.shendur_lal_chhadayo_eng,
+                R.raw.jai_ganesh_deva_eng, R.raw.jai_ambe_gauri_eng,
+                R.raw.shiv_ji_aarti_eng, R.raw.om_jai_jagadish_eng, R.raw.krishna_aarti_eng,
+                R.raw.shani_aarti_eng, R.raw.lakshmi_aarti_eng, R.raw.santoshi_mata_aarti_eng,
+                R.raw.kali_mata_aarti_eng, R.raw.brihaspati_aarti_eng, R.raw.ghalin_lotangan_eng,
+                R.raw.mantrapushpanjali_eng)
+
+        val rawArrayMarEnglish = intArrayOf(R.raw.sukhkarta_eng, R.raw.durge_durgat_bhari_eng,
+                R.raw.lavlavthi_vikrala_eng, R.raw.datta_aarti_eng, R.raw.yuge_atthavis_eng,
+                R.raw.yei_o_vithhale_maze_eng, R.raw.aarti_dnyanraja_eng, R.raw.ghalin_lotangan_eng,
+                R.raw.sada_sarvda_yog_eng, R.raw.mantrapushpanjali_eng)
+
         val coversHindi = intArrayOf(R.drawable.ganesh2,R.drawable.ganesh3, R.drawable.durga_devi,
                 R.drawable.shankar1, R.drawable.vishnu_dev, R.drawable.krishna,
                 R.drawable.shani_dev, R.drawable.lakshmi, R.drawable.santoshi_mata,
@@ -69,7 +81,7 @@ class AartiFragment : Fragment() {
             albumList?.add(a)
             a = Album("जय गणेश जय गणेश देवा",rawArrayHindi[1], coversHindi[1])
             albumList?.add(a)
-            a = Album("जय अम्बे गौरी मैया जय श्यामा गौरी", rawArrayHindi[2],coversHindi[2])
+            a = Album("जय अम्बे गौरी मैया", rawArrayHindi[2],coversHindi[2])
             albumList?.add(a)
             a = Album("शिव आरती",rawArrayHindi[3], coversHindi[3])
             albumList?.add(a)
@@ -89,7 +101,7 @@ class AartiFragment : Fragment() {
             albumList?.add(a)
             a = Album("घालीन लोटांगण", rawArrayHindi[11], coversHindi[1])
             albumList?.add(a)
-            a = Album("पुष्पांजली", rawArrayHindi[12], coversHindi[11])
+            a = Album("मंत्रपुष्पांजली", rawArrayHindi[12], coversHindi[11])
             albumList?.add(a)
         }
         else if (Constant.LANGUAGE == "मराठी"){
@@ -109,16 +121,60 @@ class AartiFragment : Fragment() {
             albumList?.add(a)
             a = Album("घालीन लोटांगण", rawArrayMarathi[7], coversMarathi[7])
             albumList?.add(a)
-            a = Album("प्रार्थना", rawArrayMarathi[8], coversMarathi[7])
+            a = Album("सदा सर्वदा योग", rawArrayMarathi[8], coversMarathi[7])
             albumList?.add(a)
-            a = Album("पुष्पांजली", rawArrayMarathi[9], coversMarathi[8])
+            a = Album("मंत्रपुष्पांजली", rawArrayMarathi[9], coversMarathi[8])
             albumList?.add(a)
         }
         else if (Constant.LANGUAGE == "hindi"){
-
+            var a = Album("Shendur Lal Chadayo",rawArrayHinEnglish[0],  coversHindi[0])
+            albumList?.add(a)
+            a = Album("Jai Ganesh Jai Ganesh Deva",rawArrayHinEnglish[1], coversHindi[1])
+            albumList?.add(a)
+            a = Album("Jai Ambe Gauri Maiya", rawArrayHinEnglish[2],coversHindi[2])
+            albumList?.add(a)
+            a = Album("Shiv Ji Ki Aarti",rawArrayHinEnglish[3], coversHindi[3])
+            albumList?.add(a)
+            a = Album("Om Jai Jagadish Hare", rawArrayHinEnglish[4],coversHindi[4])
+            albumList?.add(a)
+            a = Album("Shri Krishna Aarti",rawArrayHinEnglish[5], coversHindi[5])
+            albumList?.add(a)
+            a = Album("Shani Dev Ji Ki Aarti",rawArrayHinEnglish[6], coversHindi[6])
+            albumList?.add(a)
+            a = Album("Lakshmi Ji Ki Aarti",rawArrayHinEnglish[7], coversHindi[7])
+            albumList?.add(a)
+            a = Album("Santoshi Mata Ki Aarti",rawArrayHinEnglish[8], coversHindi[8])
+            albumList?.add(a)
+            a = Album("Kalimata Aarti",rawArrayHinEnglish[9], coversHindi[9])
+            albumList?.add(a)
+            a = Album("Brihaspati devata ki aarti",rawArrayHinEnglish[10], coversHindi[10])
+            albumList?.add(a)
+            a = Album("Ghalin Lotangan", rawArrayHinEnglish[11], coversHindi[1])
+            albumList?.add(a)
+            a = Album("Mantra Pushpanjali", rawArrayHinEnglish[12], coversHindi[11])
+            albumList?.add(a)
         }
         else if (Constant.LANGUAGE == "marathi"){
-
+            var a = Album("Ganapati Aarti", rawArrayMarEnglish[0],coversMarathi[0])
+            albumList?.add(a)
+            a = Album("Durga Mata Aarti", rawArrayMarEnglish[1], coversMarathi[1])
+            albumList?.add(a)
+            a = Album("Shankar Aarti", rawArrayMarEnglish[2], coversMarathi[2])
+            albumList?.add(a)
+            a = Album("Datta Aarti", rawArrayMarEnglish[3],coversMarathi[3])
+            albumList?.add(a)
+            a = Album("Vithhal Aarti", rawArrayMarEnglish[4],coversMarathi[4])
+            albumList?.add(a)
+            a = Album("Yei ho vithhale maaze", rawArrayMarEnglish[5], coversMarathi[5])
+            albumList?.add(a)
+            a = Album("Dnyandev Aarti", rawArrayMarEnglish[6], coversMarathi[6])
+            albumList?.add(a)
+            a = Album("Ghalin Lotangan", rawArrayMarEnglish[7], coversMarathi[7])
+            albumList?.add(a)
+            a = Album("Sada Sarvada Yog", rawArrayMarEnglish[8], coversMarathi[7])
+            albumList?.add(a)
+            a = Album("Mantra Pushpanjali", rawArrayMarEnglish[9], coversMarathi[8])
+            albumList?.add(a)
         }
         adapter?.notifyDataSetChanged()
     }

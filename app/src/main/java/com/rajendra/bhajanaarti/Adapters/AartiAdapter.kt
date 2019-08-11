@@ -1,6 +1,7 @@
 package com.rajendra.bhajanaarti.Adapters
 
 import android.content.Intent
+import android.os.Parcelable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +13,7 @@ import com.rajendra.bhajanaarti.Pojo.Album
 import com.rajendra.bhajanaarti.R
 import com.rajendra.bhajanaarti.activities.ShowAartiActivity
 
-class AartiAdapter(private val albumList: List<Album>) : RecyclerView.Adapter<AartiAdapter.MyViewHolder>() {
+class AartiAdapter(private val albumList: ArrayList<Album>) : RecyclerView.Adapter<AartiAdapter.MyViewHolder>() {
 
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
@@ -32,8 +33,9 @@ class AartiAdapter(private val albumList: List<Album>) : RecyclerView.Adapter<Aa
             val intent = Intent(itemview.context, ShowAartiActivity::class.java)
             intent.putExtra("aarti_name", albumList[a].name)
             intent.putExtra("aarti_text", albumList[a].raw)
+            intent.putExtra("aartiIndex", a)
+            intent.putParcelableArrayListExtra("listOfAartis", albumList)
             itemview.context.startActivity(intent)
-
         }
     }
 

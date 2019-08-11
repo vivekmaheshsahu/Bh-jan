@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.*
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.rajendra.bhajanaarti.Adapters.SongInfoAdapter
@@ -20,14 +21,15 @@ import com.rajendra.bhajanaarti.activities.MusicPlayerActivity
 import com.rajendra.bhajanaarti.constants.Constant
 import com.rajendra.bhajanaarti.utils.UserInterfaceUtils
 import java.util.*
+import kotlin.collections.ArrayList
 
-class HomeFragment : Fragment(), AdapterView.OnItemClickListener, View.OnClickListener {
+class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressBarInterface {
 
     private val TAG = HomeFragment::class.java.simpleName
     private var mAdView: AdView? = null
     lateinit internal var adapter: SongInfoAdapter
-    lateinit internal var listSongs: ListView
-    lateinit internal var songInfo: MutableList<SongInfo>
+    lateinit internal var rvListBhajan: RecyclerView
+    lateinit internal var songInfo: ArrayList<SongInfo>
     private var progressBar: ProgressBar? = null
     internal var handler = Handler()
     internal var songIndex: Int = 0
@@ -42,7 +44,7 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener, View.OnClickLi
                 "Maiya Ka Chola Hai Rangla", "Maiya Main Nihaal Ho Gaya", "Meri Akhiyon Ke Samne Hi Rehna",
                 "Meri Jholi Chhoti Pad Gayee Re", "Na Main Mangu Sona Devi Bhajan", "Pyara Saja Hai Tera Dwar",
                 "Suno Suno Ek Kahani")
-        val imageid = R.drawable.bhajan
+        val imageid = R.drawable.deviface_oldpic
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -64,10 +66,9 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener, View.OnClickLi
             songInfo.add(item)
         }
 
-        listSongs = v.findViewById<View>(R.id.listSongs) as ListView
-        adapter = SongInfoAdapter(activity!!.applicationContext, R.layout.content_home, songInfo)
-        listSongs.adapter = adapter
-        listSongs.onItemClickListener = this
+        rvListBhajan = v.findViewById<View>(R.id.rvListBhajan) as RecyclerView
+        adapter = SongInfoAdapter(activity!!, songInfo, this)
+        rvListBhajan.adapter = adapter
         progressBar = v.findViewById(R.id.progressBar)
     }
 
@@ -79,14 +80,6 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener, View.OnClickLi
             ivPlayHome!!.visibility = View.INVISIBLE
             ivPauseHome!!.visibility = View.VISIBLE
         }
-    }
-
-    internal var r: Runnable = Runnable {
-        progressBar!!.visibility = View.GONE
-        activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
-        val intent = Intent(activity, MusicPlayerActivity::class.java)
-        intent.putExtra("songindex", songIndex)
-        startActivity(intent)
     }
 
     override fun onResume() {
@@ -119,22 +112,15 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener, View.OnClickLi
         }
     }
 
-    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
+    override fun showProgressBar() {
         progressBar!!.visibility = View.VISIBLE
         activity?.window?.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
-
-        Log.d(TAG, "SongInfo " + songInfo[position].imageid)
-        Log.d(TAG, "SongInfo_name " + songInfo[position].songname!!)
-
-        songIndex = adapter.getItemId(position).toInt()
-
-        Log.d(TAG, "position_index $songIndex")
-        if (MusicPlayerActivity.mp != null) {
-            MusicPlayerActivity.mp!!.stop()
-            MusicPlayerActivity.mp = null
-        }
-        handler.postDelayed(r, 900)
     }
 
+    override fun hideProgressBar() {
+        progressBar!!.visibility = View.GONE
+        activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+    }
 }

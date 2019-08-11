@@ -5,58 +5,47 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/navDeviBhajan"
-            app:itemTextAppearance="?android:attr/textAppearanceMedium"
-            android:icon="@drawable/devi_song_icon"
+            android:icon="@drawable/ic_music_24px"
             android:title="@string/devi_bhajan"/>
         <item
             android:id="@+id/navHindiAarti"
-            app:itemTextAppearance="?android:attr/textAppearanceMedium"
-            android:icon="@drawable/aarti_icon"
+            android:icon="@drawable/ic_text_24px"
             android:title="हिंदी आरती"/>
         <item
             android:id="@+id/navMarathiAarti"
-            app:itemTextAppearance="?android:attr/textAppearanceMedium"
-            android:icon="@drawable/aarti_icon"
+            android:icon="@drawable/ic_text_24px"
             android:title="मराठी आरती"/>
         <item
             android:id="@+id/navHinAartiEng"
-            app:itemTextAppearance="?android:attr/textAppearanceMedium"
-            android:icon="@drawable/aarti_icon"
+            android:icon="@drawable/ic_text_24px"
             android:title="@string/hindi_aarti"/>
         <item
             android:id="@+id/navMarAartiEng"
-            app:itemTextAppearance="?android:attr/textAppearanceMedium"
-            android:icon="@drawable/aarti_icon"
+            android:icon="@drawable/ic_text_24px"
             android:title="@string/marathi_aarti"/>
         <item
             android:id="@+id/navOurApps"
-            app:itemTextAppearance="?android:attr/textAppearanceMedium"
-            android:icon="@drawable/more_apps"
+            android:icon="@drawable/ic_more_apps_24px"
             android:title="@string/our_apps"/>
         <item
             android:id="@+id/navExit"
-            app:itemTextAppearance="?android:attr/textAppearanceMedium"
-            android:icon="@drawable/exit"
+            android:icon="@drawable/ic_exit_24px"
             android:title="@string/exit"/>
         <item
             android:id="@+id/navDisclaimer"
-            app:itemTextAppearance="?android:attr/textAppearanceMedium"
-            android:icon="@drawable/exit"
+            android:icon="@drawable/ic_disclaimer_24px"
             android:title="@string/disclaimer"/>
         <item
             android:id="@+id/navShare"
-            app:itemTextAppearance="?android:attr/textAppearanceMedium"
-            android:icon="@drawable/icon3"
+            android:icon="@drawable/ic_menu_share"
             android:title="@string/share_app"/>
         <item
             android:id="@+id/navFeedback"
-            app:itemTextAppearance="?android:attr/textAppearanceMedium"
-            android:icon="@drawable/icon4"
-            android:title="@string/feedback" />
+            android:icon="@drawable/ic_feedback_24px"
+            android:title="@string/feedback"/>
         <item
             android:id="@+id/navUpdate"
-            app:itemTextAppearance="?android:attr/textAppearanceMedium"
-            android:icon="@drawable/icon5"
-            android:title="@string/update_app" />
+            android:icon="@drawable/ic_update_24px"
+            android:title="@string/update_app"/>
     </group>
 </menu>

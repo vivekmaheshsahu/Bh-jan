@@ -1,46 +1,82 @@
 package com.rajendra.bhajanaarti.Adapters
 
-import android.app.Activity
 import android.content.Context
+import android.content.Intent
+import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
+import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
+import androidx.recyclerview.widget.RecyclerView
 
 import com.rajendra.bhajanaarti.Pojo.SongInfo
 import com.rajendra.bhajanaarti.R
+import com.rajendra.bhajanaarti.activities.MusicPlayerActivity
 
+class SongInfoAdapter(private val mCtx: Context, private val items: ArrayList<SongInfo>,
+                      private val progressBarInterface: ProgressBarInterface) :
+        RecyclerView.Adapter<SongInfoAdapter.MyViewHolder>() {
 
-class SongInfoAdapter(internal var context: Context, resourceId: Int, items: List<SongInfo>) :
-        ArrayAdapter<SongInfo>(context, resourceId, items) {
+    internal var handler = Handler()
+    private var songIndex: Int? = null
 
-    override fun getView(position: Int, view: View?, parent: ViewGroup): View {
-        var view = view
+    inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+        var ivDeviFace: ImageView
+        var tvSongName: TextView
 
-        var holder: ViewHolder? = null
-        val songInfo = getItem(position)
+        init {
+            itemView.setOnClickListener(this)
+            this.ivDeviFace = itemView.findViewById<View>(R.id.ivDeviFace) as ImageView
+            this.tvSongName = itemView.findViewById<View>(R.id.tvSongName) as TextView
+        }
 
-        val mInflater = context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        if (view == null) {
-            view = mInflater.inflate(R.layout.home_list_view, null)
-            holder = ViewHolder()
-            holder.ivDeviFace = view!!.findViewById<View>(R.id.ivDeviFace) as ImageView
-            holder.tvSongName = view.findViewById<View>(R.id.tvSongName) as TextView
-
-            view.tag = holder
-        } else
-            holder = view.tag as ViewHolder
-        holder.ivDeviFace!!.setImageResource(songInfo!!.imageid)
-        holder.tvSongName!!.text = songInfo.songname
-
-        return view
+        override fun onClick(itemview: View) {
+            progressBarInterface.showProgressBar()
+            if (MusicPlayerActivity.mp != null) {
+                MusicPlayerActivity.mp!!.stop()
+                MusicPlayerActivity.mp = null
+            }
+            songIndex = adapterPosition
+            Log.d("test", "position_index $adapterPosition")
+            Log.d("Test", "SongInfo_name " + items[adapterPosition].songname!!)
+            handler.postDelayed(r, 900)
+        }
     }
 
-    /*private view holder class*/
-    private inner class ViewHolder {
-        internal var ivDeviFace: ImageView? = null
-        internal var tvSongName: TextView? = null
+    internal var r: Runnable = Runnable {
+        progressBarInterface.hideProgressBar()
+        val intent = Intent(mCtx, MusicPlayerActivity::class.java)
+        intent.putExtra("songindex", songIndex)
+        mCtx.startActivity(intent)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.home_list_view, parent, false)
+
+        return MyViewHolder(view)
+    }
+
+
+    override fun onBindViewHolder(holder: MyViewHolder, listPosition: Int) {
+        val imageView = holder.ivDeviFace
+        val textViewName = holder.tvSongName
+
+        imageView.setImageResource(items[listPosition].imageid)
+        textViewName.setText(items[listPosition].songname)
+    }
+
+
+    override fun getItemCount(): Int {
+        return items.size
+    }
+
+    interface ProgressBarInterface{
+        fun showProgressBar()
+        fun hideProgressBar()
     }
 }

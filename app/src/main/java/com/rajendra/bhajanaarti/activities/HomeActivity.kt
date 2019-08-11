@@ -131,7 +131,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         var fragment: Fragment? = null
 
         when (itemId) {
-            R.id.navDeviBhajan -> fragment = HomeFragment()
+            R.id.navDeviBhajan ->
+                fragment = HomeFragment()
 
             R.id.navHindiAarti -> {
                 Constant.LANGUAGE = "हिंदी"

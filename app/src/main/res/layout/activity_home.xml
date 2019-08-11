@@ -16,7 +16,7 @@
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
-        app:itemTextColor="#FF0000"
+        app:itemTextColor="#000000"
         app:itemTextAppearance="@style/NavDrawerTextStyle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
