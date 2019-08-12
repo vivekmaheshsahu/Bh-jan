@@ -10,6 +10,7 @@ import android.widget.ScrollView
 import com.google.android.gms.ads.AdView
 import com.rajendra.bhajanaarti.Pojo.Album
 import com.rajendra.bhajanaarti.R
+import com.rajendra.bhajanaarti.utils.OnSwipeTouchListener
 import com.rajendra.bhajanaarti.utils.UserInterfaceUtils
 import kotlinx.android.synthetic.main.activity_show_aarti.*
 
@@ -50,6 +51,17 @@ class ShowAartiActivity : AppCompatActivity(){
         tvNxtArrow?.typeface = UserInterfaceUtils.assets(this)
         txt.text = getAartiFromRaw(aarti_text)
         scrollShowAarti = findViewById(R.id.scrollShowAarti)
+
+        scrollShowAarti?.setOnTouchListener(object : OnSwipeTouchListener(applicationContext){
+            override fun onSwipeLeft() {
+                //super.onSwipeLeft()
+                showNextAarti()
+            }
+            override fun onSwipeRight() {
+                //super.onSwipeRight()
+                showPreAarti()
+            }
+        })
     }
 
 
@@ -68,6 +80,28 @@ class ShowAartiActivity : AppCompatActivity(){
     }
 
     fun back(view: View){
+        showPreAarti()
+    }
+
+    fun next(view: View){
+        showNextAarti()
+    }
+
+    fun showNextAarti(){
+        if (aartiIndex!! < listOfAarti!!.size.dec()){
+            aartiIndex = aartiIndex?.inc()
+            tvNxtArrow?.setTextColor(resources.getColor(android.R.color.holo_green_dark))
+            tvPreArrow?.setTextColor(resources.getColor(android.R.color.holo_green_dark))
+            supportActionBar?.title = listOfAarti?.get(aartiIndex!!)?.name
+            txt.text = getAartiFromRaw(listOfAarti?.get(aartiIndex!!)?.raw)
+        }
+        if (aartiIndex == (listOfAarti?.size?.dec())){
+            tvNxtArrow?.setTextColor(Color.GRAY)
+        }
+        Log.d("test","nxtClick_index " + aartiIndex)
+    }
+
+    fun showPreAarti(){
         if (aartiIndex!! >= 1){
             aartiIndex = aartiIndex?.dec()
             tvPreArrow?.setTextColor(resources.getColor(android.R.color.holo_green_dark))
@@ -80,20 +114,6 @@ class ShowAartiActivity : AppCompatActivity(){
             tvPreArrow?.setTextColor(Color.GRAY)
         }
         Log.d("test","prevClick_index " + aartiIndex)
-    }
-
-    fun next(view: View){
-        if (aartiIndex!! < listOfAarti!!.size.dec()){
-            aartiIndex = aartiIndex?.inc()
-            tvNxtArrow?.setTextColor(resources.getColor(android.R.color.holo_green_dark))
-            tvPreArrow?.setTextColor(resources.getColor(android.R.color.holo_green_dark))
-            supportActionBar?.title = listOfAarti?.get(aartiIndex!!)?.name
-            txt.text = getAartiFromRaw(listOfAarti?.get(aartiIndex!!)?.raw)
-        }
-        if (aartiIndex == (listOfAarti?.size?.dec())){
-            tvNxtArrow?.setTextColor(Color.GRAY)
-        }
-        Log.d("test","nxtClick_index " + aartiIndex)
     }
 
     override fun onBackPressed() {
