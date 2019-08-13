@@ -85,7 +85,6 @@ class MusicPlayerActivity : Activity(), SeekBar.OnSeekBarChangeListener, View.On
 
     private fun initializer() {
         mAdView = findViewById(R.id.adView)
-        UserInterfaceUtils.loadAd(mAdView)
 
         tvSongTitle = findViewById(R.id.tvSongTitle)
         songTotalDurationLabel = findViewById(R.id.songTotalDurationLabel)
@@ -131,6 +130,7 @@ class MusicPlayerActivity : Activity(), SeekBar.OnSeekBarChangeListener, View.On
     override fun onResume() {
         super.onResume()
         Log.d(TAG, "onResume_called")
+        UserInterfaceUtils.loadAd(mAdView)
         isActivityVisible = true
     }
 

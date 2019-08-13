@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.ScrollView
+import androidx.core.content.ContextCompat
 import com.google.android.gms.ads.AdView
 import com.rajendra.bhajanaarti.Pojo.Album
 import com.rajendra.bhajanaarti.R
@@ -40,6 +41,11 @@ class ShowAartiActivity : AppCompatActivity(){
             tvNxtArrow?.setTextColor(Color.GRAY)
         }
         initializer()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        UserInterfaceUtils.loadAd(mAdView)
     }
 
 
@@ -88,10 +94,11 @@ class ShowAartiActivity : AppCompatActivity(){
     }
 
     fun showNextAarti(){
+        UserInterfaceUtils.loadAd(mAdView)
         if (aartiIndex!! < listOfAarti!!.size.dec()){
             aartiIndex = aartiIndex?.inc()
-            tvNxtArrow?.setTextColor(resources.getColor(android.R.color.holo_green_dark))
-            tvPreArrow?.setTextColor(resources.getColor(android.R.color.holo_green_dark))
+            tvNxtArrow?.setTextColor(ContextCompat.getColor(applicationContext, android.R.color.holo_green_dark))
+            tvPreArrow?.setTextColor(ContextCompat.getColor(applicationContext, android.R.color.holo_green_dark))
             supportActionBar?.title = listOfAarti?.get(aartiIndex!!)?.name
             txt.text = getAartiFromRaw(listOfAarti?.get(aartiIndex!!)?.raw)
         }
@@ -102,10 +109,11 @@ class ShowAartiActivity : AppCompatActivity(){
     }
 
     fun showPreAarti(){
+        UserInterfaceUtils.loadAd(mAdView)
         if (aartiIndex!! >= 1){
             aartiIndex = aartiIndex?.dec()
-            tvPreArrow?.setTextColor(resources.getColor(android.R.color.holo_green_dark))
-            tvNxtArrow?.setTextColor(resources.getColor(android.R.color.holo_green_dark))
+            tvPreArrow?.setTextColor(ContextCompat.getColor(applicationContext, android.R.color.holo_green_dark))
+            tvNxtArrow?.setTextColor(ContextCompat.getColor(applicationContext, android.R.color.holo_green_dark))
             supportActionBar?.title = listOfAarti?.get(aartiIndex!!)?.name
             txt.text = getAartiFromRaw(listOfAarti?.get(aartiIndex!!)?.raw)
         }

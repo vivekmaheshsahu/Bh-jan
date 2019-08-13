@@ -56,7 +56,6 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
 
     fun initialize(v: View){
         mAdView = v.findViewById<View>(R.id.adView) as AdView
-        UserInterfaceUtils.loadAd(mAdView)
         ivPlayHome = v.findViewById(R.id.ivPlayHome)
         ivPauseHome = v.findViewById(R.id.ivPauseHome)
 
@@ -84,6 +83,7 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
 
     override fun onResume() {
         super.onResume()
+        UserInterfaceUtils.loadAd(mAdView)
 
         if (Constant.NOW_PLAYING_SONG_NAME != null && Constant.NOW_PLAYING_SONG_NAME.length > 1) {
             val playingLayout = viewRoot.findViewById<RelativeLayout>(R.id.playingLayout)

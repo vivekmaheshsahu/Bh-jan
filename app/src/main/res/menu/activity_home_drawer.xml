@@ -32,6 +32,10 @@
             android:icon="@drawable/ic_exit_24px"
             android:title="@string/exit"/>
         <item
+            android:id="@+id/navRateUs"
+            android:icon="@drawable/ic_rate_us_24px"
+            android:title="@string/rate_us"/>
+        <item
             android:id="@+id/navDisclaimer"
             android:icon="@drawable/ic_disclaimer_24px"
             android:title="@string/disclaimer"/>

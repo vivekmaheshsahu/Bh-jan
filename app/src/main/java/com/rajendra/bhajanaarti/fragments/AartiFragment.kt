@@ -29,9 +29,13 @@ class AartiFragment : Fragment() {
         return view
     }
 
+    override fun onResume() {
+        super.onResume()
+        UserInterfaceUtils.loadAd(mAdView)
+    }
+
     fun initializer(v: View){
         mAdView = v.findViewById(R.id.adView)
-        UserInterfaceUtils.loadAd(mAdView)
         recyclerView = v.findViewById(R.id.recycler_view) as RecyclerView
         albumList = ArrayList()
         adapter = AartiAdapter(albumList as ArrayList<Album>)

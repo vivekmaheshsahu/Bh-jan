@@ -196,6 +196,15 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 finish()
             }
 
+            R.id.navRateUs ->{
+                val uri = Uri.parse(Constant.PLAY_STORE_LINK)
+                val goToMarket = Intent(Intent.ACTION_VIEW, uri)
+                // After pressing back button from google play will continue to app
+                goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY or Intent.FLAG_ACTIVITY_CLEAR_TASK or
+                        Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
+                startActivity(goToMarket)
+            }
+
             R.id.navDisclaimer -> {
                 fragment = DisclaimerFragment()
             }
