@@ -7,17 +7,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 
 import com.rajendra.bhajanaarti.Pojo.SongInfo
 import com.rajendra.bhajanaarti.R
 import com.rajendra.bhajanaarti.activities.MusicPlayerActivity
+import com.rajendra.bhajanaarti.utils.UserInterfaceUtils
 
-class SongInfoAdapter(private val mCtx: Context, private val items: ArrayList<SongInfo>,
+class SongInfoAdapter(private val mCtx: Context?, private val items: ArrayList<SongInfo>,
                       private val progressBarInterface: ProgressBarInterface) :
         RecyclerView.Adapter<SongInfoAdapter.MyViewHolder>() {
 
@@ -27,17 +26,19 @@ class SongInfoAdapter(private val mCtx: Context, private val items: ArrayList<So
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         var ivDeviFace: ImageView
         var tvSongName: TextView
+        var tvHeadphone: TextView
 
         init {
             itemView.setOnClickListener(this)
             this.ivDeviFace = itemView.findViewById<View>(R.id.ivDeviFace) as ImageView
             this.tvSongName = itemView.findViewById<View>(R.id.tvSongName) as TextView
+            this.tvHeadphone = itemView.findViewById<View>(R.id.tvHeadphone) as TextView
         }
 
         override fun onClick(itemview: View) {
             progressBarInterface.showProgressBar()
             if (MusicPlayerActivity.mp != null) {
-                MusicPlayerActivity.mp!!.stop()
+                MusicPlayerActivity.mp?.stop()
                 MusicPlayerActivity.mp = null
             }
             songIndex = adapterPosition
@@ -51,7 +52,7 @@ class SongInfoAdapter(private val mCtx: Context, private val items: ArrayList<So
         progressBarInterface.hideProgressBar()
         val intent = Intent(mCtx, MusicPlayerActivity::class.java)
         intent.putExtra("songindex", songIndex)
-        mCtx.startActivity(intent)
+        mCtx?.startActivity(intent)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -65,9 +66,11 @@ class SongInfoAdapter(private val mCtx: Context, private val items: ArrayList<So
     override fun onBindViewHolder(holder: MyViewHolder, listPosition: Int) {
         val imageView = holder.ivDeviFace
         val textViewName = holder.tvSongName
+        val tvHeadphone = holder.tvHeadphone
 
         imageView.setImageResource(items[listPosition].imageid)
         textViewName.setText(items[listPosition].songname)
+        tvHeadphone.typeface = mCtx?.let { UserInterfaceUtils.assets(it) }
     }
 
 

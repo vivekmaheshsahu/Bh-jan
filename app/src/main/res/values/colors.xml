@@ -3,9 +3,4 @@
     <color name="colorPrimary">#ff669900</color>
     <color name="colorPrimaryDark">#008000</color>
     <color name="colorAccent">#32CD32</color>
-
-    <color name="light_pink">#ff669900</color>
-    <color name="dark_pink">#ff669900</color>
-    <color name="orange">#FFA07A</color>
-    <color name="album_title">#4c4c4c</color>
 </resources>

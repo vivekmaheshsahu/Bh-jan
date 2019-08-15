@@ -29,6 +29,6 @@
     <dimen name="arrow_text">34sp</dimen>
 
     <dimen name="card_album_radius">0dp</dimen>
-    <dimen name="thumbnail_width">60dp</dimen>
-    <dimen name="thumbnail_height">60dp</dimen>
+    <dimen name="thumbnail_width">90dp</dimen>
+    <dimen name="bhajan_thumbnail_width">60dp</dimen>
 </resources>

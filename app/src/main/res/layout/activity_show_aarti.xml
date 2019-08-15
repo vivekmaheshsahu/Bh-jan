@@ -38,6 +38,7 @@
         android:id="@+id/scrollShowAarti"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:scrollbars="none"
         ads:layout_constraintTop_toTopOf="parent"
         ads:layout_constraintStart_toEndOf="@id/tvPreArrow"
         ads:layout_constraintEnd_toStartOf="@id/tvNxtArrow"

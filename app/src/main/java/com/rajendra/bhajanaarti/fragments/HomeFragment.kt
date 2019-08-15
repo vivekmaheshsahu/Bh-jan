@@ -28,14 +28,12 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
     private val TAG = HomeFragment::class.java.simpleName
     private var mAdView: AdView? = null
     lateinit internal var adapter: SongInfoAdapter
-    lateinit internal var rvListBhajan: RecyclerView
+    internal var rvListBhajan: RecyclerView? = null
     lateinit internal var songInfo: ArrayList<SongInfo>
     private var progressBar: ProgressBar? = null
-    internal var handler = Handler()
-    internal var songIndex: Int = 0
     private var ivPlayHome: ImageView? = null
     private var ivPauseHome: ImageView? = null
-    private lateinit var viewRoot: View
+    private var viewRoot: View? = null
 
     companion object {
         val songName = arrayOf("Ambe Tu Hai Jagdambe Kali", "Bheja Hai Bulava Tune Sherawaliye",
@@ -54,8 +52,8 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
         return viewRoot
     }
 
-    fun initialize(v: View){
-        mAdView = v.findViewById<View>(R.id.adView) as AdView
+    fun initialize(v: View?){
+        mAdView = v?.findViewById<View>(R.id.adView) as AdView
         ivPlayHome = v.findViewById(R.id.ivPlayHome)
         ivPauseHome = v.findViewById(R.id.ivPauseHome)
 
@@ -66,18 +64,18 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
         }
 
         rvListBhajan = v.findViewById<View>(R.id.rvListBhajan) as RecyclerView
-        adapter = SongInfoAdapter(activity!!, songInfo, this)
-        rvListBhajan.adapter = adapter
+        adapter = SongInfoAdapter(activity, songInfo, this)
+        rvListBhajan?.adapter = adapter
         progressBar = v.findViewById(R.id.progressBar)
     }
 
     fun showPlayButton(show: Boolean) {
         if (show) {
-            ivPlayHome!!.visibility = View.VISIBLE
-            ivPauseHome!!.visibility = View.INVISIBLE
+            ivPlayHome?.visibility = View.VISIBLE
+            ivPauseHome?.visibility = View.INVISIBLE
         } else {
-            ivPlayHome!!.visibility = View.INVISIBLE
-            ivPauseHome!!.visibility = View.VISIBLE
+            ivPlayHome?.visibility = View.INVISIBLE
+            ivPauseHome?.visibility = View.VISIBLE
         }
     }
 
@@ -85,20 +83,21 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
         super.onResume()
         UserInterfaceUtils.loadAd(mAdView)
 
-        if (Constant.NOW_PLAYING_SONG_NAME != null && Constant.NOW_PLAYING_SONG_NAME.length > 1) {
-            val playingLayout = viewRoot.findViewById<RelativeLayout>(R.id.playingLayout)
-            playingLayout.visibility = View.VISIBLE
-            if (MusicPlayerActivity.mp!!.isPlaying) {
-                showPlayButton(false)
-            } else {
-                showPlayButton(true)
+        if (!Constant.NOW_PLAYING_SONG_NAME.isEmpty() && Constant.NOW_PLAYING_SONG_NAME.length > 1) {
+            val playingLayout = viewRoot?.findViewById<RelativeLayout>(R.id.playingLayout)
+            playingLayout?.visibility = View.VISIBLE
+            if (MusicPlayerActivity.mp != null){
+                if (MusicPlayerActivity.mp?.isPlaying!!) {
+                    showPlayButton(false)
+                } else {
+                    showPlayButton(true)
+                }
+                val playingSongName = viewRoot?.findViewById<TextView>(R.id.playingSongName)
+                playingSongName?.setText(String.format(Locale.US, "%s %s",
+                        "Now playing: ", Constant.NOW_PLAYING_SONG_NAME))
+                playingSongName?.isSelected = true
             }
-            playingLayout.setOnClickListener(this)
-
-            val playingSongName = viewRoot.findViewById<TextView>(R.id.playingSongName)
-            playingSongName.setText(String.format(Locale.US, "%s %s",
-                    "Now playing: ", Constant.NOW_PLAYING_SONG_NAME))
-            playingSongName.isSelected = true
+            playingLayout?.setOnClickListener(this)
         }
     }
 
@@ -112,15 +111,14 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
         }
     }
 
-
     override fun showProgressBar() {
-        progressBar!!.visibility = View.VISIBLE
+        progressBar?.visibility = View.VISIBLE
         activity?.window?.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
     }
 
     override fun hideProgressBar() {
-        progressBar!!.visibility = View.GONE
+        progressBar?.visibility = View.GONE
         activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
     }
 }

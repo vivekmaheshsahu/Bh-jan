@@ -6,13 +6,27 @@
     android:layout_height="match_parent"
     android:padding="@dimen/normal_margin">
 
+    <TextView
+        android:id="@+id/tvSuggestionsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/feedback_suggestions"
+        android:textSize="@dimen/normal_text"
+        android:textColor="@android:color/black"/>
+
     <EditText
         android:id="@+id/etMail_feedback_message"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:textSize="17sp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvSuggestionsTitle"
+        android:textSize="@dimen/medium_text"
         android:inputType="textMultiLine"
-        android:textColor="#000000"
+        android:textColor="@android:color/black"
+        android:minLines="6"
+        android:maxLines="10"
+        android:scrollbars="vertical"
+        android:gravity="top|start"
+        android:padding="@dimen/small_margin"
         android:background="@drawable/shape"
         android:layout_marginTop="@dimen/normal_margin">
     </EditText>
@@ -21,10 +35,12 @@
         android:id="@+id/btn_feedback"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Send Feedback Via Gmail"
-        android:background="@drawable/pink_button_on_select"
-        android:textColor="#ffffff"
         android:layout_below="@+id/etMail_feedback_message"
+        android:text="@string/send_feedback"
+        android:textAllCaps="false"
+        android:textSize="@dimen/large_text"
+        android:background="@drawable/green_button_on_select"
+        android:textColor="#ffffff"
         android:layout_marginTop="@dimen/medium_margin"/>
 
     <TextView
@@ -35,7 +51,7 @@
         android:textColor="@android:color/black"
         android:textSize="@dimen/large_text"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/medium_margin"/>
+        android:layout_marginBottom="@dimen/normal_margin"/>
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"

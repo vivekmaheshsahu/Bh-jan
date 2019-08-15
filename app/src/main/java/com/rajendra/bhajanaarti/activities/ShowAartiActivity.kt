@@ -48,7 +48,6 @@ class ShowAartiActivity : AppCompatActivity(){
         UserInterfaceUtils.loadAd(mAdView)
     }
 
-
     private fun initializer() {
         mAdView = findViewById(R.id.adView)
         UserInterfaceUtils.loadAd(mAdView)
@@ -106,6 +105,8 @@ class ShowAartiActivity : AppCompatActivity(){
             tvNxtArrow?.setTextColor(Color.GRAY)
         }
         Log.d("test","nxtClick_index " + aartiIndex)
+        scrollShowAarti?.fullScroll(View.FOCUS_UP)
+        scrollShowAarti?.smoothScrollTo(0,0)
     }
 
     fun showPreAarti(){
@@ -122,6 +123,8 @@ class ShowAartiActivity : AppCompatActivity(){
             tvPreArrow?.setTextColor(Color.GRAY)
         }
         Log.d("test","prevClick_index " + aartiIndex)
+        scrollShowAarti?.fullScroll(View.FOCUS_UP)
+        scrollShowAarti?.smoothScrollTo(0,0)
     }
 
     override fun onBackPressed() {

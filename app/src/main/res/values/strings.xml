@@ -45,4 +45,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="disclaimer">Disclaimer</string>
     <string name="rate_us">Rate Us</string>
+
+    <string name="feedback_suggestions">We would love to know feedback and suggestions. \n\n Thank you.</string>
+    <string name="send_feedback">Send Feedback Via Gmail</string>
 </resources>

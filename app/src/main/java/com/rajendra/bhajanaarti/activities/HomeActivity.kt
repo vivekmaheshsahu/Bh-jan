@@ -131,25 +131,30 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         var fragment: Fragment? = null
 
         when (itemId) {
-            R.id.navDeviBhajan ->
+            R.id.navDeviBhajan ->{
+                supportActionBar?.title = "Listen Bhajans"
                 fragment = HomeFragment()
-
+            }
             R.id.navHindiAarti -> {
                 Constant.LANGUAGE = "हिंदी"
+                supportActionBar?.title = "हिंदी आरती"
                 fragment = AartiFragment()
             }
 
             R.id.navMarathiAarti -> {
+                supportActionBar?.title = "मराठी आरती"
                 Constant.LANGUAGE = "मराठी"
                 fragment = AartiFragment()
             }
 
             R.id.navHinAartiEng -> {
+                supportActionBar?.title = "Hindi Aarti"
                 Constant.LANGUAGE = "hindi"
                 fragment = AartiFragment()
             }
 
             R.id.navMarAartiEng -> {
+                supportActionBar?.title = "Marathi Aarti"
                 Constant.LANGUAGE = "marathi"
                 fragment = AartiFragment()
             }
@@ -171,7 +176,10 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(sendIntent)
             }
 
-            R.id.navFeedback -> fragment = FeedbackFragment()
+            R.id.navFeedback -> {
+                supportActionBar?.title = "Feedback & Suggestions"
+                fragment = FeedbackFragment()
+            }
 
             R.id.navUpdate -> {
                 val uri = Uri.parse(Constant.PLAY_STORE_LINK)
@@ -184,8 +192,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             R.id.navExit -> {
                 if (MusicPlayerActivity.mp != null) {
-                    MusicPlayerActivity.mp!!.stop()
-                    MusicPlayerActivity.mp!!.release()
+                    MusicPlayerActivity.mp?.stop()
+                    MusicPlayerActivity.mp?.release()
                     MusicPlayerActivity.mp = null
                 }
                 Constant.NOW_PLAYING_SONG_NAME = ""
@@ -206,6 +214,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             R.id.navDisclaimer -> {
+                supportActionBar?.title = "Disclaimer"
                 fragment = DisclaimerFragment()
             }
         }

@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Send Feedback Via Gmail"
-        android:background="@drawable/pink_button_on_select"
+        android:background="@drawable/green_button_on_select"
         android:textColor="#ffffff"
         android:layout_below="@+id/etMail_feedback_message"
         android:layout_marginTop="@dimen/medium_margin"/>
