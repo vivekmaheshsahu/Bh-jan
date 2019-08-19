@@ -74,6 +74,7 @@ class FeedbackFragment : Fragment(), View.OnClickListener {
         if (mAdView != null) {
             mAdView!!.pause()
         }
+        UserInterfaceUtils.hideSoftKeyboard(activity)
         super.onPause()
     }
 
@@ -88,6 +89,7 @@ class FeedbackFragment : Fragment(), View.OnClickListener {
         if (mAdView != null) {
             mAdView!!.destroy()
         }
+        UserInterfaceUtils.hideSoftKeyboard(activity)
         super.onDestroy()
     }
 

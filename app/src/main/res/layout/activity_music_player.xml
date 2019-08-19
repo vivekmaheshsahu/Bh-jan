@@ -8,10 +8,9 @@
     <ImageView
         android:id="@+id/ivDeviFace"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:src="@drawable/devi_wallpaper"
-        android:layout_centerHorizontal="true"
-        android:scaleType="fitXY"/>
+        android:layout_height="200dp"
+        android:src="@drawable/deviface_oldpic"
+        android:layout_centerHorizontal="true"/>
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"

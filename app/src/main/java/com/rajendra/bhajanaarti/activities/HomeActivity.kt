@@ -24,6 +24,10 @@ import com.rajendra.bhajanaarti.R
 import com.rajendra.bhajanaarti.constants.Constant
 import com.rajendra.bhajanaarti.firebase.NotificationHelper
 import com.rajendra.bhajanaarti.fragments.*
+import androidx.recyclerview.widget.DividerItemDecoration
+import com.google.android.material.internal.NavigationMenuView
+
+
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -89,10 +93,12 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val drawer = findViewById<View>(R.id.drawer_layout) as DrawerLayout
         val toggle = ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        drawer.setDrawerListener(toggle)
+        drawer.addDrawerListener(toggle)
         toggle.syncState()
 
         val navigationView = findViewById<View>(R.id.nav_view) as NavigationView
+        val navMenuView = navigationView.getChildAt(0) as NavigationMenuView
+        navMenuView.addItemDecoration(DividerItemDecoration(this@HomeActivity, DividerItemDecoration.VERTICAL))
         navigationView.setNavigationItemSelectedListener(this)
         navigationView.itemIconTintList = null
         navigationView.setCheckedItem(0)
