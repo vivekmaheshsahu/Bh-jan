@@ -101,7 +101,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navMenuView.addItemDecoration(DividerItemDecoration(this@HomeActivity, DividerItemDecoration.VERTICAL))
         navigationView.setNavigationItemSelectedListener(this)
         navigationView.itemIconTintList = null
-        navigationView.setCheckedItem(0)
+        navigationView.setCheckedItem(R.id.navDeviBhajan)
         displaySelectedScreen(R.id.navDeviBhajan)
     }
 
