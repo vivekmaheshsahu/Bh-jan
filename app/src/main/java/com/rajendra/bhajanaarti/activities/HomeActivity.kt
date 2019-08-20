@@ -107,7 +107,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     fun loadAd(){
         val adRequest = AdRequest.Builder()
-                .addTestDevice("FD9F133038F995D8A876271BC9EBFCC0")
+                //.addTestDevice("FD9F133038F995D8A876271BC9EBFCC0")
                 .build()
         mInterstitialAd?.loadAd(adRequest)
     }

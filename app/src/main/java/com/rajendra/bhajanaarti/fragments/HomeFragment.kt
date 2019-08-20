@@ -36,12 +36,17 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
     private var viewRoot: View? = null
 
     companion object {
-        val songName = arrayOf("Ambe Tu Hai Jagdambe Kali", "Bheja Hai Bulava Tune Sherawaliye",
-                "Bhor Bhai Din Char Gaya Meri Ambe", "Bigdi Meri Bana De", "Durga Hai Meri Maa",
-                "Hey Naam Re Sabse Bada Tera Naam", "Kabse Khadi Hoon", "Maa Sun Le Pukar",
-                "Maiya Ka Chola Hai Rangla", "Maiya Main Nihaal Ho Gaya", "Meri Akhiyon Ke Samne Hi Rehna",
-                "Meri Jholi Chhoti Pad Gayee Re", "Na Main Mangu Sona Devi Bhajan", "Pyara Saja Hai Tera Dwar",
-                "Suno Suno Ek Kahani")
+        val songName = arrayOf("Ambe Tu Hai Jagdambe Kali",
+                "Bheja Hai Bulava Tune Sherawaliye", "Bhor Bhai Din Char Gaya Meri Ambe",
+                "Bigdi Meri Bana De", "Chalo Bulava Aaya Hai",
+                "Durga Hai Meri Maa", "Hey Naam Re Sabse Bada Tera Naam",
+                "Maa Sun Le Pukar", "Maiya Ka Chola Hai Rangla",
+                "Maiya Main Nihaal Ho Gaya", "Man Tera Mandir Aankhe Diya",
+                "Main Toh Aarti Utaru Re Santoshi Mata Ki", "Meri Akhiyon Ke Samne Hi Rehna",
+                "Meri Jholi Chhoti Pad Gayee Re", "Na Main Mangu Sona Devi Bhajan",
+                "Pyara Saja Hai Tera Dwar", "Sher Pe Sawar Hoke",
+                "Suno Suno Ek Kahani", "Tune Mujhe Bulaya Sherawaliye",
+                "Yahaan Wahaan Apni Santoshi Maa")
         val imageid = R.drawable.deviface_oldpic
     }
 

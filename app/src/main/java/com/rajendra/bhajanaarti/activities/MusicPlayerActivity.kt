@@ -98,10 +98,10 @@ class MusicPlayerActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener
         btnNext = findViewById(R.id.btnNext)
         btnNext?.setOnClickListener(this)
         btnPrevious = findViewById(R.id.btnPrevious)
-        btnPrevious!!.setOnClickListener(this)
+        btnPrevious?.setOnClickListener(this)
         songProgressBar = findViewById(R.id.songProgressBar)
-        songProgressBar!!.progress = 0
-        songProgressBar!!.setOnSeekBarChangeListener(this)
+        songProgressBar?.progress = 0
+        songProgressBar?.setOnSeekBarChangeListener(this)
 
         val mIntent = intent
         if (mIntent != null) {
@@ -225,9 +225,9 @@ class MusicPlayerActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener
             playSongIndex(preValue)
             btnPlay?.setImageResource(R.drawable.btn_pause)
         } else {
-            playSongIndex(14)
+            playSongIndex(19)
             btnPlay?.setImageResource(R.drawable.btn_pause)
-            indexOfSong = 14
+            indexOfSong = 19
         }
     }
 
@@ -239,7 +239,7 @@ class MusicPlayerActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener
 
         when (index) {
             0 -> {
-                supportActionBar?.title = "Ambey Tu Hai Jagdambey Kali"
+                supportActionBar?.title = "Ambe Tu Hai Jagdambe Kali"
                 mp = MediaPlayer.create(this, R.raw.ambe_tu_hai_jagdambe_kali)
             }
             1 -> {
@@ -255,16 +255,16 @@ class MusicPlayerActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener
                 mp = MediaPlayer.create(this, R.raw.bigdi_meri_bana_de)
             }
             4 -> {
+                supportActionBar?.title = "Chalo Bulava Aaya Hai"
+                mp = MediaPlayer.create(this, R.raw.chalo_bulava_aaya_hai)
+            }
+            5 -> {
                 supportActionBar?.title = "Durga Hai Meri Maa"
                 mp = MediaPlayer.create(this, R.raw.durga_hai_meri_maa)
             }
-            5 -> {
+            6 -> {
                 supportActionBar?.title = "Hey Naam Re Sabse Bada Tera Naam"
                 mp = MediaPlayer.create(this, R.raw.hey_naam_re_sabse_bada_tera_naam)
-            }
-            6 -> {
-                supportActionBar?.title = "Kabse Khadi Hoon"
-                mp = MediaPlayer.create(this, R.raw.kabse_khadi_hoon)
             }
             7 -> {
                 supportActionBar?.title = "Maa Sun Le Pukar"
@@ -279,24 +279,44 @@ class MusicPlayerActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener
                 mp = MediaPlayer.create(this, R.raw.maiya_main_nihaal_ho_gaya)
             }
             10 -> {
+                supportActionBar?.title = "Man Tera Mandir Aankhe Diya"
+                mp = MediaPlayer.create(this, R.raw.man_tera_mandir_aakhe_diya)
+            }
+            11 -> {
+                supportActionBar?.title = "Main Toh Aarti Utaru Re Santoshi Mata Ki"
+                mp = MediaPlayer.create(this, R.raw.main_toh_aarti_utaru)
+            }
+            12 -> {
                 supportActionBar?.title = "Meri Akhiyon Ke Samne Hi Rehna"
                 mp = MediaPlayer.create(this, R.raw.meri_akhiyon_ke_samne_hi_rehna)
             }
-            11 -> {
+            13 -> {
                 supportActionBar?.title = "Meri Jholi Chhoti Pad Gayee Re"
                 mp = MediaPlayer.create(this, R.raw.meri_jholi_chhoti_pa_gayee_re)
             }
-            12 -> {
+            14 -> {
                 supportActionBar?.title = "Na Main Mangu Sona Devi Bhajan"
                 mp = MediaPlayer.create(this, R.raw.na_main_mangu_sona_devi)
             }
-            13 -> {
+            15 -> {
                 supportActionBar?.title = "Pyara Saja Hai Tera Dwar"
                 mp = MediaPlayer.create(this, R.raw.pyara_saja_hai_tera_dwar)
             }
-            14 -> {
+            16 -> {
+                supportActionBar?.title = "Sher Pe Sawar Hoke"
+                mp = MediaPlayer.create(this, R.raw.sher_pe_sawar_hoke)
+            }
+            17 -> {
                 supportActionBar?.title = "Suno Suno Ek Kahani"
                 mp = MediaPlayer.create(this, R.raw.suno_suno_ek_kahani)
+            }
+            18 -> {
+                supportActionBar?.title = "Tune Mujhe Bulaya Sherawaliye"
+                mp = MediaPlayer.create(this, R.raw.tune_mujhe_bulaya_sherawaliye)
+            }
+            19 -> {
+                supportActionBar?.title = "Yahaan Wahaan Apni Santoshi Maa"
+                mp = MediaPlayer.create(this, R.raw.yahaan_wahaan_apani_santoshi_maa)
             }
         }
 
