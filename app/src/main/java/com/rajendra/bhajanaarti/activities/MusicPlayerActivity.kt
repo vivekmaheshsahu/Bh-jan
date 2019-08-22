@@ -32,7 +32,6 @@ class MusicPlayerActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener
     private var utils: Utilities? = null
     private val seekForwardTime = 5000 // 5000 milliseconds
     private val seekBackwardTime = 5000
-    private var isRepeat = false
     internal var indexOfSong: Int = 0
     private val mHandler = Handler()
     private var isActivityVisible: Boolean = false
@@ -190,20 +189,19 @@ class MusicPlayerActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener
             R.id.btnNext -> {
                 if (mp != null)
                     mp?.stop()
-                UserInterfaceUtils.loadAd(mAdView)
                 playNextSong()
             }
 
             R.id.btnPrevious -> {
                 if (mp != null)
                     mp?.stop()
-                UserInterfaceUtils.loadAd(mAdView)
                 playPrevSong()
             }
         }
     }
 
     fun playNextSong() {
+        UserInterfaceUtils.loadAd(mAdView)
         if (indexOfSong < 19) {
             val nextValue = 1 + indexOfSong
             indexOfSong++
@@ -218,6 +216,7 @@ class MusicPlayerActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener
     }
 
     fun playPrevSong() {
+        UserInterfaceUtils.loadAd(mAdView)
         if (indexOfSong > 0) {
             val preValue = indexOfSong - 1
             indexOfSong--
@@ -376,11 +375,7 @@ class MusicPlayerActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener
 
     override fun onCompletion(mp: MediaPlayer) {
         Log.d(TAG, "Completed_Song_index $indexOfSong")
-        if (isRepeat) {
-            playSongIndex(indexOfSong)
-        } else {
-            playNextSong()
-        }
+        playNextSong()
     }
 
     companion object {
