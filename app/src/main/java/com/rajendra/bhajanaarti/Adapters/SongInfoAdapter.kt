@@ -43,7 +43,7 @@ class SongInfoAdapter(private val mCtx: Context?, private val items: ArrayList<S
             }
             songIndex = adapterPosition
             Log.d("test", "position_index $adapterPosition")
-            Log.d("Test", "SongInfo_name " + items[adapterPosition].songname!!)
+            Log.d("Test", "SongInfo_name " + items[adapterPosition].songname)
             handler.postDelayed(r, 900)
         }
     }

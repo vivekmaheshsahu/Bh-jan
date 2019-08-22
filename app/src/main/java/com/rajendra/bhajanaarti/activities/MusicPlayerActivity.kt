@@ -204,7 +204,7 @@ class MusicPlayerActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener
     }
 
     fun playNextSong() {
-        if (indexOfSong < 14) {
+        if (indexOfSong < 19) {
             val nextValue = 1 + indexOfSong
             indexOfSong++
             Log.d(TAG, "nextSongIndex: $nextValue")
