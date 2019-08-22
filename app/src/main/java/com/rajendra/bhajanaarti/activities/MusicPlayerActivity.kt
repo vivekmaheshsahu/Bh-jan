@@ -35,6 +35,7 @@ class MusicPlayerActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener
     internal var indexOfSong: Int = 0
     private val mHandler = Handler()
     private var isActivityVisible: Boolean = false
+    private var songListSize: Int = 19
 
     private val mUpdateTimeTask = object : Runnable {
         override fun run() {
@@ -202,7 +203,7 @@ class MusicPlayerActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener
 
     fun playNextSong() {
         UserInterfaceUtils.loadAd(mAdView)
-        if (indexOfSong < 19) {
+        if (indexOfSong < songListSize) {
             val nextValue = 1 + indexOfSong
             indexOfSong++
             Log.d(TAG, "nextSongIndex: $nextValue")
@@ -224,9 +225,9 @@ class MusicPlayerActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener
             playSongIndex(preValue)
             btnPlay?.setImageResource(R.drawable.btn_pause)
         } else {
-            playSongIndex(19)
+            playSongIndex(songListSize)
             btnPlay?.setImageResource(R.drawable.btn_pause)
-            indexOfSong = 19
+            indexOfSong = songListSize
         }
     }
 
