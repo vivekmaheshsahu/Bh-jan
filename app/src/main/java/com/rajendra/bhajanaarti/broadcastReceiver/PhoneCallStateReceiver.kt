@@ -27,8 +27,8 @@ class PhoneCallStateReceiver : BroadcastReceiver() {
 
     private fun pauseSong() {
         if (MusicPlayerActivity.mp != null) {
-            if (MusicPlayerActivity.mp!!.isPlaying) {
-                MusicPlayerActivity.mp!!.pause()
+            if (MusicPlayerActivity.mp?.isPlaying!!) {
+                MusicPlayerActivity.mp?.pause()
                 Log.d(TAG, "Call came so music has pause")
             }
         }
@@ -37,7 +37,7 @@ class PhoneCallStateReceiver : BroadcastReceiver() {
     private fun playSong() {
         if (MusicPlayerActivity.mp != null) {
             Log.d(TAG, "call kept so music started")
-            MusicPlayerActivity.mp!!.start()
+            MusicPlayerActivity.mp?.start()
         }
     }
 }

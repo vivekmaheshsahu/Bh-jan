@@ -35,27 +35,27 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var mFirebaseAnalytics: FirebaseAnalytics? = null
     private var mInterstitialAd: InterstitialAd? = null
 
-    companion object {
+    /*companion object {
         lateinit var analytics: GoogleAnalytics
         lateinit var tracker: Tracker
-    }
+    }*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this)
-        val bundle = Bundle()
+        /*val bundle = Bundle()
         bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "1")
         bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "Song List")
         bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "Song name click")
         mFirebaseAnalytics!!.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle)
-        mFirebaseAnalytics!!.setUserProperty("favorite_food", "Paneer")
-        analytics = GoogleAnalytics.getInstance(this)
+        mFirebaseAnalytics!!.setUserProperty("favorite_food", "Paneer")*/
+        /*analytics = GoogleAnalytics.getInstance(this)
         analytics.setLocalDispatchPeriod(1800)
         tracker = analytics.newTracker("UA-88365539-1")
         tracker.enableExceptionReporting(true)
         tracker.enableAdvertisingIdCollection(true)
-        tracker.enableAutoActivityTracking(true)
+        tracker.enableAutoActivityTracking(true)*/
         mInterstitialAd = InterstitialAd(this)
         mInterstitialAd?.adUnitId = getString(R.string.interstitial_ad)
         loadAd()
