@@ -1,6 +1,5 @@
 package com.rajendra.bhajanaarti.activities
 
-import android.app.Activity
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -239,83 +238,83 @@ class MusicPlayerActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener
 
         when (index) {
             0 -> {
-                supportActionBar?.title = "Ambe Tu Hai Jagdambe Kali"
+                supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.ambe_tu_hai)
                 mp = MediaPlayer.create(this, R.raw.ambe_tu_hai_jagdambe_kali)
             }
             1 -> {
-                supportActionBar?.title = "Bheja Hai Bulava Tune Sherawaliye"
+                supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.bheja_hai_bulava_tune)
                 mp = MediaPlayer.create(this, R.raw.bheja_hai_bulava_tune_sherawaliye)
             }
             2 -> {
-                supportActionBar?.title = "Bhor Bhai Din Char Gaya Meri Ambe"
+                supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.bhor_bhai_din_char)
                 mp = MediaPlayer.create(this, R.raw.bhor_bhai_din_char_gaya_meri_ambe)
             }
             3 -> {
-                supportActionBar?.title = "Bigdi Meri Bana De"
+                supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.bigdi_meri_bana)
                 mp = MediaPlayer.create(this, R.raw.bigdi_meri_bana_de)
             }
             4 -> {
-                supportActionBar?.title = "Chalo Bulava Aaya Hai"
+                supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.chalo_bulava_aaya)
                 mp = MediaPlayer.create(this, R.raw.chalo_bulava_aaya_hai)
             }
             5 -> {
-                supportActionBar?.title = "Durga Hai Meri Maa"
+                supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.durga_hai_meri)
                 mp = MediaPlayer.create(this, R.raw.durga_hai_meri_maa)
             }
             6 -> {
-                supportActionBar?.title = "Hey Naam Re Sabse Bada Tera Naam"
+                supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.hey_naam_re_sabse)
                 mp = MediaPlayer.create(this, R.raw.hey_naam_re_sabse_bada_tera_naam)
             }
             7 -> {
-                supportActionBar?.title = "Maa Sun Le Pukar"
+                supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.maa_sun_le_pukar)
                 mp = MediaPlayer.create(this, R.raw.maa_sun_le_pukar)
             }
             8 -> {
-                supportActionBar?.title = "Maiya Ka Chola Hai Rangla"
+                supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.maiya_ka_chola)
                 mp = MediaPlayer.create(this, R.raw.maiya_ka_chola_rangla)
             }
             9 -> {
-                supportActionBar?.title = "Maiya Main Nihaal Ho Gaya"
+                supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.maiya_main_nihal)
                 mp = MediaPlayer.create(this, R.raw.maiya_main_nihaal_ho_gaya)
             }
             10 -> {
-                supportActionBar?.title = "Man Tera Mandir Aankhe Diya"
+                supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.man_tera_mandir)
                 mp = MediaPlayer.create(this, R.raw.man_tera_mandir_aakhe_diya)
             }
             11 -> {
-                supportActionBar?.title = "Main Toh Aarti Utaru Re Santoshi Mata Ki"
+                supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.main_toh_aarti_utaru)
                 mp = MediaPlayer.create(this, R.raw.main_toh_aarti_utaru)
             }
             12 -> {
-                supportActionBar?.title = "Meri Akhiyon Ke Samne Hi Rehna"
+                supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.meri_akhiyon_ke_samne)
                 mp = MediaPlayer.create(this, R.raw.meri_akhiyon_ke_samne_hi_rehna)
             }
             13 -> {
-                supportActionBar?.title = "Meri Jholi Chhoti Pad Gayee Re"
+                supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.meri_jholi_chhoti)
                 mp = MediaPlayer.create(this, R.raw.meri_jholi_chhoti_pa_gayee_re)
             }
             14 -> {
-                supportActionBar?.title = "Na Main Mangu Sona Devi Bhajan"
+                supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.na_main_mangu)
                 mp = MediaPlayer.create(this, R.raw.na_main_mangu_sona_devi)
             }
             15 -> {
-                supportActionBar?.title = "Pyara Saja Hai Tera Dwar"
+                supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.pyara_saja_hai)
                 mp = MediaPlayer.create(this, R.raw.pyara_saja_hai_tera_dwar)
             }
             16 -> {
-                supportActionBar?.title = "Sher Pe Sawar Hoke"
+                supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.sher_pe_sawar)
                 mp = MediaPlayer.create(this, R.raw.sher_pe_sawar_hoke)
             }
             17 -> {
-                supportActionBar?.title = "Suno Suno Ek Kahani"
+                supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.suno_suno_ek)
                 mp = MediaPlayer.create(this, R.raw.suno_suno_ek_kahani)
             }
             18 -> {
-                supportActionBar?.title = "Tune Mujhe Bulaya Sherawaliye"
+                supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.tune_mujhe_bulaya)
                 mp = MediaPlayer.create(this, R.raw.tune_mujhe_bulaya_sherawaliye)
             }
             19 -> {
-                supportActionBar?.title = "Yahaan Wahaan Apni Santoshi Maa"
+                supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.yahaan_wahaan_apni)
                 mp = MediaPlayer.create(this, R.raw.yahaan_wahaan_apani_santoshi_maa)
             }
         }

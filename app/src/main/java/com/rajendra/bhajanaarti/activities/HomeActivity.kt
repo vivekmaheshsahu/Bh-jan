@@ -2,10 +2,10 @@ package com.rajendra.bhajanaarti.activities
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.net.Uri
+import android.view.Menu
 import com.google.android.material.navigation.NavigationView
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -25,37 +25,41 @@ import com.rajendra.bhajanaarti.constants.Constant
 import com.rajendra.bhajanaarti.firebase.NotificationHelper
 import com.rajendra.bhajanaarti.fragments.*
 import androidx.recyclerview.widget.DividerItemDecoration
+import com.calibehr.mitra.utils.SharedPreferencesHelper
 import com.google.android.material.internal.NavigationMenuView
+import com.rajendra.bhajanaarti.base.BaseActivity
 
 
-
-class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     internal var TAG = "HomeActivity"
     private var mFirebaseAnalytics: FirebaseAnalytics? = null
     private var mInterstitialAd: InterstitialAd? = null
 
-    /*companion object {
+    companion object {
         lateinit var analytics: GoogleAnalytics
         lateinit var tracker: Tracker
-    }*/
+    }
+
+    override fun provideLayoutId(): Int {
+        return R.layout.activity_home
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this)
-        /*val bundle = Bundle()
+        val bundle = Bundle()
         bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "1")
         bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "Song List")
         bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "Song name click")
         mFirebaseAnalytics!!.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle)
-        mFirebaseAnalytics!!.setUserProperty("favorite_food", "Paneer")*/
-        /*analytics = GoogleAnalytics.getInstance(this)
+        mFirebaseAnalytics!!.setUserProperty("favorite_food", "Paneer")
+        analytics = GoogleAnalytics.getInstance(this)
         analytics.setLocalDispatchPeriod(1800)
         tracker = analytics.newTracker("UA-88365539-1")
         tracker.enableExceptionReporting(true)
         tracker.enableAdvertisingIdCollection(true)
-        tracker.enableAutoActivityTracking(true)*/
+        tracker.enableAutoActivityTracking(true)
         mInterstitialAd = InterstitialAd(this)
         mInterstitialAd?.adUnitId = getString(R.string.interstitial_ad)
         loadAd()
@@ -101,8 +105,74 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navMenuView.addItemDecoration(DividerItemDecoration(this@HomeActivity, DividerItemDecoration.VERTICAL))
         navigationView.setNavigationItemSelectedListener(this)
         navigationView.itemIconTintList = null
-        navigationView.setCheckedItem(R.id.navDeviBhajan)
-        displaySelectedScreen(R.id.navDeviBhajan)
+        navigationView.setCheckedItem(R.id.navMusic)
+        displaySelectedScreen(R.id.navMusic)
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.home, menu)
+        val hindi = menu?.getItem(1)
+        val english = menu?.getItem(2)
+        val marathi = menu?.getItem(3)
+        if (Constant.LANG_CODE.equals("hi")){
+            hindi?.setChecked(true)
+        }else if (Constant.LANG_CODE.equals("en")){
+            english?.setChecked(true)
+        }else if (Constant.LANG_CODE.equals("mr")){
+            marathi?.setChecked(true)
+        }
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.action_hindi -> {
+                if (item.isChecked())
+                    item.setChecked(false)
+                else
+                    item.setChecked(true)
+
+                Constant.LANG_CODE = "hi"
+                saveLangCodeAndRestartActivity()
+            }
+            R.id.action_english ->{
+                if (item.isChecked())
+                    item.setChecked(false)
+                else
+                    item.setChecked(true)
+
+                Constant.LANG_CODE = "en"
+                saveLangCodeAndRestartActivity()
+            }
+            R.id.action_marathi -> {
+                if (item.isChecked())
+                    item.setChecked(false)
+                else
+                    item.setChecked(true)
+
+                Constant.LANG_CODE = "mr"
+                saveLangCodeAndRestartActivity()
+            }
+            else -> {
+                return super.onOptionsItemSelected(item)
+            }
+        }
+
+        if (MusicPlayerActivity.mp != null) {
+            MusicPlayerActivity.mp?.stop()
+            MusicPlayerActivity.mp?.release()
+            MusicPlayerActivity.mp = null
+        }
+        Constant.NOW_PLAYING_SONG_NAME = ""
+
+        return true
+    }
+
+    fun saveLangCodeAndRestartActivity(){
+        SharedPreferencesHelper.addPref(this@HomeActivity, Constant.SP_LANG_CODE, Constant.LANG_CODE)
+        startActivity(Intent(this@HomeActivity, HomeActivity::class.java))
+        finish()
     }
 
     fun loadAd(){
@@ -137,31 +207,29 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         var fragment: Fragment? = null
 
         when (itemId) {
-            R.id.navDeviBhajan ->{
-                supportActionBar?.title = "Listen Bhajans"
+            R.id.navMusic ->{
+                supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.listen_bhajan)
                 fragment = HomeFragment()
-            }
-            R.id.navHindiAarti -> {
-                Constant.LANGUAGE = "हिंदी"
-                supportActionBar?.title = "हिंदी आरती"
-                fragment = AartiFragment()
-            }
-
-            R.id.navMarathiAarti -> {
-                supportActionBar?.title = "मराठी आरती"
-                Constant.LANGUAGE = "मराठी"
-                fragment = AartiFragment()
             }
 
             R.id.navHinAartiEng -> {
-                supportActionBar?.title = "Hindi Aarti"
-                Constant.LANGUAGE = "hindi"
+                supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.hindi_aarti)
+                if (Constant.LANG_CODE.equals("en")){
+                    Constant.LANGUAGE = "hindi"
+                }
+                else
+                    Constant.LANGUAGE = "हिंदी"
+
                 fragment = AartiFragment()
             }
 
             R.id.navMarAartiEng -> {
-                supportActionBar?.title = "Marathi Aarti"
-                Constant.LANGUAGE = "marathi"
+                supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.marathi_aarti)
+                if (Constant.LANG_CODE.equals("en")){
+                    Constant.LANGUAGE = "marathi"
+                }
+                else
+                    Constant.LANGUAGE = "मराठी"
                 fragment = AartiFragment()
             }
 
@@ -183,7 +251,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             R.id.navFeedback -> {
-                supportActionBar?.title = "Feedback & Suggestions"
+                supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.feedback_or_suggestions)
                 fragment = FeedbackFragment()
             }
 
@@ -220,7 +288,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             R.id.navDisclaimer -> {
-                supportActionBar?.title = "Disclaimer"
+                supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.disclaimer)
                 fragment = DisclaimerFragment()
             }
         }

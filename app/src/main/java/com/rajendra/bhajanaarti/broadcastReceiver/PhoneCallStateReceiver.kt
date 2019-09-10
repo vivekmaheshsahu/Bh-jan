@@ -6,22 +6,44 @@ import android.content.Intent
 import android.telephony.TelephonyManager
 import android.util.Log
 import com.rajendra.bhajanaarti.activities.MusicPlayerActivity
+import android.telephony.PhoneStateListener
 
 class PhoneCallStateReceiver : BroadcastReceiver() {
     private val TAG = "PhoneCallStateReceiver"
-    override fun onReceive(context: Context, intent: Intent) {
-        val state = intent.getStringExtra(TelephonyManager.EXTRA_STATE)
 
-        if (state == TelephonyManager.EXTRA_STATE_RINGING) {
-            Log.d(TAG, "EXTRA_STATE_RINGING")
-            pauseSong()
-        } else if (state == TelephonyManager.EXTRA_STATE_OFFHOOK) {
-            // Call received
-            Log.d(TAG, "EXTRA_STATE_OFFHOOK")
-        } else if (state == TelephonyManager.EXTRA_STATE_IDLE) {
-            // Call Dropped or rejected
-            Log.d(TAG, "EXTRA_STATE_IDLE")
-            playSong()
+    var telManager: TelephonyManager? = null
+    var context: Context? = null
+
+    override fun onReceive(context: Context, intent: Intent) {
+        this.context = context
+        telManager = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager?
+        telManager?.listen(phoneListener, PhoneStateListener.LISTEN_CALL_STATE)
+    }
+
+    private val phoneListener = object : PhoneStateListener() {
+        override fun onCallStateChanged(state: Int, incomingNumber: String) {
+            try {
+                when (state) {
+                    TelephonyManager.CALL_STATE_RINGING -> {
+                        Log.d(TAG, "CALL_STATE_RINGING")
+                        pauseSong()
+                    }
+                    TelephonyManager.CALL_STATE_OFFHOOK -> {
+
+                    }
+                    TelephonyManager.CALL_STATE_IDLE -> {
+                        // Call Dropped or rejected
+                        Log.d(TAG, "CALL_STATE_IDLE")
+                        playSong()
+                    }
+                    else -> {
+
+                    }
+                }
+            } catch (ex: Exception) {
+                Log.d(TAG, "Exception_PhoneStateListener " + ex.message)
+            }
+
         }
     }
 

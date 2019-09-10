@@ -8,7 +8,13 @@ import com.google.firebase.messaging.RemoteMessage
 class MyFirebaseMsgService : FirebaseMessagingService() {
 
     override fun onNewToken(token: String) {
-        Log.d("token", "Refreshed token: " + token)
+        try {
+            if (token.isNotEmpty())
+                Log.d("token", "Refreshed token: " + token)
+        }
+        catch (e: Exception){
+            e.printStackTrace()
+        }
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {

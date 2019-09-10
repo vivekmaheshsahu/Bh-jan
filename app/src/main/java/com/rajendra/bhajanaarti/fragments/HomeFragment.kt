@@ -25,7 +25,6 @@ import kotlin.collections.ArrayList
 
 class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressBarInterface {
 
-    private val TAG = HomeFragment::class.java.simpleName
     private var mAdView: AdView? = null
     lateinit internal var adapter: SongInfoAdapter
     internal var rvListBhajan: RecyclerView? = null
@@ -34,21 +33,28 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
     private var ivPlayHome: ImageView? = null
     private var ivPauseHome: ImageView? = null
     private var viewRoot: View? = null
+    private val imageid = R.drawable.deviface_oldpic
 
-    companion object {
-        val songName = arrayOf("Ambe Tu Hai Jagdambe Kali",
-                "Bheja Hai Bulava Tune Sherawaliye", "Bhor Bhai Din Char Gaya Meri Ambe",
-                "Bigdi Meri Bana De", "Chalo Bulava Aaya Hai",
-                "Durga Hai Meri Maa", "Hey Naam Re Sabse Bada Tera Naam",
-                "Maa Sun Le Pukar", "Maiya Ka Chola Hai Rangla",
-                "Maiya Main Nihaal Ho Gaya", "Man Tera Mandir Aankhe Diya",
-                "Main Toh Aarti Utaru Re Santoshi Mata Ki", "Meri Akhiyon Ke Samne Hi Rehna",
-                "Meri Jholi Chhoti Pad Gayee Re", "Na Main Mangu Sona Devi Bhajan",
-                "Pyara Saja Hai Tera Dwar", "Sher Pe Sawar Hoke",
-                "Suno Suno Ek Kahani", "Tune Mujhe Bulaya Sherawaliye",
-                "Yahaan Wahaan Apni Santoshi Maa")
-        val imageid = R.drawable.deviface_oldpic
-    }
+    private var songName = arrayOf(Constant.APP_CONTEXT?.resources?.getString(R.string.ambe_tu_hai),
+            Constant.APP_CONTEXT?.resources?.getString(R.string.bheja_hai_bulava_tune),
+            Constant.APP_CONTEXT?.resources?.getString(R.string.bhor_bhai_din_char),
+            Constant.APP_CONTEXT?.resources?.getString(R.string.bigdi_meri_bana),
+            Constant.APP_CONTEXT?.resources?.getString(R.string.chalo_bulava_aaya),
+            Constant.APP_CONTEXT?.resources?.getString(R.string.durga_hai_meri),
+            Constant.APP_CONTEXT?.resources?.getString(R.string.hey_naam_re_sabse),
+            Constant.APP_CONTEXT?.resources?.getString(R.string.maa_sun_le_pukar),
+            Constant.APP_CONTEXT?.resources?.getString(R.string.maiya_ka_chola),
+            Constant.APP_CONTEXT?.resources?.getString(R.string.maiya_main_nihal),
+            Constant.APP_CONTEXT?.resources?.getString(R.string.man_tera_mandir),
+            Constant.APP_CONTEXT?.resources?.getString(R.string.main_toh_aarti_utaru),
+            Constant.APP_CONTEXT?.resources?.getString(R.string.meri_akhiyon_ke_samne),
+            Constant.APP_CONTEXT?.resources?.getString(R.string.meri_jholi_chhoti),
+            Constant.APP_CONTEXT?.resources?.getString(R.string.na_main_mangu),
+            Constant.APP_CONTEXT?.resources?.getString(R.string.pyara_saja_hai),
+            Constant.APP_CONTEXT?.resources?.getString(R.string.sher_pe_sawar),
+            Constant.APP_CONTEXT?.resources?.getString(R.string.suno_suno_ek),
+            Constant.APP_CONTEXT?.resources?.getString(R.string.tune_mujhe_bulaya),
+            Constant.APP_CONTEXT?.resources?.getString(R.string.yahaan_wahaan_apni))
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -98,8 +104,8 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
                     showPlayButton(true)
                 }
                 val playingSongName = viewRoot?.findViewById<TextView>(R.id.playingSongName)
-                playingSongName?.setText(String.format(Locale.US, "%s %s",
-                        "Now playing: ", Constant.NOW_PLAYING_SONG_NAME))
+                playingSongName?.setText(String.format(Locale.US, "%s: %s",
+                        activity?.resources?.getString(R.string.now_playing), Constant.NOW_PLAYING_SONG_NAME))
                 playingSongName?.isSelected = true
             }
             playingLayout?.setOnClickListener(this)

@@ -1,25 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Bhajan Aarti</string>
-    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
-    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
-    <string name="action_settings" translatable="false">Settings</string>
-    <string name="mail_feedback_email" translatable="false">rajendranage1989@gmail.com</string>
-    <string name="mail_feedback_subject" translatable="false">Feedback on Bhajan Aarti app</string>
-    <string name="please_grant_all_permissions" translatable="false">Insufficient privileges. Please grant all permissions.</string>
-    <string name="admob_app_id" translatable="false">ca-app-pub-2609666985136692~3212334368</string>
-    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-2609666985136692/9712770819</string>
-    <string name="interstitial_ad" translatable="false">ca-app-pub-2609666985136692/1654672618</string>
-
-    // testing ids
-    <!--<string name="admob_app_id">ca-app-pub-3940256099942544~3347511713</string>
-    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="interstitial_ad">ca-app-pub-3940256099942544/1033173712</string>-->
-
-
-    <!--// Ganapati aarti test ids
-    <string name="admob_app_id">ca-app-pub-2609666985136692~4976099823</string>
-    <string name="banner_ad_unit_id">ca-app-pub-2609666985136692/1775221418</string>
-    <string name="interstitial_ad">ca-app-pub-2609666985136692/5929609913</string>-->
 
     <string name="devi_bhajan">Devi Bhajan</string>
     <string name="hindi_aarti">Hindi Aarti</string>
@@ -40,7 +21,6 @@
     <string name="feedback_or_suggestions">Feedback and Suggestions</string>
 
     <string name="now_playing">Now Playing</string>
-
 
     <string name="ambe_tu_hai">Ambe Tu Hai Jagdambe Kali</string>
     <string name="bheja_hai_bulava_tune">Bheja Hai Bulava Tune Sherawaliye</string>

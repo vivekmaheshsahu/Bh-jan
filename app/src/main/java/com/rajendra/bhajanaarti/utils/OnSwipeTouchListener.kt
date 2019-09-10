@@ -9,9 +9,9 @@ open class OnSwipeTouchListener(val ctx: Context) : View.OnTouchListener {
 
     private val gestureDetector = GestureDetector(ctx, GestureListener())
 
-    fun onTouch(event: MotionEvent): Boolean {
+    /*fun onTouch(event: MotionEvent): Boolean {
         return gestureDetector.onTouchEvent(event)
-    }
+    }*/
 
     private inner class GestureListener : GestureDetector.SimpleOnGestureListener() {
 
@@ -22,11 +22,10 @@ open class OnSwipeTouchListener(val ctx: Context) : View.OnTouchListener {
             return true
         }
 
-        override fun onSingleTapConfirmed(e: MotionEvent): Boolean {
+        /*override fun onSingleTapConfirmed(e: MotionEvent): Boolean {
             onTouch(e)
             return true
-        }
-
+        }*/
 
         override fun onFling(e1: MotionEvent, e2: MotionEvent, velocityX: Float, velocityY: Float): Boolean {
             val result = false

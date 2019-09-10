@@ -8,7 +8,9 @@ import android.os.Bundle
 import android.os.Handler
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.calibehr.mitra.utils.SharedPreferencesHelper
 import com.rajendra.bhajanaarti.activities.HomeActivity
+import com.rajendra.bhajanaarti.constants.Constant
 import com.rajendra.bhajanaarti.utils.UserInterfaceUtils
 import java.util.ArrayList
 
@@ -29,6 +31,11 @@ class SplashScreenActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
+
+        val sp = SharedPreferencesHelper.getPref(this@SplashScreenActivity, Constant.SP_LANG_CODE)
+        if (sp?.isNotEmpty()!!){
+            Constant.LANG_CODE = sp
+        }
     }
 
     override fun onStart() {

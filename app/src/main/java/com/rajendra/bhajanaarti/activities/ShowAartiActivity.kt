@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.activity_show_aarti.*
 
 
 class ShowAartiActivity : AppCompatActivity(){
+    private val TAG = "ShowAartiActivity"
     private var mAdView: AdView? = null
     private var aartiName: String? = null
     private var aarti_text: Int? = null
@@ -60,11 +61,23 @@ class ShowAartiActivity : AppCompatActivity(){
         scrollShowAarti?.setOnTouchListener(object : OnSwipeTouchListener(applicationContext){
             override fun onSwipeLeft() {
                 //super.onSwipeLeft()
-                showNextAarti()
+                try {
+                    showNextAarti()
+                }
+                catch (e: Exception){
+                    e.printStackTrace()
+                    Log.d(TAG, "Exception_onSwipeLeft " + e.message)
+                }
             }
             override fun onSwipeRight() {
                 //super.onSwipeRight()
-                showPreAarti()
+                try {
+                    showPreAarti()
+                }
+                catch (e: Exception){
+                    e.printStackTrace()
+                    Log.d(TAG, "Exception_onSwipeRight " + e.message)
+                }
             }
         })
     }
@@ -79,7 +92,8 @@ class ShowAartiActivity : AppCompatActivity(){
             in_s.read(b)
             return String(b)
         } catch (e: Exception) {
-             e.printStackTrace();
+            e.printStackTrace()
+            Log.d(TAG, "Exception_getAartiFromRaw " + e.message)
         }
         return ""
     }

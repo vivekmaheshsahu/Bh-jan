@@ -1,20 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/navDeviBhajan"
+            android:id="@+id/navMusic"
             android:icon="@drawable/ic_music_24px"
             android:title="@string/devi_bhajan"/>
-        <item
-            android:id="@+id/navHindiAarti"
-            android:icon="@drawable/ic_text_24px"
-            android:title="हिंदी आरती"/>
-        <item
-            android:id="@+id/navMarathiAarti"
-            android:icon="@drawable/ic_text_24px"
-            android:title="मराठी आरती"/>
         <item
             android:id="@+id/navHinAartiEng"
             android:icon="@drawable/ic_text_24px"

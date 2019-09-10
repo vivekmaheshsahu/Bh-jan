@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">भजन आरती</string>
+
+    <string name="devi_bhajan">देवी भजन</string>
+    <string name="hindi_aarti">हिंदी आरती</string>
+    <string name="marathi_aarti">मराठी आरती</string>
+    <string name="our_apps">आमचे ऐप्स</string>
+    <string name="feedback">अभिप्राय</string>
+    <string name="share_app">ऐप शेयर करा</string>
+    <string name="update_app">ऐप अपडेट करा</string>
+    <string name="exit">बाहेर पडा</string>
+    <string name="disclaimer">अस्वीकरण</string>
+    <string name="rate_us">रेटिंग द्या</string>
+
+    <string name="feedback_suggestions">आम्हाला अभिप्राय आणि सूचना जाणून घेण्यास आवडेल. \n\n धन्यवाद.</string>
+    <string name="send_feedback">Gmail मार्गे अभिप्राय पाठवा</string>
+    <string name="listen_bhajan">भजन ऐका</string>
+    <string name="feedback_or_suggestions">अभिप्राय आणि सूचना</string>
+
+    <string name="title_send_feedback">अभिप्राय पाठवा</string>
+
+    <string name="now_playing">आता गाणे</string>
+
+    <string name="ambe_tu_hai">अम्बे तू है जगदम्बे काली</string>
+    <string name="bheja_hai_bulava_tune">भेजा है बुलावा तूने शेरावालिये</string>
+    <string name="bhor_bhai_din_char">भोर भाई दिन चार गया मेरी अम्बे</string>
+    <string name="bigdi_meri_bana">बिगड़ी मेरी बना दे</string>
+    <string name="chalo_bulava_aaya">चलो बुलावा आया है</string>
+    <string name="durga_hai_meri">दुर्गा है मेरी माँ</string>
+    <string name="hey_naam_re_sabse">हे नाम रे सबसे बड़ा तेरा नाम</string>
+    <string name="maa_sun_le_pukar">माँ सुन ले पुकार</string>
+    <string name="maiya_ka_chola">मैया का चोला है रंगला</string>
+    <string name="maiya_main_nihal">मैया मै निहाल हो गया</string>
+    <string name="man_tera_mandir">मन तेरा मंदिर आँखे दिया</string>
+    <string name="main_toh_aarti_utaru">मैं तोह आरती उतारू रे संतोषी माता की</string>
+    <string name="meri_akhiyon_ke_samne">मेरी आखों के सामने ही रहना</string>
+    <string name="meri_jholi_chhoti">मेरी झोली छोटी पड़ गयी रे</string>
+    <string name="na_main_mangu">ना मैं मांगू सोना देवी भजन</string>
+    <string name="pyara_saja_hai">प्यारा सजा है तेरा द्वार</string>
+    <string name="sher_pe_sawar">शेर पे सवार होके</string>
+    <string name="suno_suno_ek">सुनो सुनो एक कहानी</string>
+    <string name="tune_mujhe_bulaya">तूने मुझे बुलाया शेरावालिये</string>
+    <string name="yahaan_wahaan_apni">यहां वहाँ अपनी संतोषी माँ</string>
+</resources>
