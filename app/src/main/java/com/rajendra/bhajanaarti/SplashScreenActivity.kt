@@ -14,7 +14,6 @@ import com.rajendra.bhajanaarti.constants.Constant
 import com.rajendra.bhajanaarti.utils.UserInterfaceUtils
 import java.util.ArrayList
 
-
 class SplashScreenActivity : Activity() {
 
     internal var handler: Handler? = Handler()
@@ -71,6 +70,7 @@ class SplashScreenActivity : Activity() {
                     if (granted == PackageManager.PERMISSION_DENIED) {
                         permissionDenied = true
                         UserInterfaceUtils.showToast(this, getString(R.string.please_grant_all_permissions))
+                        startActivity(Intent(this, SplashScreenActivity::class.java))
                         break
                     }
                 }
@@ -82,12 +82,11 @@ class SplashScreenActivity : Activity() {
     }
 
     override fun onBackPressed() {
-
         super.onBackPressed()
         try {
             finish()
             if (handler != null) {
-                handler!!.removeMessages(0)
+                handler?.removeMessages(0)
             }
         } catch (e: Exception) {
             e.printStackTrace()

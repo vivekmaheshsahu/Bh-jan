@@ -5,7 +5,7 @@
     <string name="action_settings" translatable="false">Settings</string>
     <string name="mail_feedback_email" translatable="false">rajendranage1989@gmail.com</string>
     <string name="mail_feedback_subject" translatable="false">Feedback on Bhajan Aarti app</string>
-    <string name="please_grant_all_permissions" translatable="false">Insufficient privileges. Please grant all permissions.</string>
+    <string name="please_grant_all_permissions" translatable="false">Please grant all permissions or re-download the app</string>
     <string name="admob_app_id" translatable="false">ca-app-pub-2609666985136692~3212334368</string>
     <string name="banner_ad_unit_id" translatable="false">ca-app-pub-2609666985136692/9712770819</string>
     <string name="interstitial_ad" translatable="false">ca-app-pub-2609666985136692/1654672618</string>

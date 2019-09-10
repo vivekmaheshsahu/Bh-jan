@@ -11,12 +11,17 @@ import androidx.core.content.ContextCompat
 import com.google.android.gms.ads.AdView
 import com.rajendra.bhajanaarti.Pojo.Album
 import com.rajendra.bhajanaarti.R
+import com.rajendra.bhajanaarti.base.BaseActivity
 import com.rajendra.bhajanaarti.utils.OnSwipeTouchListener
 import com.rajendra.bhajanaarti.utils.UserInterfaceUtils
 import kotlinx.android.synthetic.main.activity_show_aarti.*
 
 
-class ShowAartiActivity : AppCompatActivity(){
+class ShowAartiActivity : BaseActivity(){
+    override fun provideLayoutId(): Int {
+        return R.layout.activity_show_aarti
+    }
+
     private val TAG = "ShowAartiActivity"
     private var mAdView: AdView? = null
     private var aartiName: String? = null
@@ -27,7 +32,6 @@ class ShowAartiActivity : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_show_aarti)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val intent = intent.extras

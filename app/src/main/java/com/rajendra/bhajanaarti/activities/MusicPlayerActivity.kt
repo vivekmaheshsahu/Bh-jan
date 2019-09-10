@@ -10,14 +10,15 @@ import android.view.View
 import android.widget.ImageButton
 import android.widget.SeekBar
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.rajendra.bhajanaarti.R
 import com.google.android.gms.ads.AdView
+import com.rajendra.bhajanaarti.base.BaseActivity
 import com.rajendra.bhajanaarti.constants.Constant
 import com.rajendra.bhajanaarti.utils.UserInterfaceUtils
 import com.rajendra.bhajanaarti.utils.Utilities
 
-class MusicPlayerActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.OnClickListener, MediaPlayer.OnCompletionListener {
+class MusicPlayerActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener, View.OnClickListener, MediaPlayer.OnCompletionListener {
 
     private var mAdView: AdView? = null
     private var btnPlay: ImageButton? = null
@@ -35,6 +36,8 @@ class MusicPlayerActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener
     private val mHandler = Handler()
     private var isActivityVisible: Boolean = false
     private var songListSize: Int = 19
+
+
 
     private val mUpdateTimeTask = object : Runnable {
         override fun run() {
@@ -74,10 +77,12 @@ class MusicPlayerActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener
         }
     }
 
+    override fun provideLayoutId(): Int {
+        return R.layout.activity_music_player
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_music_player)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         initializer()
@@ -85,7 +90,6 @@ class MusicPlayerActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener
 
     private fun initializer() {
         mAdView = findViewById(R.id.adView)
-
         songTotalDurationLabel = findViewById(R.id.songTotalDurationLabel)
         songCurrentDurationLabel = findViewById(R.id.songCurrentDurationLabel)
         btnPlay = findViewById(R.id.btnPlay)
@@ -189,7 +193,7 @@ class MusicPlayerActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener
             R.id.btnNext -> {
                 if (mp != null)
                     mp?.stop()
-                playNextSong()
+                playNextSong(false)
             }
 
             R.id.btnPrevious -> {
@@ -200,7 +204,7 @@ class MusicPlayerActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener
         }
     }
 
-    fun playNextSong() {
+    fun playNextSong(onCompleteSong: Boolean) {
         UserInterfaceUtils.loadAd(mAdView)
         if (indexOfSong < songListSize) {
             val nextValue = 1 + indexOfSong
@@ -212,6 +216,13 @@ class MusicPlayerActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener
             playSongIndex(0)
             btnPlay?.setImageResource(R.drawable.btn_pause)
             indexOfSong = 0
+        }
+
+        if (onCompleteSong){
+            Thread.sleep(1000)
+            val intent = Intent("NowPlayingEvent")
+            Constant.NOW_PLAYING_SONG_NAME = supportActionBar?.title.toString()
+            LocalBroadcastManager.getInstance(this).sendBroadcast(intent)
         }
     }
 
@@ -375,7 +386,7 @@ class MusicPlayerActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener
 
     override fun onCompletion(mp: MediaPlayer) {
         Log.d(TAG, "Completed_Song_index $indexOfSong")
-        playNextSong()
+        playNextSong(true)
     }
 
     companion object {

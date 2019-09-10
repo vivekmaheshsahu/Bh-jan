@@ -18,7 +18,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     override fun attachBaseContext(newBase: Context?) {
-        super.attachBaseContext(DeviceDetails.setLocaleForApi24AndAbove(newBase))
+        super.attachBaseContext(newBase?.let { DeviceDetails.setLocaleForApi24AndAbove(it) })
     }
 
     @LayoutRes

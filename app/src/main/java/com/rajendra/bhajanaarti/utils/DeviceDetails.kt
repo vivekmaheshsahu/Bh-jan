@@ -18,21 +18,24 @@ object DeviceDetails {
             Locale.setDefault(locale)
 
             if (Constant.APP_CONTEXT != null) {
-                val resources = Constant.APP_CONTEXT!!.resources
-                val dm = resources.displayMetrics
-                val conf = resources.configuration
+                val resources = Constant.APP_CONTEXT?.resources
+                val dm = resources?.displayMetrics
+                val conf = resources?.configuration
+
 
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                    conf.setLocale(locale)
+                    conf?.setLocale(locale)
                 } else {
-                    conf.locale = locale
+                    conf?.locale = locale
                 }
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    Constant.APP_CONTEXT!!.createConfigurationContext(conf)
+                    if (conf != null) {
+                        Constant.APP_CONTEXT?.createConfigurationContext(conf)
+                    }
                 } else {
-                    resources.updateConfiguration(conf, dm)
+                    resources?.updateConfiguration(conf, dm)
                 }
             }
 

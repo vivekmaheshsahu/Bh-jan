@@ -1,17 +1,18 @@
 package com.rajendra.bhajanaarti.fragments
 
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
-import android.os.Handler
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.*
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.rajendra.bhajanaarti.Adapters.SongInfoAdapter
 import com.rajendra.bhajanaarti.Pojo.SongInfo
@@ -32,8 +33,9 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
     private var progressBar: ProgressBar? = null
     private var ivPlayHome: ImageView? = null
     private var ivPauseHome: ImageView? = null
-    private var viewRoot: View? = null
     private val imageid = R.drawable.deviface_oldpic
+    private var playingLayout: RelativeLayout? = null
+    private var playingSongName: TextView? = null
 
     private var songName = arrayOf(Constant.APP_CONTEXT?.resources?.getString(R.string.ambe_tu_hai),
             Constant.APP_CONTEXT?.resources?.getString(R.string.bheja_hai_bulava_tune),
@@ -56,17 +58,26 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
             Constant.APP_CONTEXT?.resources?.getString(R.string.tune_mujhe_bulaya),
             Constant.APP_CONTEXT?.resources?.getString(R.string.yahaan_wahaan_apni))
 
+    private val mMsgReceiver = object : BroadcastReceiver(){
+        override fun onReceive(context: Context?, intent: Intent?) {
+            callPlayNowLayout()
+        }
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        viewRoot = inflater.inflate(R.layout.fragment_home, container, false)
-        initialize(viewRoot)
-        return viewRoot
+        val view = inflater.inflate(R.layout.fragment_home, container, false)
+        initialize(view)
+        return view
     }
 
     fun initialize(v: View?){
         mAdView = v?.findViewById<View>(R.id.adView) as AdView
         ivPlayHome = v.findViewById(R.id.ivPlayHome)
         ivPauseHome = v.findViewById(R.id.ivPauseHome)
+        playingLayout = v.findViewById(R.id.playingLayout)
+        playingLayout?.setOnClickListener(this)
+        playingSongName = v.findViewById(R.id.playingSongName)
 
         songInfo = ArrayList()
         for (i in songName.indices) {
@@ -78,6 +89,33 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
         adapter = SongInfoAdapter(activity, songInfo, this)
         rvListBhajan?.adapter = adapter
         progressBar = v.findViewById(R.id.progressBar)
+
+        context?.let { LocalBroadcastManager.getInstance(it)
+                .registerReceiver(mMsgReceiver, IntentFilter("NowPlayingEvent")) }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        UserInterfaceUtils.loadAd(mAdView)
+        callPlayNowLayout()
+    }
+
+    fun callPlayNowLayout(){
+        if (Constant.NOW_PLAYING_SONG_NAME.isNotEmpty() && Constant.NOW_PLAYING_SONG_NAME.length > 1) {
+            playingLayout?.visibility = View.VISIBLE
+            if (MusicPlayerActivity.mp != null){
+                playingSongName?.setText(String.format(Locale.US, "%s: %s",
+                        Constant.APP_CONTEXT?.resources?.getString(R.string.now_playing), Constant.NOW_PLAYING_SONG_NAME))
+
+                if (MusicPlayerActivity.mp?.isPlaying!!) {
+                    showPlayButton(false)
+                } else {
+                    showPlayButton(true)
+                }
+            }
+        }
+        else
+            playingLayout?.visibility = View.GONE
     }
 
     fun showPlayButton(show: Boolean) {
@@ -88,28 +126,7 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
             ivPlayHome?.visibility = View.INVISIBLE
             ivPauseHome?.visibility = View.VISIBLE
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        UserInterfaceUtils.loadAd(mAdView)
-
-        if (!Constant.NOW_PLAYING_SONG_NAME.isEmpty() && Constant.NOW_PLAYING_SONG_NAME.length > 1) {
-            val playingLayout = viewRoot?.findViewById<RelativeLayout>(R.id.playingLayout)
-            playingLayout?.visibility = View.VISIBLE
-            if (MusicPlayerActivity.mp != null){
-                if (MusicPlayerActivity.mp?.isPlaying!!) {
-                    showPlayButton(false)
-                } else {
-                    showPlayButton(true)
-                }
-                val playingSongName = viewRoot?.findViewById<TextView>(R.id.playingSongName)
-                playingSongName?.setText(String.format(Locale.US, "%s: %s",
-                        activity?.resources?.getString(R.string.now_playing), Constant.NOW_PLAYING_SONG_NAME))
-                playingSongName?.isSelected = true
-            }
-            playingLayout?.setOnClickListener(this)
-        }
+        playingSongName?.isSelected = !show
     }
 
     override fun onClick(v: View?) {
@@ -131,5 +148,10 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
     override fun hideProgressBar() {
         progressBar?.visibility = View.GONE
         activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        context?.let { LocalBroadcastManager.getInstance(it).unregisterReceiver(mMsgReceiver)}
     }
 }
