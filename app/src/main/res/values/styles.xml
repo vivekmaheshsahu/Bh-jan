@@ -24,4 +24,13 @@
         <item name="android:color">@android:color/black</item>
     </style>
 
+    <style name="SelectableItemTheme">
+        <item name="colorControlHighlight">@android:color/white</item>
+    </style>
+
+    <style name="SelectableItemBackgroundBorderless">
+        <item name="android:theme">@style/SelectableItemTheme</item>
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+    </style>
+
 </resources>

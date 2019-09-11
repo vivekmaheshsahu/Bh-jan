@@ -45,10 +45,6 @@ class MusicPlayerActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener, Vie
                 val totalDuration = mp?.duration?.toLong()
                 val currentDuration = mp?.currentPosition?.toLong()
 
-                // Displaying Total Duration time
-                /*Log.d(TAG,"totalDuration_val " + utils.milliSecondsToTimer(totalDuration));
-            songTotalDurationLabel.setText(""+utils.milliSecondsToTimer(totalDuration));*/
-
                 // Displaying time completed playing
                 Log.d(TAG, "Song current Duration: " + currentDuration?.let { utils?.milliSecondsToTimer(it) })
                 songCurrentDurationLabel?.text = currentDuration?.let { utils?.milliSecondsToTimer(it) }
@@ -56,9 +52,9 @@ class MusicPlayerActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener, Vie
                 if (isActivityVisible) {
                     if (mp != null) {
                         if (mp?.isPlaying!!) {
-                            btnPlay?.setImageResource(R.drawable.btn_pause)
+                            btnPlay?.setImageResource(R.drawable.ic_pause_white_64dp)
                         } else
-                            btnPlay?.setImageResource(R.drawable.btn_play)
+                            btnPlay?.setImageResource(R.drawable.ic_play_white_64dp)
                     }
                 }
 
@@ -68,8 +64,8 @@ class MusicPlayerActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener, Vie
                     songProgressBar?.progress = progress
                 }
 
-                // Running this thread after 1000 milliseconds
-                mHandler.postDelayed(this, 1000)
+                // Running this thread after 100 milliseconds
+                mHandler.postDelayed(this, 100)
             } else {
                 Log.d(TAG, "finish_called")
                 finish()
@@ -78,7 +74,7 @@ class MusicPlayerActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener, Vie
     }
 
     override fun provideLayoutId(): Int {
-        return R.layout.activity_music_player
+        return R.layout.new_activity_music_player
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -142,7 +138,7 @@ class MusicPlayerActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener, Vie
     }
 
     fun updateProgressBar() {
-        mHandler.postDelayed(mUpdateTimeTask, 1000)
+        mHandler.postDelayed(mUpdateTimeTask, 100)
     }
 
     override fun onClick(v: View) {
@@ -152,12 +148,12 @@ class MusicPlayerActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener, Vie
                 if (mp?.isPlaying!!) {
                     if (mp != null) {
                         mp?.pause()
-                        btnPlay?.setImageResource(R.drawable.btn_play)
+                        btnPlay?.setImageResource(R.drawable.ic_play_white_64dp)
                     }
                 } else {
                     if (mp != null) {
                         mp?.start()
-                        btnPlay?.setImageResource(R.drawable.btn_pause)
+                        btnPlay?.setImageResource(R.drawable.ic_pause_white_64dp)
                     }
                 }
             }
@@ -211,10 +207,10 @@ class MusicPlayerActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener, Vie
             indexOfSong++
             Log.d(TAG, "nextSongIndex: $nextValue")
             playSongIndex(nextValue)
-            btnPlay?.setImageResource(R.drawable.btn_pause)
+            btnPlay?.setImageResource(R.drawable.ic_pause_white_64dp)
         } else {
             playSongIndex(0)
-            btnPlay?.setImageResource(R.drawable.btn_pause)
+            btnPlay?.setImageResource(R.drawable.ic_pause_white_64dp)
             indexOfSong = 0
         }
 
@@ -233,10 +229,10 @@ class MusicPlayerActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener, Vie
             indexOfSong--
             Log.d(TAG, "prevSongIndex: $preValue")
             playSongIndex(preValue)
-            btnPlay?.setImageResource(R.drawable.btn_pause)
+            btnPlay?.setImageResource(R.drawable.ic_pause_white_64dp)
         } else {
             playSongIndex(songListSize)
-            btnPlay?.setImageResource(R.drawable.btn_pause)
+            btnPlay?.setImageResource(R.drawable.ic_pause_white_64dp)
             indexOfSong = songListSize
         }
     }
