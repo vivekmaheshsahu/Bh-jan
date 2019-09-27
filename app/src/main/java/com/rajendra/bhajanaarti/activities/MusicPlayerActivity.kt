@@ -81,7 +81,7 @@ class MusicPlayerActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener, Vie
     }
 
     override fun provideLayoutId(): Int {
-        return R.layout.new_activity_music_player
+        return R.layout.activity_music_player
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
