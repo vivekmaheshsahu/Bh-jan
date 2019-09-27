@@ -17,6 +17,7 @@ import com.rajendra.bhajanaarti.base.BaseActivity
 import com.rajendra.bhajanaarti.constants.Constant
 import com.rajendra.bhajanaarti.utils.UserInterfaceUtils
 import com.rajendra.bhajanaarti.utils.Utilities
+import java.lang.Exception
 
 class MusicPlayerActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener, View.OnClickListener, MediaPlayer.OnCompletionListener {
 
@@ -41,34 +42,40 @@ class MusicPlayerActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener, Vie
 
     private val mUpdateTimeTask = object : Runnable {
         override fun run() {
-            if (mp != null) {
-                val totalDuration = mp?.duration?.toLong()
-                val currentDuration = mp?.currentPosition?.toLong()
+            try {
+                if (mp != null) {
+                    val totalDuration = mp?.duration?.toLong()
+                    val currentDuration = mp?.currentPosition?.toLong()
 
-                // Displaying time completed playing
-                Log.d(TAG, "Song current Duration: " + currentDuration?.let { utils?.milliSecondsToTimer(it) })
-                songCurrentDurationLabel?.text = currentDuration?.let { utils?.milliSecondsToTimer(it) }
+                    // Displaying time completed playing
+                    Log.d(TAG, "Song current Duration: " + currentDuration?.let { utils?.milliSecondsToTimer(it) })
+                    songCurrentDurationLabel?.text = currentDuration?.let { utils?.milliSecondsToTimer(it) }
 
-                if (isActivityVisible) {
-                    if (mp != null) {
-                        if (mp?.isPlaying!!) {
-                            btnPlay?.setImageResource(R.drawable.ic_pause_white_64dp)
-                        } else
-                            btnPlay?.setImageResource(R.drawable.ic_play_white_64dp)
+                    if (isActivityVisible) {
+                        if (mp != null) {
+                            if (mp?.isPlaying!!) {
+                                btnPlay?.setImageResource(R.drawable.ic_pause_white_64dp)
+                            } else
+                                btnPlay?.setImageResource(R.drawable.ic_play_white_64dp)
+                        }
                     }
-                }
 
-                val progress = currentDuration?.let { totalDuration?.let { it1 -> utils?.getProgressPercentage(it, it1) } }
-                //Log.d("Progress", ""+progress);
-                if (progress != null) {
-                    songProgressBar?.progress = progress
-                }
+                    val progress = currentDuration?.let { totalDuration?.let { it1 -> utils?.getProgressPercentage(it, it1) } }
+                    //Log.d("Progress", ""+progress);
+                    if (progress != null) {
+                        songProgressBar?.progress = progress
+                    }
 
-                // Running this thread after 100 milliseconds
-                mHandler.postDelayed(this, 100)
-            } else {
-                Log.d(TAG, "finish_called")
-                finish()
+                    // Running this thread after 500 milliseconds
+                    mHandler.postDelayed(this, 1000)
+                } else {
+                    Log.d(TAG, "finish_called")
+                    finish()
+                }
+            }
+            catch (e: Exception){
+                e.printStackTrace()
+                Log.d(TAG, "exception_mUpdateTimeTask " + e.message)
             }
         }
     }
@@ -138,7 +145,7 @@ class MusicPlayerActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener, Vie
     }
 
     fun updateProgressBar() {
-        mHandler.postDelayed(mUpdateTimeTask, 100)
+        mHandler.postDelayed(mUpdateTimeTask, 0)
     }
 
     override fun onClick(v: View) {
