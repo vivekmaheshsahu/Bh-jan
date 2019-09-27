@@ -5,6 +5,8 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
+import android.os.Handler
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +23,7 @@ import com.rajendra.bhajanaarti.R
 import com.rajendra.bhajanaarti.activities.MusicPlayerActivity
 import com.rajendra.bhajanaarti.constants.Constant
 import com.rajendra.bhajanaarti.utils.UserInterfaceUtils
+import java.lang.Exception
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -36,6 +39,7 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
     private val imageid = R.drawable.deviface_oldpic
     private var playingLayout: RelativeLayout? = null
     private var playingSongName: TextView? = null
+    private val mHandler = Handler()
 
     private var songName = arrayOf(Constant.APP_CONTEXT?.resources?.getString(R.string.ambe_tu_hai),
             Constant.APP_CONTEXT?.resources?.getString(R.string.bheja_hai_bulava_tune),
@@ -71,6 +75,27 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
         return view
     }
 
+    private val runAdAutomatic = object : Runnable{
+        override fun run() {
+            try {
+                Log.d("test", "handler running")
+                if (mAdView != null){
+                    Log.d("test", "add shown in 5 ms")
+                    UserInterfaceUtils.loadAd(mAdView)
+                    mHandler.postDelayed(this, 5000)
+                }
+                else{
+                    Log.d("test", "stop handler")
+                    mHandler.removeCallbacksAndMessages(null)
+                }
+            }
+            catch (e: Exception){
+                e.printStackTrace()
+                Log.d("test", "exception_runAdAutomatic " + e.message)
+            }
+        }
+    }
+
     fun initialize(v: View?){
         mAdView = v?.findViewById<View>(R.id.adView) as AdView
         ivPlayHome = v.findViewById(R.id.ivPlayHome)
@@ -94,13 +119,20 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
                 .registerReceiver(mMsgReceiver, IntentFilter("NowPlayingEvent")) }
     }
 
+    override fun onPause() {
+        super.onPause()
+        if (mHandler != null)
+            mHandler.removeCallbacksAndMessages(null)
+    }
+
     override fun onResume() {
         super.onResume()
-        UserInterfaceUtils.loadAd(mAdView)
         callPlayNowLayout()
+        runAdAutomatic.run()
     }
 
     fun callPlayNowLayout(){
+        UserInterfaceUtils.loadAd(mAdView)
         if (Constant.NOW_PLAYING_SONG_NAME.isNotEmpty() && Constant.NOW_PLAYING_SONG_NAME.length > 1) {
             playingLayout?.visibility = View.VISIBLE
             if (MusicPlayerActivity.mp != null){
@@ -132,6 +164,9 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.playingLayout -> {
+                if (mHandler != null)
+                    mHandler.removeCallbacksAndMessages(null)
+
                 val intent = Intent(activity, MusicPlayerActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
                 startActivity(intent)
@@ -152,6 +187,8 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
 
     override fun onDestroy() {
         super.onDestroy()
+        if (mHandler != null)
+            mHandler.removeCallbacksAndMessages(null)
         context?.let { LocalBroadcastManager.getInstance(it).unregisterReceiver(mMsgReceiver)}
     }
 }
