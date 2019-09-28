@@ -80,9 +80,9 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
             try {
                 Log.d("test", "handler running")
                 if (mAdView != null){
-                    Log.d("test", "add shown in 5 ms")
+                    Log.d("test", "add shown in 20 secs")
                     UserInterfaceUtils.loadAd(mAdView)
-                    mHandler.postDelayed(this, 5000)
+                    mHandler.postDelayed(this, 20000)
                 }
                 else{
                     Log.d("test", "stop handler")

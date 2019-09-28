@@ -145,7 +145,7 @@ class MusicPlayerActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener, Vie
     }
 
     fun updateProgressBar() {
-        mHandler.postDelayed(mUpdateTimeTask, 0)
+        mHandler.postDelayed(mUpdateTimeTask, 10)
     }
 
     override fun onClick(v: View) {
