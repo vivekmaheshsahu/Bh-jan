@@ -41,4 +41,14 @@
     <string name="suno_suno_ek">Suno Suno Ek Kahani Suno Suno</string>
     <string name="tune_mujhe_bulaya">Tune Mujhe Bulaya Sherawaliye</string>
     <string name="yahaan_wahaan_apni">Yahaan Wahaan Apni Santoshi Maa</string>
+
+    <string name="shailputri_aarti">Day 1: Mata Shailputri Aarti</string>
+    <string name="bhrahmcharini_aart">Day 2: Mata Brahmacharini Aarti</string>
+    <string name="chandraghata_aarti">Day 3: Mata Chandraghanta Aarti</string>
+    <string name="kushmanda_aarti">Day 4: Mata Kushmanda Aarti</string>
+    <string name="skandmata_aarti">Day 5: Mata Skandmata Aarti</string>
+    <string name="katyayani_aarti">Day 6: Mata Katyayani Aarti</string>
+    <string name="kalratri_aarti">Day 7: Mata Kalratri Aarti</string>
+    <string name="mahagauri_aarti">Day 8: Mata Mahagauri Aarti</string>
+    <string name="sidhhidatri_aarti">Day 9: Mata Siddhidatri Aarti</string>
 </resources>

@@ -41,4 +41,14 @@
     <string name="suno_suno_ek">सुनो सुनो एक कहानी सुनो सुनो</string>
     <string name="tune_mujhe_bulaya">तूने मुझे बुलाया शेरावालिये</string>
     <string name="yahaan_wahaan_apni">यहां वहाँ अपनी संतोषी माँ</string>
+
+    <string name="shailputri_aarti">दिन 1: माता शैलपुत्री आरती</string>
+    <string name="bhrahmcharini_aart">दिन 2: माता ब्रह्मचारिणी आरती</string>
+    <string name="chandraghata_aarti">दिन 3: माता चंद्रघंटा आरती</string>
+    <string name="kushmanda_aarti">दिन 4: माता कुष्माण्डा आरती</string>
+    <string name="skandmata_aarti">दिन 5: माता स्कंदमाता आरती</string>
+    <string name="katyayani_aarti">दिन 6: माता कात्यायनी आरती</string>
+    <string name="kalratri_aarti">दिन 7: माता कालरात्रि आरती</string>
+    <string name="mahagauri_aarti">दिन 8: माता महागौरी आरती</string>
+    <string name="sidhhidatri_aarti">दिन 9: माता सिद्धिदात्री आरती</string>
 </resources>

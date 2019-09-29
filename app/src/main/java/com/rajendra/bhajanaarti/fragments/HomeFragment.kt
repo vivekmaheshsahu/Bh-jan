@@ -36,12 +36,28 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
     private var progressBar: ProgressBar? = null
     private var ivPlayHome: ImageView? = null
     private var ivPauseHome: ImageView? = null
-    private val imageid = R.drawable.deviface_oldpic
     private var playingLayout: RelativeLayout? = null
     private var playingSongName: TextView? = null
     private val mHandler = Handler()
 
-    private var songName = arrayOf(Constant.APP_CONTEXT?.resources?.getString(R.string.ambe_tu_hai),
+    val iconArray = intArrayOf(R.drawable.deviface_oldpic,R.drawable.durga_devi,
+            R.drawable.deviface_oldpic, R.drawable.santoshi_mata,
+            R.drawable.deviface_oldpic, R.drawable.durga_devi,
+            R.drawable.deviface_oldpic, R.drawable.santoshi_mata,
+            R.drawable.deviface_oldpic, R.drawable.durga_devi,
+            R.drawable.deviface_oldpic, R.drawable.lakshmi,
+            R.drawable.deviface_oldpic, R.drawable.durga_devi,
+            R.drawable.deviface_oldpic, R.drawable.lakshmi,
+            R.drawable.deviface_oldpic, R.drawable.durga_devi,
+            R.drawable.deviface_oldpic, R.drawable.santoshi_mata,
+            R.drawable.shailputri, R.drawable.bhrahmcharini,
+            R.drawable.chandraghanta, R.drawable.kushmanda,
+            R.drawable.skandmata,R.drawable.katyayani,
+            R.drawable.kalratri, R.drawable.mahagauri,
+            R.drawable.sidhhidatri)
+
+    private var songName = arrayOf(
+            Constant.APP_CONTEXT?.resources?.getString(R.string.ambe_tu_hai),
             Constant.APP_CONTEXT?.resources?.getString(R.string.bheja_hai_bulava_tune),
             Constant.APP_CONTEXT?.resources?.getString(R.string.bhor_bhai_din_char),
             Constant.APP_CONTEXT?.resources?.getString(R.string.bigdi_meri_bana),
@@ -60,7 +76,16 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
             Constant.APP_CONTEXT?.resources?.getString(R.string.sher_pe_sawar),
             Constant.APP_CONTEXT?.resources?.getString(R.string.suno_suno_ek),
             Constant.APP_CONTEXT?.resources?.getString(R.string.tune_mujhe_bulaya),
-            Constant.APP_CONTEXT?.resources?.getString(R.string.yahaan_wahaan_apni))
+            Constant.APP_CONTEXT?.resources?.getString(R.string.yahaan_wahaan_apni),
+            Constant.APP_CONTEXT?.resources?.getString(R.string.shailputri_aarti),
+            Constant.APP_CONTEXT?.resources?.getString(R.string.bhrahmcharini_aart),
+            Constant.APP_CONTEXT?.resources?.getString(R.string.chandraghata_aarti),
+            Constant.APP_CONTEXT?.resources?.getString(R.string.kushmanda_aarti),
+            Constant.APP_CONTEXT?.resources?.getString(R.string.skandmata_aarti),
+            Constant.APP_CONTEXT?.resources?.getString(R.string.katyayani_aarti),
+            Constant.APP_CONTEXT?.resources?.getString(R.string.kalratri_aarti),
+            Constant.APP_CONTEXT?.resources?.getString(R.string.mahagauri_aarti),
+            Constant.APP_CONTEXT?.resources?.getString(R.string.sidhhidatri_aarti))
 
     private val mMsgReceiver = object : BroadcastReceiver(){
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -106,7 +131,7 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
 
         songInfo = ArrayList()
         for (i in songName.indices) {
-            val item = SongInfo(imageid, songName[i])
+            val item = SongInfo(iconArray[i], songName[i])
             songInfo.add(item)
         }
 

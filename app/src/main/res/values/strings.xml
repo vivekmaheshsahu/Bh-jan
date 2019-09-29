@@ -44,7 +44,7 @@
     <string name="ambe_tu_hai">Ambe Tu Hai Jagdambe Kali Jay Durge</string>
     <string name="bheja_hai_bulava_tune">Bheja Hai Bulava Tune Sherawaliye</string>
     <string name="bhor_bhai_din_char">Bhor Bhai Din Char Gaya Meri Ambe</string>
-    <string name="bigdi_meri_bana">Bigdi Meri Bana De O Sherawali</string>
+    <string name="bigdi_meri_bana">Bigdi Meri Bana Deri O Sherawali</string>
     <string name="chalo_bulava_aaya">Chalo Bulava Aaya Hai Mata Ne</string>
     <string name="durga_hai_meri">Durga Hai Meri Maa Ambe Hai Meri Maa</string>
     <string name="hey_naam_re_sabse">Hey Naam Re Sabse Bada Tera Naam</string>
@@ -61,4 +61,14 @@
     <string name="suno_suno_ek">Suno Suno Ek Kahani Suno Suno</string>
     <string name="tune_mujhe_bulaya">Tune Mujhe Bulaya Sherawaliye</string>
     <string name="yahaan_wahaan_apni">Yahaan Wahaan Apni Santoshi Maa</string>
+
+    <string name="shailputri_aarti">Day 1: Mata Shailputri Aarti</string>
+    <string name="bhrahmcharini_aart">Day 2: Mata Brahmacharini Aarti</string>
+    <string name="chandraghata_aarti">Day 3: Mata Chandraghanta Aarti</string>
+    <string name="kushmanda_aarti">Day 4: Mata Kushmanda Aarti</string>
+    <string name="skandmata_aarti">Day 5: Mata Skandmata Aarti</string>
+    <string name="katyayani_aarti">Day 6: Mata Katyayani Aarti</string>
+    <string name="kalratri_aarti">Day 7: Mata Kalratri Aarti</string>
+    <string name="mahagauri_aarti">Day 8: Mata Mahagauri Aarti</string>
+    <string name="sidhhidatri_aarti">Day 9: Mata Siddhidatri Aarti</string>
 </resources>
