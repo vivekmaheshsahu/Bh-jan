@@ -9,11 +9,7 @@
         <item
             android:id="@+id/navHinAartiEng"
             android:icon="@drawable/ic_text_24px"
-            android:title="@string/hindi_aarti"/>
-        <item
-            android:id="@+id/navMarAartiEng"
-            android:icon="@drawable/ic_text_24px"
-            android:title="@string/marathi_aarti"/>
+            android:title="@string/devi_aarti"/>
         <item
             android:id="@+id/navOurApps"
             android:icon="@drawable/ic_more_apps_24px"

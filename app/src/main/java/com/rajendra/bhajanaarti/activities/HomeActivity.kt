@@ -114,13 +114,10 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         menuInflater.inflate(R.menu.home, menu)
         val hindi = menu?.getItem(1)
         val english = menu?.getItem(2)
-        val marathi = menu?.getItem(3)
         if (Constant.LANG_CODE.equals("hi")){
             hindi?.setChecked(true)
         }else if (Constant.LANG_CODE.equals("en")){
             english?.setChecked(true)
-        }else if (Constant.LANG_CODE.equals("mr")){
-            marathi?.setChecked(true)
         }
         return true
     }
@@ -143,15 +140,6 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     item.setChecked(true)
 
                 Constant.LANG_CODE = "en"
-                saveLangCodeAndRestartActivity()
-            }
-            R.id.action_marathi -> {
-                if (item.isChecked())
-                    item.setChecked(false)
-                else
-                    item.setChecked(true)
-
-                Constant.LANG_CODE = "mr"
                 saveLangCodeAndRestartActivity()
             }
             else -> {
@@ -213,23 +201,13 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
 
             R.id.navHinAartiEng -> {
-                supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.hindi_aarti)
+                supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.devi_aarti)
                 if (Constant.LANG_CODE.equals("en")){
                     Constant.LANGUAGE = "hindi"
                 }
                 else
                     Constant.LANGUAGE = "हिंदी"
 
-                fragment = AartiFragment()
-            }
-
-            R.id.navMarAartiEng -> {
-                supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.marathi_aarti)
-                if (Constant.LANG_CODE.equals("en")){
-                    Constant.LANGUAGE = "marathi"
-                }
-                else
-                    Constant.LANGUAGE = "मराठी"
                 fragment = AartiFragment()
             }
 

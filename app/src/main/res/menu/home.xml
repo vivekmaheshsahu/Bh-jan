@@ -14,9 +14,5 @@
             android:title="English"
             android:orderInCategory="300"
             app:showAsAction="never" />
-        <item android:id="@+id/action_marathi"
-            android:title="मराठी"
-            android:orderInCategory="400"
-            app:showAsAction="never" />
     </group>
 </menu>
