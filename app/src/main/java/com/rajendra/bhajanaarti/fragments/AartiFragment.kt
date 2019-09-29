@@ -48,7 +48,12 @@ class AartiFragment : Fragment() {
                 R.raw.jai_ganesh_deva_hin, R.raw.jai_ambe_gauri_hin,
                 R.raw.shiv_ji_aarti_hin, R.raw.om_jai_jagadish_hin, R.raw.krishna_aarti_hin,
                 R.raw.shani_aarti_hin, R.raw.lakshmi_aarti_hin, R.raw.santoshi_mata_aarti_hin,
-                R.raw.kali_mata_aarti_hin, R.raw.brihaspati_aarti_hin)
+                R.raw.kali_mata_aarti_hin, R.raw.brihaspati_aarti_hin,
+                R.raw.mata_shailpurtri_aarti, R.raw.mata_bhramcharini_aarti,
+                R.raw.mata_chandraghanta_aarti, R.raw.mata_kushmanda_aarti,
+                R.raw.mata_skandmata_aarti, R.raw.mata_katyayni_aarti,
+                R.raw.mata_kalratri_aarti, R.raw.mata_mahagauri_aarti,
+                R.raw.mata_siddhidatri_aarti)
 
         val rawArrayHinEnglish = intArrayOf(R.raw.shendur_lal_chhadayo_eng,
                 R.raw.jai_ganesh_deva_eng, R.raw.jai_ambe_gauri_eng,
@@ -59,13 +64,36 @@ class AartiFragment : Fragment() {
         val coversHindi = intArrayOf(R.drawable.ganesh2,R.drawable.ganesh3, R.drawable.durga_devi,
                 R.drawable.shankar1, R.drawable.vishnu_dev, R.drawable.krishna,
                 R.drawable.shani_dev, R.drawable.lakshmi, R.drawable.santoshi_mata,
-                R.drawable.kalimata, R.drawable.brihaspati_dev)
+                R.drawable.kalimata, R.drawable.brihaspati_dev,
+                R.drawable.shailputri, R.drawable.bhrahmcharini,
+                R.drawable.chandraghanta, R.drawable.kushmanda,
+                R.drawable.skandmata,R.drawable.katyayani,
+                R.drawable.kalratri, R.drawable.mahagauri,
+                R.drawable.sidhhidatri)
 
         albumList?.clear()
         adapter?.notifyDataSetChanged()
 
         if (Constant.LANGUAGE == "हिंदी"){
-            var a = Album("शेंदूर लाल चढायो",rawArrayHindi[0],  coversHindi[0])
+            var a = Album("दिन 1: माता शैलपुत्री",rawArrayHindi[11],  coversHindi[11])
+            albumList?.add(a)
+            a = Album("दिन 2: माता ब्रह्मचारिणी",rawArrayHindi[12],  coversHindi[12])
+            albumList?.add(a)
+            a = Album("दिन 3: माता चंद्रघंटा",rawArrayHindi[13],  coversHindi[13])
+            albumList?.add(a)
+            a = Album("दिन 4: माता कुष्माण्डा",rawArrayHindi[14],  coversHindi[14])
+            albumList?.add(a)
+            a = Album("दिन 5: माता स्कंदमाता",rawArrayHindi[15],  coversHindi[15])
+            albumList?.add(a)
+            a = Album("दिन 6: माता कात्यायनी",rawArrayHindi[16],  coversHindi[16])
+            albumList?.add(a)
+            a = Album("दिन 7: माता कालरात्रि",rawArrayHindi[17],  coversHindi[17])
+            albumList?.add(a)
+            a = Album("दिन 8: माता महागौरी",rawArrayHindi[18],  coversHindi[18])
+            albumList?.add(a)
+            a = Album("दिन 9: माता सिद्धिदात्री",rawArrayHindi[19],  coversHindi[19])
+            albumList?.add(a)
+            a = Album("शेंदूर लाल चढायो",rawArrayHindi[0],  coversHindi[0])
             albumList?.add(a)
             a = Album("जय गणेश जय गणेश देवा",rawArrayHindi[1], coversHindi[1])
             albumList?.add(a)
