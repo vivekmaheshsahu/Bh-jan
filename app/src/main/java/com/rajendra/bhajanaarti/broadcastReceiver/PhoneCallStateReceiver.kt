@@ -21,7 +21,7 @@ class PhoneCallStateReceiver : BroadcastReceiver() {
     }
 
     private val phoneListener = object : PhoneStateListener() {
-        override fun onCallStateChanged(state: Int, incomingNumber: String) {
+        override fun onCallStateChanged(state: Int, incomingNumber: String?) {
             try {
                 when (state) {
                     TelephonyManager.CALL_STATE_RINGING -> {
