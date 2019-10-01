@@ -48,6 +48,7 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
             R.drawable.deviface_oldpic, R.drawable.lakshmi,
             R.drawable.deviface_oldpic, R.drawable.durga_devi,
             R.drawable.deviface_oldpic, R.drawable.lakshmi,
+            R.drawable.deviface_oldpic, R.drawable.lakshmi,
             R.drawable.deviface_oldpic, R.drawable.durga_devi,
             R.drawable.deviface_oldpic, R.drawable.santoshi_mata,
             R.drawable.shailputri, R.drawable.bhrahmcharini,
@@ -57,6 +58,7 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
             R.drawable.sidhhidatri)
 
     private var songName = arrayOf(
+            Constant.APP_CONTEXT?.resources?.getString(R.string.aa_maa_aa_tujhe),
             Constant.APP_CONTEXT?.resources?.getString(R.string.ambe_tu_hai),
             Constant.APP_CONTEXT?.resources?.getString(R.string.bheja_hai_bulava_tune),
             Constant.APP_CONTEXT?.resources?.getString(R.string.bhor_bhai_din_char),
@@ -69,6 +71,7 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
             Constant.APP_CONTEXT?.resources?.getString(R.string.maiya_main_nihal),
             Constant.APP_CONTEXT?.resources?.getString(R.string.man_tera_mandir),
             Constant.APP_CONTEXT?.resources?.getString(R.string.main_toh_aarti_utaru),
+            Constant.APP_CONTEXT?.resources?.getString(R.string.main_balak_tu_mata),
             Constant.APP_CONTEXT?.resources?.getString(R.string.meri_akhiyon_ke_samne),
             Constant.APP_CONTEXT?.resources?.getString(R.string.meri_jholi_chhoti),
             Constant.APP_CONTEXT?.resources?.getString(R.string.na_main_mangu),

@@ -36,7 +36,7 @@ class MusicPlayerActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener, Vie
     internal var indexOfSong: Int = 0
     private val mHandler = Handler()
     private var isActivityVisible: Boolean = false
-    private var songListSize: Int = 28
+    private var songListSize: Int = 30
 
     private val mUpdateTimeTask = object : Runnable {
         override fun run() {
@@ -250,118 +250,126 @@ class MusicPlayerActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener, Vie
 
         when (index) {
             0 -> {
+                supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.aa_maa_aa_tujhe)
+                mp = MediaPlayer.create(this, R.raw.aa_maa_aa_tujhe_dil)
+            }
+            1 -> {
                 supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.ambe_tu_hai)
                 mp = MediaPlayer.create(this, R.raw.ambe_tu_hai_jagdambe_kali)
             }
-            1 -> {
+            2 -> {
                 supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.bheja_hai_bulava_tune)
                 mp = MediaPlayer.create(this, R.raw.bheja_hai_bulava_tune_sherawaliye)
             }
-            2 -> {
+            3 -> {
                 supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.bhor_bhai_din_char)
                 mp = MediaPlayer.create(this, R.raw.bhor_bhai_din_char_gaya_meri_ambe)
             }
-            3 -> {
+            4 -> {
                 supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.bigdi_meri_bana)
                 mp = MediaPlayer.create(this, R.raw.bigdi_meri_bana_de)
             }
-            4 -> {
+            5 -> {
                 supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.chalo_bulava_aaya)
                 mp = MediaPlayer.create(this, R.raw.chalo_bulava_aaya_hai)
             }
-            5 -> {
+            6 -> {
                 supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.durga_hai_meri)
                 mp = MediaPlayer.create(this, R.raw.durga_hai_meri_maa)
             }
-            6 -> {
+            7 -> {
                 supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.hey_naam_re_sabse)
                 mp = MediaPlayer.create(this, R.raw.hey_naam_re_sabse_bada_tera_naam)
             }
-            7 -> {
+            8 -> {
                 supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.maa_sun_le_pukar)
                 mp = MediaPlayer.create(this, R.raw.maa_sun_le_pukar)
             }
-            8 -> {
+            9 -> {
                 supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.maiya_ka_chola)
                 mp = MediaPlayer.create(this, R.raw.maiya_ka_chola_rangla)
             }
-            9 -> {
+            10 -> {
                 supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.maiya_main_nihal)
                 mp = MediaPlayer.create(this, R.raw.maiya_main_nihaal_ho_gaya)
             }
-            10 -> {
+            11 -> {
                 supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.man_tera_mandir)
                 mp = MediaPlayer.create(this, R.raw.man_tera_mandir_aakhe_diya)
             }
-            11 -> {
+            12 -> {
                 supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.main_toh_aarti_utaru)
                 mp = MediaPlayer.create(this, R.raw.main_toh_aarti_utaru)
             }
-            12 -> {
+            13 -> {
+                supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.main_balak_tu_mata)
+                mp = MediaPlayer.create(this, R.raw.main_balak_tu_mata)
+            }
+            14 -> {
                 supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.meri_akhiyon_ke_samne)
                 mp = MediaPlayer.create(this, R.raw.meri_akhiyon_ke_samne_hi_rehna)
             }
-            13 -> {
+            15 -> {
                 supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.meri_jholi_chhoti)
                 mp = MediaPlayer.create(this, R.raw.meri_jholi_chhoti_pa_gayee_re)
             }
-            14 -> {
+            16 -> {
                 supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.na_main_mangu)
                 mp = MediaPlayer.create(this, R.raw.na_main_mangu_sona_devi)
             }
-            15 -> {
+            17 -> {
                 supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.pyara_saja_hai)
                 mp = MediaPlayer.create(this, R.raw.pyara_saja_hai_tera_dwar)
             }
-            16 -> {
+            18 -> {
                 supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.sher_pe_sawar)
                 mp = MediaPlayer.create(this, R.raw.sher_pe_sawar_hoke)
             }
-            17 -> {
+            19 -> {
                 supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.suno_suno_ek)
                 mp = MediaPlayer.create(this, R.raw.suno_suno_ek_kahani)
             }
-            18 -> {
+            20 -> {
                 supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.tune_mujhe_bulaya)
                 mp = MediaPlayer.create(this, R.raw.tune_mujhe_bulaya_sherawaliye)
             }
-            19 -> {
+            21 -> {
                 supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.yahaan_wahaan_apni)
                 mp = MediaPlayer.create(this, R.raw.yahaan_wahaan_apani_santoshi_maa)
             }
-            20 -> {
+            22 -> {
                 supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.shailputri_aarti)
                 mp = MediaPlayer.create(this, R.raw.shailputri_aarti)
             }
-            21 -> {
+            23 -> {
                 supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.bhrahmcharini_aart)
                 mp = MediaPlayer.create(this, R.raw.brahmacharini_aarti)
             }
-            22 -> {
+            24 -> {
                 supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.chandraghata_aarti)
                 mp = MediaPlayer.create(this, R.raw.chandraghanta_aarti)
             }
-            23 -> {
+            25 -> {
                 supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.kushmanda_aarti)
                 mp = MediaPlayer.create(this, R.raw.kusmanda_aarti)
             }
-            24 -> {
+            26 -> {
                 supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.skandmata_aarti)
                 mp = MediaPlayer.create(this, R.raw.skandamata_aarti)
             }
-            25 -> {
+            27 -> {
                 supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.katyayani_aarti)
                 mp = MediaPlayer.create(this, R.raw.katyayani_aarti)
             }
-            26 -> {
+            28 -> {
                 supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.kalratri_aarti)
                 mp = MediaPlayer.create(this, R.raw.kaalratri_aarti)
             }
-            27 -> {
+            29 -> {
                 supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.mahagauri_aarti)
                 mp = MediaPlayer.create(this, R.raw.mahagauri_aarti)
             }
-            28 -> {
+            30 -> {
                 supportActionBar?.title = Constant.APP_CONTEXT?.resources?.getString(R.string.sidhhidatri_aarti)
                 mp = MediaPlayer.create(this, R.raw.siddhidatri_aarti)
             }
