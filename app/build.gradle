@@ -4,17 +4,23 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'io.fabric'
 
 android {
-    compileSdkVersion 31
+	namespace 'com.rajendra.bhajanaarti'
+    compileSdk = 34
     defaultConfig {
         applicationId "com.rajendra.bhajanaarti"
-        minSdkVersion 21
-        targetSdkVersion 31
+        minSdk = 21
+        targetSdk = 34
         versionCode 29
         versionName "2.5.1"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
+
+    kotlinOptions {
+        jvmTarget = "1.8"  // Or "11", "17", depending on your project setup
+    }
+
     buildTypes {
         release {
             minifyEnabled false
