@@ -20,7 +20,7 @@ class MyApplication : MultiDexApplication() {
 
         Constant.APP_CONTEXT = this
         // initialize the AdMob app
-        MobileAds.initialize(this, getString(R.string.admob_app_id))
+        MobileAds.initialize(this)
     }
 }
 

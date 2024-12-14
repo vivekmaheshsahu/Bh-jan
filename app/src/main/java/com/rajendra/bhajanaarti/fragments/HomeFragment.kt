@@ -38,7 +38,7 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
     private var ivPauseHome: ImageView? = null
     private var playingLayout: RelativeLayout? = null
     private var playingSongName: TextView? = null
-    private val mHandler = Handler()
+    //private val mHandler = Handler()
 
     val iconArray = intArrayOf(R.drawable.deviface_oldpic,R.drawable.durga_devi,
             R.drawable.deviface_oldpic, R.drawable.santoshi_mata,
@@ -103,7 +103,7 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
         return view
     }
 
-    private val runAdAutomatic = object : Runnable{
+    /*private val runAdAutomatic = object : Runnable{
         override fun run() {
             try {
                 Log.d("test", "handler running")
@@ -122,7 +122,7 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
                 Log.d("test", "exception_runAdAutomatic " + e.message)
             }
         }
-    }
+    }*/
 
     fun initialize(v: View?){
         mAdView = v?.findViewById<View>(R.id.adView) as AdView
@@ -149,14 +149,14 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
 
     override fun onPause() {
         super.onPause()
-        if (mHandler != null)
-            mHandler.removeCallbacksAndMessages(null)
+        /*if (mHandler != null)
+            mHandler.removeCallbacksAndMessages(null)*/
     }
 
     override fun onResume() {
         super.onResume()
         callPlayNowLayout()
-        runAdAutomatic.run()
+        //runAdAutomatic.run()
     }
 
     fun callPlayNowLayout(){
@@ -192,8 +192,8 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.playingLayout -> {
-                if (mHandler != null)
-                    mHandler.removeCallbacksAndMessages(null)
+                /*if (mHandler != null)
+                    mHandler.removeCallbacksAndMessages(null)*/
 
                 val intent = Intent(activity, MusicPlayerActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
@@ -215,8 +215,8 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
 
     override fun onDestroy() {
         super.onDestroy()
-        if (mHandler != null)
-            mHandler.removeCallbacksAndMessages(null)
+        /*if (mHandler != null)
+            mHandler.removeCallbacksAndMessages(null)*/
         context?.let { LocalBroadcastManager.getInstance(it).unregisterReceiver(mMsgReceiver)}
     }
 }

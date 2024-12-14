@@ -14,9 +14,6 @@ import androidx.appcompat.widget.Toolbar
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 
-import com.google.android.gms.ads.AdListener
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.InterstitialAd
 import com.google.android.gms.analytics.GoogleAnalytics
 import com.google.android.gms.analytics.Tracker
 import com.google.firebase.analytics.FirebaseAnalytics
@@ -26,6 +23,9 @@ import com.rajendra.bhajanaarti.firebase.NotificationHelper
 import com.rajendra.bhajanaarti.fragments.*
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.calibehr.mitra.utils.SharedPreferencesHelper
+import com.google.android.gms.ads.*
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.android.material.internal.NavigationMenuView
 import com.rajendra.bhajanaarti.base.BaseActivity
 
@@ -54,43 +54,28 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "Song name click")
         mFirebaseAnalytics!!.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle)
         mFirebaseAnalytics!!.setUserProperty("favorite_food", "Paneer")
-        analytics = GoogleAnalytics.getInstance(this)
+        /*analytics = GoogleAnalytics.getInstance(this)
         analytics.setLocalDispatchPeriod(1800)
         tracker = analytics.newTracker("UA-88365539-1")
         tracker.enableExceptionReporting(true)
         tracker.enableAdvertisingIdCollection(true)
-        tracker.enableAutoActivityTracking(true)
-        mInterstitialAd = InterstitialAd(this)
-        mInterstitialAd?.adUnitId = getString(R.string.interstitial_ad)
-        loadAd()
-        mInterstitialAd?.adListener = object : AdListener() {
-            override fun onAdLoaded() {
-                // Code to be executed when an ad finishes loading.
-                Log.i("Ads", "onAdLoaded")
+        tracker.enableAutoActivityTracking(true)*/
+
+        MobileAds.initialize(this) {}
+
+        val adRequest = AdRequest.Builder().build()
+        InterstitialAd.load(this, getString(R.string.interstitial_ad), adRequest, object : InterstitialAdLoadCallback() {
+            override fun onAdFailedToLoad(loadAdError: LoadAdError) {
+                // Handle the error
+                mInterstitialAd = null
             }
 
-            override fun onAdFailedToLoad(errorCode: Int) {
-                // Code to be executed when an ad request fails.
-                Log.i("Ads", "onAdFailedToLoad")
+            override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                mInterstitialAd = interstitialAd
             }
+        })
 
-            override fun onAdOpened() {
-                // Code to be executed when the ad is displayed.
-                Log.i("Ads", "onAdOpened")
-            }
 
-            override fun onAdLeftApplication() {
-                // Code to be executed when the user has left the app.
-                Log.i("Ads", "onAdLeftApplication")
-            }
-
-            override fun onAdClosed() {
-                // Code to be executed when when the interstitial ad is closed.
-                Log.i("Ads", "onAdClosed")
-                // load next ad
-                loadAd()
-            }
-        }
 
         val toolbar = findViewById<View>(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
@@ -163,12 +148,13 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         finish()
     }
 
-    fun loadAd(){
+    /*fun loadAd(){
         val adRequest = AdRequest.Builder()
                 //.addTestDevice("FD9F133038F995D8A876271BC9EBFCC0")
                 .build()
+
         mInterstitialAd?.loadAd(adRequest)
-    }
+    }*/
 
     override fun onResume() {
         super.onResume()
@@ -180,8 +166,8 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         if (drawer.isDrawerOpen(GravityCompat.START))
             drawer.closeDrawer(GravityCompat.START)
         else {
-            if (mInterstitialAd!!.isLoaded)
-                mInterstitialAd?.show()
+            if (mInterstitialAd != null)
+                mInterstitialAd?.show(this)
         }
     }
 

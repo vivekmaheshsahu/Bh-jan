@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.ScrollView
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.google.android.gms.ads.AdView
 import com.rajendra.bhajanaarti.Pojo.Album
@@ -14,7 +15,6 @@ import com.rajendra.bhajanaarti.R
 import com.rajendra.bhajanaarti.base.BaseActivity
 import com.rajendra.bhajanaarti.utils.OnSwipeTouchListener
 import com.rajendra.bhajanaarti.utils.UserInterfaceUtils
-import kotlinx.android.synthetic.main.activity_show_aarti.*
 
 
 class ShowAartiActivity : BaseActivity(){
@@ -29,10 +29,17 @@ class ShowAartiActivity : BaseActivity(){
     private var scrollShowAarti: ScrollView? = null
     private var listOfAarti: MutableList<Album>? = null
     private var aartiIndex: Int? = null
+    private var tvPreArrow:TextView?=null
+    private var tvNxtArrow:TextView?=null
+    private var txt:TextView?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        tvPreArrow = findViewById(R.id.tvPreArrow)
+        tvNxtArrow = findViewById(R.id.tvNxtArrow)
+        txt = findViewById(R.id.txt)
 
         val intent = intent.extras
         aartiName = intent?.getString("aarti_name")
@@ -59,7 +66,7 @@ class ShowAartiActivity : BaseActivity(){
         supportActionBar?.title = aartiName
         tvPreArrow?.typeface = UserInterfaceUtils.assets(this)
         tvNxtArrow?.typeface = UserInterfaceUtils.assets(this)
-        txt.text = getAartiFromRaw(aarti_text)
+        txt?.text = getAartiFromRaw(aarti_text)
         scrollShowAarti = findViewById(R.id.scrollShowAarti)
 
         scrollShowAarti?.setOnTouchListener(object : OnSwipeTouchListener(applicationContext){
@@ -117,7 +124,7 @@ class ShowAartiActivity : BaseActivity(){
             tvNxtArrow?.setTextColor(ContextCompat.getColor(applicationContext, android.R.color.holo_green_dark))
             tvPreArrow?.setTextColor(ContextCompat.getColor(applicationContext, android.R.color.holo_green_dark))
             supportActionBar?.title = listOfAarti?.get(aartiIndex!!)?.name
-            txt.text = getAartiFromRaw(listOfAarti?.get(aartiIndex!!)?.raw)
+            txt?.text = getAartiFromRaw(listOfAarti?.get(aartiIndex!!)?.raw)
         }
         if (aartiIndex == (listOfAarti?.size?.dec())){
             tvNxtArrow?.setTextColor(Color.GRAY)
@@ -134,7 +141,7 @@ class ShowAartiActivity : BaseActivity(){
             tvPreArrow?.setTextColor(ContextCompat.getColor(applicationContext, android.R.color.holo_green_dark))
             tvNxtArrow?.setTextColor(ContextCompat.getColor(applicationContext, android.R.color.holo_green_dark))
             supportActionBar?.title = listOfAarti?.get(aartiIndex!!)?.name
-            txt.text = getAartiFromRaw(listOfAarti?.get(aartiIndex!!)?.raw)
+            txt?.text = getAartiFromRaw(listOfAarti?.get(aartiIndex!!)?.raw)
         }
 
         if (aartiIndex == 0){
