@@ -140,6 +140,8 @@ class MusicPlayerActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener, Vie
         super.onDestroy()
         Log.d(TAG, "onDestroy_called")
         isActivityVisible = false
+        if (mAdView != null)
+            mAdView?.destroy()
     }
 
     fun updateProgressBar() {

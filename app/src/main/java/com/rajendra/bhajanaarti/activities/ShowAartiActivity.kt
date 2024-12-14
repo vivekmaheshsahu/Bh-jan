@@ -157,6 +157,12 @@ class ShowAartiActivity : BaseActivity(){
         finish()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        if (mAdView != null)
+            mAdView?.destroy()
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             android.R.id.home ->{

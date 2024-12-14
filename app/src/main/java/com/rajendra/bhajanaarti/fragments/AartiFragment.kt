@@ -34,6 +34,13 @@ class AartiFragment : Fragment() {
         UserInterfaceUtils.loadAd(mAdView)
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+
+        if (mAdView != null)
+            mAdView?.destroy()
+    }
+
     fun initializer(v: View){
         mAdView = v.findViewById(R.id.adView)
         recyclerView = v.findViewById(R.id.recycler_view) as RecyclerView

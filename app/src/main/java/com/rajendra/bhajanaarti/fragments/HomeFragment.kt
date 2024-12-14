@@ -218,5 +218,8 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
         /*if (mHandler != null)
             mHandler.removeCallbacksAndMessages(null)*/
         context?.let { LocalBroadcastManager.getInstance(it).unregisterReceiver(mMsgReceiver)}
+
+        if (mAdView != null)
+            mAdView?.destroy()
     }
 }
