@@ -87,7 +87,7 @@ class FeedbackFragment : Fragment(), View.OnClickListener {
 
     override fun onDestroy() {
         if (mAdView != null) {
-            mAdView!!.destroy()
+            mAdView?.destroy()
         }
         UserInterfaceUtils.hideSoftKeyboard(activity)
         super.onDestroy()

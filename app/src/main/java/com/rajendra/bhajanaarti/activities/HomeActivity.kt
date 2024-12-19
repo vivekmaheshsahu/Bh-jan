@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.View
 import android.net.Uri
 import android.view.Menu
-import com.google.android.material.navigation.NavigationView
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -27,6 +26,7 @@ import com.google.android.gms.ads.*
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.android.material.internal.NavigationMenuView
+import com.google.android.material.navigation.NavigationView
 import com.rajendra.bhajanaarti.base.BaseActivity
 
 
@@ -61,12 +61,16 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         tracker.enableAdvertisingIdCollection(true)
         tracker.enableAutoActivityTracking(true)*/
 
-        MobileAds.initialize(this) {}
+        /*val backgroundScope = CoroutineScope(Dispatchers.IO)
+        backgroundScope.launch {
+            // Initialize the Google Mobile Ads SDK on a background thread.
+            MobileAds.initialize(this@HomeActivity) {}
+        }*/
 
         val adRequest = AdRequest.Builder().build()
-        InterstitialAd.load(this, getString(R.string.interstitial_ad), adRequest, object : InterstitialAdLoadCallback() {
-            override fun onAdFailedToLoad(loadAdError: LoadAdError) {
-                // Handle the error
+
+        InterstitialAd.load(this,getString(R.string.interstitial_ad), adRequest, object : InterstitialAdLoadCallback() {
+            override fun onAdFailedToLoad(adError: LoadAdError) {
                 mInterstitialAd = null
             }
 
@@ -167,7 +171,7 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             drawer.closeDrawer(GravityCompat.START)
         else {
             if (mInterstitialAd != null)
-                mInterstitialAd?.show(this)
+                mInterstitialAd?.show(this@HomeActivity)
         }
     }
 

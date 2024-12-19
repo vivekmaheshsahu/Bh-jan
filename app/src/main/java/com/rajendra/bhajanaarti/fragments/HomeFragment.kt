@@ -155,12 +155,12 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
 
     override fun onResume() {
         super.onResume()
+        UserInterfaceUtils.loadAd(mAdView)
         callPlayNowLayout()
         //runAdAutomatic.run()
     }
 
     fun callPlayNowLayout(){
-        UserInterfaceUtils.loadAd(mAdView)
         if (Constant.NOW_PLAYING_SONG_NAME.isNotEmpty() && Constant.NOW_PLAYING_SONG_NAME.length > 1) {
             playingLayout?.visibility = View.VISIBLE
             if (MusicPlayerActivity.mp != null){
@@ -218,5 +218,8 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
         /*if (mHandler != null)
             mHandler.removeCallbacksAndMessages(null)*/
         context?.let { LocalBroadcastManager.getInstance(it).unregisterReceiver(mMsgReceiver)}
+
+        if (mAdView != null)
+            mAdView?.destroy()
     }
 }
