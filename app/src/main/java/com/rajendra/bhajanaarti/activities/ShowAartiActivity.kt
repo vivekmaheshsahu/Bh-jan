@@ -62,7 +62,6 @@ class ShowAartiActivity : BaseActivity(){
 
     private fun initializer() {
         mAdView = findViewById(R.id.adView)
-        UserInterfaceUtils.loadAd(mAdView)
         supportActionBar?.title = aartiName
         tvPreArrow?.typeface = UserInterfaceUtils.assets(this)
         tvNxtArrow?.typeface = UserInterfaceUtils.assets(this)
@@ -118,7 +117,6 @@ class ShowAartiActivity : BaseActivity(){
     }
 
     fun showNextAarti(){
-        UserInterfaceUtils.loadAd(mAdView)
         if (aartiIndex!! < listOfAarti!!.size.dec()){
             aartiIndex = aartiIndex?.inc()
             tvNxtArrow?.setTextColor(ContextCompat.getColor(applicationContext, android.R.color.holo_green_dark))
@@ -135,7 +133,6 @@ class ShowAartiActivity : BaseActivity(){
     }
 
     fun showPreAarti(){
-        UserInterfaceUtils.loadAd(mAdView)
         if (aartiIndex!! >= 1){
             aartiIndex = aartiIndex?.dec()
             tvPreArrow?.setTextColor(ContextCompat.getColor(applicationContext, android.R.color.holo_green_dark))
