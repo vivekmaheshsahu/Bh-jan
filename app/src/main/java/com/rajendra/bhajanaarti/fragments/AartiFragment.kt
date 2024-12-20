@@ -31,7 +31,7 @@ class AartiFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        UserInterfaceUtils.loadAd(mAdView)
+        //UserInterfaceUtils.loadAd(mAdView)
     }
 
     override fun onDestroy() {

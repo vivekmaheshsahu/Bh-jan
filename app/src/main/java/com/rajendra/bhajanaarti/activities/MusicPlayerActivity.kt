@@ -21,7 +21,7 @@ import java.lang.Exception
 
 class MusicPlayerActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener, View.OnClickListener, MediaPlayer.OnCompletionListener {
 
-    private var mAdView: AdView? = null
+    //private var mAdView: AdView? = null
     private var btnPlay: ImageButton? = null
     private var btnForward: ImageButton? = null
     private var btnBackward: ImageButton? = null
@@ -90,7 +90,7 @@ class MusicPlayerActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener, Vie
     }
 
     private fun initializer() {
-        mAdView = findViewById(R.id.adView)
+        //mAdView = findViewById(R.id.adView)
         songTotalDurationLabel = findViewById(R.id.songTotalDurationLabel)
         songCurrentDurationLabel = findViewById(R.id.songCurrentDurationLabel)
         btnPlay = findViewById(R.id.btnPlay)
@@ -132,7 +132,7 @@ class MusicPlayerActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener, Vie
     override fun onResume() {
         super.onResume()
         Log.d(TAG, "onResume_called")
-        UserInterfaceUtils.loadAd(mAdView)
+        //UserInterfaceUtils.loadAd(mAdView)
         isActivityVisible = true
     }
 
@@ -140,8 +140,8 @@ class MusicPlayerActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener, Vie
         super.onDestroy()
         Log.d(TAG, "onDestroy_called")
         isActivityVisible = false
-        if (mAdView != null)
-            mAdView?.destroy()
+        /*if (mAdView != null)
+            mAdView?.destroy()*/
     }
 
     fun updateProgressBar() {

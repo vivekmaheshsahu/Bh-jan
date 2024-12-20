@@ -17,17 +17,6 @@
         android:background="@drawable/welcome1"
         android:layout_marginBottom="@dimen/large_margin"/>
 
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        ads:adSize="BANNER"
-        ads:adUnitId="@string/banner_ad_unit_id"
-        ads:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-    </com.google.android.gms.ads.AdView>
-
     <androidx.appcompat.widget.AppCompatSeekBar
         android:id="@+id/songProgressBar"
         android:layout_width="0dp"
