@@ -23,7 +23,7 @@ class ShowAartiActivity : BaseActivity(){
     }
 
     private val TAG = "ShowAartiActivity"
-    private var mAdView: AdView? = null
+    //private var mAdView: AdView? = null
     private var aartiName: String? = null
     private var aarti_text: Int? = null
     private var scrollShowAarti: ScrollView? = null
@@ -57,12 +57,11 @@ class ShowAartiActivity : BaseActivity(){
 
     override fun onResume() {
         super.onResume()
-        UserInterfaceUtils.loadAd(mAdView)
+        //UserInterfaceUtils.loadAd(mAdView)
     }
 
     private fun initializer() {
-        mAdView = findViewById(R.id.adView)
-        UserInterfaceUtils.loadAd(mAdView)
+        //mAdView = findViewById(R.id.adView)
         supportActionBar?.title = aartiName
         tvPreArrow?.typeface = UserInterfaceUtils.assets(this)
         tvNxtArrow?.typeface = UserInterfaceUtils.assets(this)
@@ -118,7 +117,6 @@ class ShowAartiActivity : BaseActivity(){
     }
 
     fun showNextAarti(){
-        UserInterfaceUtils.loadAd(mAdView)
         if (aartiIndex!! < listOfAarti!!.size.dec()){
             aartiIndex = aartiIndex?.inc()
             tvNxtArrow?.setTextColor(ContextCompat.getColor(applicationContext, android.R.color.holo_green_dark))
@@ -135,7 +133,6 @@ class ShowAartiActivity : BaseActivity(){
     }
 
     fun showPreAarti(){
-        UserInterfaceUtils.loadAd(mAdView)
         if (aartiIndex!! >= 1){
             aartiIndex = aartiIndex?.dec()
             tvPreArrow?.setTextColor(ContextCompat.getColor(applicationContext, android.R.color.holo_green_dark))
@@ -155,6 +152,12 @@ class ShowAartiActivity : BaseActivity(){
     override fun onBackPressed() {
         super.onBackPressed()
         finish()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        /*if (mAdView != null)
+            mAdView?.destroy()*/
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

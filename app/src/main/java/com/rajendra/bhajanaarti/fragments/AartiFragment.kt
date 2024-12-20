@@ -20,7 +20,7 @@ class AartiFragment : Fragment() {
     private var recyclerView: RecyclerView? = null
     private var adapter: AartiAdapter? = null
     private var albumList: MutableList<Album>? = null
-    private var mAdView: AdView? = null
+    //private var mAdView: AdView? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -31,11 +31,18 @@ class AartiFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        UserInterfaceUtils.loadAd(mAdView)
+        //UserInterfaceUtils.loadAd(mAdView)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        /*if (mAdView != null)
+            mAdView?.destroy()*/
     }
 
     fun initializer(v: View){
-        mAdView = v.findViewById(R.id.adView)
+        //mAdView = v.findViewById(R.id.adView)
         recyclerView = v.findViewById(R.id.recycler_view) as RecyclerView
         albumList = ArrayList()
         adapter = AartiAdapter(albumList as ArrayList<Album>)
