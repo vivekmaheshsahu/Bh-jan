@@ -23,7 +23,7 @@ class ShowAartiActivity : BaseActivity(){
     }
 
     private val TAG = "ShowAartiActivity"
-    private var mAdView: AdView? = null
+    //private var mAdView: AdView? = null
     private var aartiName: String? = null
     private var aarti_text: Int? = null
     private var scrollShowAarti: ScrollView? = null
@@ -57,11 +57,11 @@ class ShowAartiActivity : BaseActivity(){
 
     override fun onResume() {
         super.onResume()
-        UserInterfaceUtils.loadAd(mAdView)
+        //UserInterfaceUtils.loadAd(mAdView)
     }
 
     private fun initializer() {
-        mAdView = findViewById(R.id.adView)
+        //mAdView = findViewById(R.id.adView)
         supportActionBar?.title = aartiName
         tvPreArrow?.typeface = UserInterfaceUtils.assets(this)
         tvNxtArrow?.typeface = UserInterfaceUtils.assets(this)
@@ -156,8 +156,8 @@ class ShowAartiActivity : BaseActivity(){
 
     override fun onDestroy() {
         super.onDestroy()
-        if (mAdView != null)
-            mAdView?.destroy()
+        /*if (mAdView != null)
+            mAdView?.destroy()*/
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
