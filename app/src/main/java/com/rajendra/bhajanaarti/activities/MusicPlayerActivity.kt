@@ -64,12 +64,12 @@ class MusicPlayerActivity : BaseActivity(), SeekBar.OnSeekBarChangeListener, Vie
                         songProgressBar?.progress = progress
                     }
 
-                    // Running this thread after 500 milliseconds
-                    mHandler.postDelayed(this, 1000)
                 } else {
-                    Log.d(TAG, "finish_called")
-                    finish()
+                    /*Log.d(TAG, "finish_called")
+                    finish()*/
                 }
+                // Running this thread after 500 milliseconds
+                mHandler.postDelayed(this, 1000)
             }
             catch (e: Exception){
                 e.printStackTrace()
