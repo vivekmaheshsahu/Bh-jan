@@ -51,8 +51,8 @@ class SongInfoAdapter(private val mCtx: Context?, private val items: ArrayList<S
     internal var r: Runnable = Runnable {
         progressBarInterface.hideProgressBar()
         val intent = Intent(mCtx, MusicPlayerActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
         intent.putExtra("songindex", songIndex)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         mCtx?.startActivity(intent)
     }
 
