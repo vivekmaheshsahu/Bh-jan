@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".activities.ShowAartiActivity">
 
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id"
+        ads:layout_constraintTop_toTopOf="parent"
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintStart_toStartOf="parent" />
+
     <TextView
         android:id="@+id/tvPreArrow"
         android:layout_width="wrap_content"
@@ -39,7 +49,8 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scrollbars="none"
-        ads:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/normal_margin"
+        ads:layout_constraintTop_toBottomOf="@id/adView"
         ads:layout_constraintStart_toEndOf="@id/tvPreArrow"
         ads:layout_constraintEnd_toStartOf="@id/tvNxtArrow"
         ads:layout_constraintBottom_toBottomOf="parent">
@@ -52,14 +63,4 @@
             android:textColor="@android:color/black"
             android:textStyle="bold"/>
     </ScrollView>
-
-    <!--<com.google.android.gms.ads.AdView
-        android:id="@+id/adView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        ads:adSize="BANNER"
-        ads:adUnitId="@string/banner_ad_unit_id"
-        ads:layout_constraintBottom_toBottomOf="parent"
-        ads:layout_constraintEnd_toEndOf="parent"
-        ads:layout_constraintStart_toStartOf="parent" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>
