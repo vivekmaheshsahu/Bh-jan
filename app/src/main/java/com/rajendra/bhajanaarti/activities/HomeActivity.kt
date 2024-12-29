@@ -63,7 +63,7 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         tracker.enableAdvertisingIdCollection(true)
         tracker.enableAutoActivityTracking(true)*/
 
-        loadInterstitialAd()
+        //loadInterstitialAd()
 
         val toolbar = findViewById<View>(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
@@ -172,8 +172,8 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         if (drawer.isDrawerOpen(GravityCompat.START))
             drawer.closeDrawer(GravityCompat.START)
         else {
-            if (mInterstitialAd != null)
-                mInterstitialAd?.show(this@HomeActivity)
+            /*if (mInterstitialAd != null)
+                mInterstitialAd?.show(this@HomeActivity)*/
         }
     }
 
