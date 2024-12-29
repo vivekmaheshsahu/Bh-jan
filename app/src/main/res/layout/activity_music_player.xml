@@ -8,6 +8,7 @@
     android:background="@drawable/back_gradient">
 
     <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgDevi"
         android:layout_width="0dp"
         android:layout_height="0dp"
         ads:layout_constraintTop_toTopOf="parent"
@@ -15,7 +16,19 @@
         ads:layout_constraintEnd_toEndOf="parent"
         ads:layout_constraintBottom_toTopOf="@id/songProgressBar"
         android:background="@drawable/welcome1"
-        android:layout_marginBottom="@dimen/large_margin"/>
+        android:layout_marginBottom="@dimen/x_large_margin"/>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id"
+        android:layout_marginBottom="@dimen/x_large_margin"
+        ads:layout_constraintStart_toStartOf="parent"
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintBottom_toBottomOf="@id/imgDevi">
+    </com.google.android.gms.ads.AdView>
 
     <androidx.appcompat.widget.AppCompatSeekBar
         android:id="@+id/songProgressBar"
