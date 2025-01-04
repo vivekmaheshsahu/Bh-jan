@@ -127,10 +127,12 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
     fun initialize(v: View?){
         mAdView = v?.findViewById<View>(R.id.adView) as AdView
         ivPlayHome = v.findViewById(R.id.ivPlayHome)
+        ivPlayHome?.setOnClickListener(this)
         ivPauseHome = v.findViewById(R.id.ivPauseHome)
+        ivPauseHome?.setOnClickListener(this)
         playingLayout = v.findViewById(R.id.playingLayout)
-        playingLayout?.setOnClickListener(this)
         playingSongName = v.findViewById(R.id.playingSongName)
+        playingSongName?.setOnClickListener(this)
 
         songInfo = ArrayList()
         for (i in songName.indices) {
@@ -155,12 +157,12 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
 
     override fun onResume() {
         super.onResume()
+        UserInterfaceUtils.loadAd(mAdView)
         callPlayNowLayout()
         //runAdAutomatic.run()
     }
 
     fun callPlayNowLayout(){
-        UserInterfaceUtils.loadAd(mAdView)
         if (Constant.NOW_PLAYING_SONG_NAME.isNotEmpty() && Constant.NOW_PLAYING_SONG_NAME.length > 1) {
             playingLayout?.visibility = View.VISIBLE
             if (MusicPlayerActivity.mp != null){
@@ -191,13 +193,36 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.playingLayout -> {
+            R.id.playingSongName -> {
                 /*if (mHandler != null)
                     mHandler.removeCallbacksAndMessages(null)*/
 
                 val intent = Intent(activity, MusicPlayerActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
                 startActivity(intent)
+            }
+            R.id.ivPlayHome -> {
+                if (Constant.NOW_PLAYING_SONG_NAME.isNotEmpty() && Constant.NOW_PLAYING_SONG_NAME.length > 1) {
+                    if (MusicPlayerActivity.mp != null){
+                        if (MusicPlayerActivity.mp?.isPlaying!!) {
+
+                        } else {
+                            MusicPlayerActivity.mp?.start()
+                            showPlayButton(false)
+                        }
+                    }
+                }
+            }
+
+            R.id.ivPauseHome -> {
+                if (Constant.NOW_PLAYING_SONG_NAME.isNotEmpty() && Constant.NOW_PLAYING_SONG_NAME.length > 1) {
+                    if (MusicPlayerActivity.mp != null){
+                        if (MusicPlayerActivity.mp?.isPlaying!!) {
+                            MusicPlayerActivity.mp?.pause()
+                            showPlayButton(true)
+                        }
+                    }
+                }
             }
         }
     }
@@ -218,5 +243,8 @@ class HomeFragment : Fragment(), View.OnClickListener, SongInfoAdapter.ProgressB
         /*if (mHandler != null)
             mHandler.removeCallbacksAndMessages(null)*/
         context?.let { LocalBroadcastManager.getInstance(it).unregisterReceiver(mMsgReceiver)}
+
+        if (mAdView != null)
+            mAdView?.destroy()
     }
 }

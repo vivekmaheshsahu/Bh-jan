@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.View
 import android.net.Uri
 import android.view.Menu
-import com.google.android.material.navigation.NavigationView
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -23,10 +22,13 @@ import com.rajendra.bhajanaarti.firebase.NotificationHelper
 import com.rajendra.bhajanaarti.fragments.*
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.calibehr.mitra.utils.SharedPreferencesHelper
-import com.google.android.gms.ads.*
+import com.google.android.gms.ads.AdError
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.android.material.internal.NavigationMenuView
+import com.google.android.material.navigation.NavigationView
 import com.rajendra.bhajanaarti.base.BaseActivity
 
 
@@ -36,10 +38,10 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     private var mFirebaseAnalytics: FirebaseAnalytics? = null
     private var mInterstitialAd: InterstitialAd? = null
 
-    companion object {
+    /*companion object {
         lateinit var analytics: GoogleAnalytics
         lateinit var tracker: Tracker
-    }
+    }*/
 
     override fun provideLayoutId(): Int {
         return R.layout.activity_home
@@ -61,21 +63,7 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         tracker.enableAdvertisingIdCollection(true)
         tracker.enableAutoActivityTracking(true)*/
 
-        MobileAds.initialize(this) {}
-
-        val adRequest = AdRequest.Builder().build()
-        InterstitialAd.load(this, getString(R.string.interstitial_ad), adRequest, object : InterstitialAdLoadCallback() {
-            override fun onAdFailedToLoad(loadAdError: LoadAdError) {
-                // Handle the error
-                mInterstitialAd = null
-            }
-
-            override fun onAdLoaded(interstitialAd: InterstitialAd) {
-                mInterstitialAd = interstitialAd
-            }
-        })
-
-
+        //loadInterstitialAd()
 
         val toolbar = findViewById<View>(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
@@ -94,7 +82,33 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         displaySelectedScreen(R.id.navMusic)
     }
 
+    private fun loadInterstitialAd() {
+        val adRequest = AdRequest.Builder().build()
+        InterstitialAd.load(
+            this, getString(R.string.interstitial_ad),adRequest,
+            object : InterstitialAdLoadCallback() {
+                override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                    mInterstitialAd = interstitialAd
+                    mInterstitialAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
+                        override fun onAdDismissedFullScreenContent() {
+                            // Ad was dismissed, reload it if needed
+                            loadInterstitialAd()
+                        }
 
+                        override fun onAdFailedToShowFullScreenContent(adError: AdError) {
+                            // Handle the failure to show the ad
+                            //Toast.makeText(this@HomeActivity, "Failed to show the ad.", Toast.LENGTH_SHORT).show()
+                        }
+
+                        override fun onAdShowedFullScreenContent() {
+                            // The ad was shown
+                            //Toast.makeText(this@HomeActivity, "Ad is displayed.", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            }
+        )
+    }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.home, menu)
         val hindi = menu?.getItem(1)
@@ -148,14 +162,6 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         finish()
     }
 
-    /*fun loadAd(){
-        val adRequest = AdRequest.Builder()
-                //.addTestDevice("FD9F133038F995D8A876271BC9EBFCC0")
-                .build()
-
-        mInterstitialAd?.loadAd(adRequest)
-    }*/
-
     override fun onResume() {
         super.onResume()
         NotificationHelper.clearNotifications(this)
@@ -166,8 +172,8 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         if (drawer.isDrawerOpen(GravityCompat.START))
             drawer.closeDrawer(GravityCompat.START)
         else {
-            if (mInterstitialAd != null)
-                mInterstitialAd?.show(this)
+            /*if (mInterstitialAd != null)
+                mInterstitialAd?.show(this@HomeActivity)*/
         }
     }
 

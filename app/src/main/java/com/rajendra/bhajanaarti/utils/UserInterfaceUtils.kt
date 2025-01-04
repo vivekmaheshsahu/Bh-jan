@@ -16,11 +16,17 @@ object UserInterfaceUtils {
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
     }
 
+    private fun createAdRequest(): AdRequest {
+        return AdRequest.Builder().build()
+    }
+
+    // b9367f3b-b4da-4828-9da1-ff0270ae961f
+
     fun loadAd(adView: AdView?){
-        val adRequest = AdRequest.Builder()
-                //.addTestDevice("FD9F133038F995D8A876271BC9EBFCC0")
-                .build()
-        adView?.loadAd(adRequest)
+        /*val adRequest = AdRequest.Builder()
+            //.addTestDevice("b9367f3b-b4da-4828-9da1-ff0270ae961f")
+            .build()*/
+        adView?.loadAd(createAdRequest())
     }
 
     fun assets(context: Context): Typeface {

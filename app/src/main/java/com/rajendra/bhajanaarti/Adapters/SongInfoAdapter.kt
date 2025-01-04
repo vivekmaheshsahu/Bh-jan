@@ -44,7 +44,7 @@ class SongInfoAdapter(private val mCtx: Context?, private val items: ArrayList<S
             songIndex = adapterPosition
             Log.d("test", "position_index $adapterPosition")
             Log.d("Test", "SongInfo_name " + items[adapterPosition].songname)
-            handler.postDelayed(r, 900)
+            handler.postDelayed(r, 500)
         }
     }
 
@@ -52,6 +52,7 @@ class SongInfoAdapter(private val mCtx: Context?, private val items: ArrayList<S
         progressBarInterface.hideProgressBar()
         val intent = Intent(mCtx, MusicPlayerActivity::class.java)
         intent.putExtra("songindex", songIndex)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         mCtx?.startActivity(intent)
     }
 
